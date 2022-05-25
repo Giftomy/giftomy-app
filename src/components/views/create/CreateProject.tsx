@@ -176,13 +176,13 @@ const CreateProject = (props: { project?: IProjectEdition }) => {
 				setErrors(_errors);
 				return;
 			}
-			debouncedAddressValidation.current(
-				value,
-				library,
-				errors,
-				setErrors,
-				chainId,
-			);
+			// debouncedAddressValidation.current(
+			// 	value,
+			// 	library,
+			// 	errors,
+			// 	setErrors,
+			// 	chainId,
+			// );
 		} else if (id === ECreateErrFields.DESCRIPTION) {
 			setDescription(value);
 			debouncedDescriptionValidation.current(value, errors, setErrors);
@@ -208,7 +208,7 @@ const CreateProject = (props: { project?: IProjectEdition }) => {
 
 	const onSubmit = async (drafted?: boolean) => {
 		try {
-			if (!isReadyToPublish()) return;
+			// if (!isReadyToPublish()) return;
 
 			const address = isAddressENS(walletAddress)
 				? await getAddressFromENS(walletAddress, library)
@@ -346,7 +346,7 @@ const CreateProject = (props: { project?: IProjectEdition }) => {
 										ECreateErrFields.WALLET_ADDRESS,
 									)
 								}
-								error={errors[ECreateErrFields.WALLET_ADDRESS]}
+								// error={errors[ECreateErrFields.WALLET_ADDRESS]}
 							/>
 
 							<PublishTitle>
