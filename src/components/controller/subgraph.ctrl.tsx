@@ -17,17 +17,24 @@ const SubgraphController = () => {
 		const _chainId = chainId ?? 0;
 		dispatch(fetchXDaiInfoAsync(_account));
 		dispatch(fetchMainnetInfoAsync(_account));
-		const interval = setInterval(() => {
-			dispatch(
-				fetchCurrentInfoAsync({
-					userAddress: _account,
-					chainId: _chainId,
-				}),
-			);
-		}, config.SUBGRAPH_POLLING_INTERVAL);
-		return () => {
-			clearInterval(interval);
-		};
+		dispatch(
+			fetchCurrentInfoAsync({
+				userAddress: _account,
+				chainId: _chainId,
+			}),
+		);
+
+		// const interval = setInterval(() => {
+		// 	dispatch(
+		// 		fetchCurrentInfoAsync({
+		// 			userAddress: _account,
+		// 			chainId: _chainId,
+		// 		}),
+		// 	);
+		// }, config.SUBGRAPH_POLLING_INTERVAL);
+		// return () => {
+		// 	clearInterval(interval);
+		// };
 	}, [account, chainId]);
 	return null;
 };
