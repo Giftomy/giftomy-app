@@ -9,7 +9,7 @@ import { gwei2wei } from '@/helpers/blockchain';
 const INFURA_API_KEY = process.env.NEXT_PUBLIC_INFURA_API_KEY;
 
 const config: EnvConfig = {
-	BACKEND_LINK: 'https://serve.giveth.io/graphql',
+	BACKEND_LINK: 'http://localhost:4000/graphql',
 	MAINNET_NETWORK_NUMBER: 42, // Kovan
 	XDAI_NETWORK_NUMBER: 100, // xDAI
 
