@@ -60,19 +60,19 @@ const DonateModal = (props: IDonateModalProps) => {
 	return (
 		<Modal
 			setShowModal={setShowModal}
-			headerTitle='Donating'
+			headerTitle='Collecting NFT'
 			headerTitlePosition='left'
 			headerIcon={<IconWalletApprove size={32} />}
 		>
 			<DonateContainer>
 				<DonatingBox>
-					<P>You are donating</P>
+					<P>You are collecting NFT</P>
 					<H3>
 						{formatPrice(amount)} {token.symbol}
 					</H3>
 					{avgPrice ? <H6>{formatPrice(avgPrice)} USD</H6> : null}
 					<P>
-						To <span>{title}</span>
+						From <span>{title}</span>
 					</P>
 				</DonatingBox>
 				<Buttons>
@@ -92,7 +92,7 @@ const DonateModal = (props: IDonateModalProps) => {
 					<DonateButton
 						buttonType='primary'
 						disabled={donating}
-						label={donating ? 'DONATING' : 'DONATE'}
+						label={donating ? 'Collecting' : 'Collect'}
 						onClick={handleDonate}
 					/>
 					{donationSaved && (
