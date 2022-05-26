@@ -17,7 +17,7 @@ const ProjectsRoute = (props: IProjectsRoute) => {
 	return (
 		<>
 			<Head>
-				<title>Projects | Giveth</title>
+				<title>Projects | Giftomy</title>
 				<ProjectsMeta />
 			</Head>
 			<ProjectsIndex

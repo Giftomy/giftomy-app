@@ -121,7 +121,7 @@ const ProjectCard = (props: IProjectCard) => {
 									/>
 									<VerifiedText>VERIFIED</VerifiedText>
 								</Flex>
-								<Flex alignItems='center' gap='2px'>
+								{/* <Flex alignItems='center' gap='2px'>
 									<GivBackIconContainer>
 										<IconGIVBack
 											size={24}
@@ -129,7 +129,7 @@ const ProjectCard = (props: IProjectCard) => {
 										/>
 									</GivBackIconContainer>
 									<GivBackText>GIVBACK ELIGIBLE</GivBackText>
-								</Flex>
+								</Flex> */}
 							</>
 						)}
 					</BadgesContainer>
@@ -138,7 +138,7 @@ const ProjectCard = (props: IProjectCard) => {
 							<CustomizedDonateButton
 								linkType='primary'
 								size='small'
-								label='DONATE'
+								label='Collect NFT'
 							/>
 						</Link>
 					</ActionButtons>
