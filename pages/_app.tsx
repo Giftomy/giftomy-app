@@ -1,32 +1,42 @@
-import React, { useEffect } from 'react';
-import Head from 'next/head';
-import { Toaster } from 'react-hot-toast';
-import { Web3ReactProvider } from '@web3-react/core';
-import { ApolloProvider } from '@apollo/client';
-import { ExternalProvider, Web3Provider } from '@ethersproject/providers';
-import NProgress from 'nprogress';
-
-import { useRouter } from 'next/router';
-import { Provider } from 'react-redux';
-import { ChainId, ThirdwebProvider } from '@thirdweb-dev/react';
-import { PriceProvider } from '@/context/price.context';
-import { GeneralProvider } from '@/context/general.context';
-import { useApollo } from '@/apollo/apolloClient';
-import { UserProvider } from '@/context/UserProvider';
-import { ModalProvider } from '@/context/ModalProvider';
-import { HeaderWrapper } from '@/components/Header/HeaderWrapper';
-import { FooterWrapper } from '@/components/Footer/FooterWrapper';
-
 import '../styles/globals.css';
-import { store } from '@/features/store';
+import chakraTheme from "../theme";
+import { useApollo } from '@/apollo/apolloClient';
+import { FooterWrapper } from '@/components/Footer/FooterWrapper';
+import { HeaderWrapper } from '@/components/Header/HeaderWrapper';
 import SubgraphController from '@/components/controller/subgraph.ctrl';
+import { ModalProvider } from '@/context/ModalProvider';
+import { UserProvider } from '@/context/UserProvider';
+import { GeneralProvider } from '@/context/general.context';
+import { PriceProvider } from '@/context/price.context';
+import { store } from '@/features/store';
+import { ApolloProvider } from '@apollo/client';
+import { ChakraProvider } from "@chakra-ui/react";
+import { ExternalProvider, Web3Provider } from '@ethersproject/providers';
+import { ChainId, ThirdwebProvider } from '@thirdweb-dev/react';
+import { Web3ReactProvider } from '@web3-react/core';
+import { NextPage } from "next";
 import type { AppProps } from 'next/app';
+import Head from 'next/head';
+import { useRouter } from 'next/router';
+import NProgress from 'nprogress';
+import React, { ReactElement, ReactNode, useEffect } from 'react';
+import { Toaster } from 'react-hot-toast';
+import { Provider } from 'react-redux';
+
+
+type NextPageWithLayout = NextPage & {
+	getLayout?: (page: ReactElement) => ReactNode;
+};
+
+type AppPropsWithLayout = AppProps & {
+	Component: NextPageWithLayout;
+};
 
 function getLibrary(provider: ExternalProvider) {
 	return new Web3Provider(provider);
 }
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps }: AppPropsWithLayout) {
 	const router = useRouter();
 	const apolloClient = useApollo(pageProps);
 
@@ -50,6 +60,8 @@ function MyApp({ Component, pageProps }: AppProps) {
 		};
 	}, [router]);
 
+	const getLayout = Component.getLayout ?? (page => page);
+
 	return (
 		<>
 			<Head>
@@ -68,11 +80,16 @@ function MyApp({ Component, pageProps }: AppProps) {
 										<ThirdwebProvider
 											desiredChainId={ChainId.Mumbai}
 										>
-											<SubgraphController />
-											<HeaderWrapper />
-											<Component {...pageProps} />
-											<FooterWrapper />
-											{/* <ModalHandler /> */}
+											<ChakraProvider theme={chakraTheme}>
+
+												<SubgraphController />
+												<HeaderWrapper />
+												{getLayout(
+													<Component {...pageProps} />,
+												)}
+												<FooterWrapper />
+												{/* <ModalHandler /> */}
+											</ChakraProvider>
 										</ThirdwebProvider>
 									</ModalProvider>
 								</UserProvider>
@@ -80,6 +97,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 						</Web3ReactProvider>
 					</ApolloProvider>
 				</GeneralProvider>
+
 			</Provider>
 			<Toaster containerStyle={{ top: '80px' }} />
 		</>
