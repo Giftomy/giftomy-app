@@ -1,0 +1,127 @@
+import { useActiveChainId } from "@3rdweb-sdk/react";
+import { ThirdwebProvider, WalletConnector } from "@thirdweb-dev/react";
+import { IpfsStorage } from "@thirdweb-dev/sdk";
+import { BigNumber } from "ethers";
+import { useNativeColorMode } from "hooks/useNativeColorMode";
+import React, { useEffect } from "react";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { createWebStoragePersister } from "react-query/createWebStoragePersister";
+import { persistQueryClient } from "react-query/persistQueryClient";
+import { ComponentWithChildren } from "types/component-with-children";
+import { ChainId, SUPPORTED_CHAIN_ID } from "utils/network";
+
+const __CACHE_BUSTER = "tw_v2.0.1";
+
+export const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      // 24 hours
+      cacheTime: 1000 * 60 * 60 * 24,
+      // 30 seconds
+      staleTime: 1000 * 30,
+    },
+  },
+});
+
+function replacer(_key: string, value: any) {
+  // if we find a BigNumber then make it into a string (since that is safe)
+  if (
+    BigNumber.isBigNumber(value) ||
+    (typeof value === "object" &&
+      value !== null &&
+      value.type === "BigNumber" &&
+      "hex" in value)
+  ) {
+    return BigNumber.from(value).toString();
+  }
+
+  return value;
+}
+
+export const StorageSingleton = new IpfsStorage(
+  process.env.NEXT_PUBLIC_IPFS_GATEWAY_URL,
+);
+
+export const alchemyUrlMap: Record<SUPPORTED_CHAIN_ID, string> = {
+  [ChainId.Mainnet]:
+    process.env.NEXT_PUBLIC_RPC_MAINNET ||
+    `https://eth-mainnet.g.alchemy.com/v2/${process.env.NEXT_PUBLIC_ALCHEMY_KEY}`,
+  [ChainId.Rinkeby]:
+    process.env.NEXT_PUBLIC_RPC_RINKEBY ||
+    `https://eth-rinkeby.g.alchemy.com/v2/${process.env.NEXT_PUBLIC_ALCHEMY_KEY}`,
+  [ChainId.Goerli]:
+    process.env.NEXT_PUBLIC_RPC_GOERLI ||
+    `https://eth-goerli.g.alchemy.com/v2/${process.env.NEXT_PUBLIC_ALCHEMY_KEY}`,
+  [ChainId.Fantom]:
+    process.env.NEXT_PUBLIC_RPC_FANTOM || "https://rpc.ftm.tools",
+  [ChainId.Avalanche]:
+    process.env.NEXT_PUBLIC_RPC_AVALANCHE || "https://rpc.ankr.com/avalanche",
+  [ChainId.Polygon]:
+    process.env.NEXT_PUBLIC_RPC_POLYGON ||
+    `https://polygon-mainnet.g.alchemy.com/v2/${process.env.NEXT_PUBLIC_ALCHEMY_KEY}`,
+  [ChainId.Mumbai]:
+    process.env.NEXT_PUBLIC_RPC_MUMBAI ||
+    `https://polygon-mumbai.g.alchemy.com/v2/${process.env.NEXT_PUBLIC_ALCHEMY_KEY}`,
+};
+
+const walletConnectors: WalletConnector[] = [
+  "metamask",
+  "walletConnect",
+  "walletLink",
+  "gnosis",
+];
+if (process.env.NEXT_PUBLIC_MAGIC_KEY) {
+  walletConnectors.push({
+    name: "magic",
+    options: {
+      apiKey: process.env.NEXT_PUBLIC_MAGIC_KEY,
+      rpcUrls: alchemyUrlMap,
+    },
+  });
+}
+
+export const Providers: ComponentWithChildren = ({ children }) => {
+  useNativeColorMode();
+
+  useEffect(() => {
+    persistQueryClient({
+      queryClient,
+      buster: __CACHE_BUSTER,
+      persister: createWebStoragePersister({
+        storage: window.localStorage,
+        serialize: (data) => JSON.stringify(data, replacer),
+      }),
+    });
+  }, []);
+
+  const activeChainId = useActiveChainId();
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <ThirdwebProvider
+        queryClient={queryClient}
+        dAppMeta={{
+          name: "thirdweb",
+          logoUrl: "https://thirdweb.com/favicon.ico",
+          isDarkMode: false,
+          url: "https://thirdweb.com",
+        }}
+        chainRpc={alchemyUrlMap}
+        desiredChainId={activeChainId}
+        sdkOptions={{
+          gasSettings: { maxPriceInGwei: 650 },
+          readonlySettings: activeChainId
+            ? {
+                chainId: activeChainId,
+                rpcUrl: alchemyUrlMap[activeChainId],
+              }
+            : undefined,
+        }}
+        storageInterface={StorageSingleton}
+        walletConnectors={walletConnectors}
+      >
+        {children}
+      </ThirdwebProvider>
+    </QueryClientProvider>
+  );
+};

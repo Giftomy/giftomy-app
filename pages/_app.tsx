@@ -8,6 +8,7 @@ import NProgress from 'nprogress';
 
 import { useRouter } from 'next/router';
 import { Provider } from 'react-redux';
+import { ChainId, ThirdwebProvider } from '@thirdweb-dev/react';
 import { PriceProvider } from '@/context/price.context';
 import { GeneralProvider } from '@/context/general.context';
 import { useApollo } from '@/apollo/apolloClient';
@@ -64,11 +65,15 @@ function MyApp({ Component, pageProps }: AppProps) {
 							<PriceProvider>
 								<UserProvider>
 									<ModalProvider>
-										<SubgraphController />
-										<HeaderWrapper />
-										<Component {...pageProps} />
-										<FooterWrapper />
-										{/* <ModalHandler /> */}
+										<ThirdwebProvider
+											desiredChainId={ChainId.Mumbai}
+										>
+											<SubgraphController />
+											<HeaderWrapper />
+											<Component {...pageProps} />
+											<FooterWrapper />
+											{/* <ModalHandler /> */}
+										</ThirdwebProvider>
 									</ModalProvider>
 								</UserProvider>
 							</PriceProvider>
