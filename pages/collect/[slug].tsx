@@ -17,8 +17,11 @@ const DonateRoute = (props: IProjectBySlug) => {
 	return (
 		<>
 			<Head>
-				<title>{props.project.title} | Giveth</title>
-				<ProjectMeta project={props.project} preTitle='Donate to' />
+				<title>{props.project.title} | Giftomy</title>
+				<ProjectMeta
+					project={props.project}
+					preTitle='Collect NFT from'
+				/>
 			</Head>
 			<DonateIndex {...props} />
 		</>

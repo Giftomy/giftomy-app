@@ -19,20 +19,20 @@ const DonationTypes = (props: {
 
 	return (
 		<>
-			<H4 weight={700}>Donate With</H4>
+			<H4 weight={700}>Collect With</H4>
 			<RadioBox>
 				<RadioTitle
 					title='Cryptocurrency'
 					toggleRadio={() => setIsCrypto(true)}
 					isSelected={isCrypto}
-					subtitle='Zero Fees'
+					subtitle='Low Fees'
 				/>
-				<RadioTitle
+				{/* <RadioTitle
 					title='Credit Card'
 					toggleRadio={() => setIsCrypto(false)}
 					isSelected={!isCrypto}
 					subtitle='Bank Fees'
-				/>
+				/> */}
 			</RadioBox>
 			{isCrypto ? (
 				<CryptoDonation

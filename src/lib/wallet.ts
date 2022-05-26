@@ -73,7 +73,7 @@ export async function getAddressFromENS(ens: string, web3: any) {
 export const switchNetworkHandler = (chainId: number | undefined) => {
 	if (!chainId) return;
 	if (chainId === config.XDAI_NETWORK_NUMBER) {
-		switchNetwork(config.MAINNET_NETWORK_NUMBER);
+		switchNetwork(config.POLYGON_TEST_NETWORK_NUMBER);
 	} else {
 		switchNetwork(config.XDAI_NETWORK_NUMBER);
 	}

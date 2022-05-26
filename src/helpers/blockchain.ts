@@ -78,6 +78,26 @@ export const networksParams: {
 		},
 		blockExplorerUrls: ['https://kovan.etherscan.io'],
 	},
+	137: {
+		chainId: '0x89', // A 0x-prefixed hexadecimal string
+		chainName: 'Polygon Mainnet',
+		nativeCurrency: {
+			name: 'Matic',
+			symbol: 'MATIC', // 2-6 characters long
+			decimals: 18,
+		},
+		blockExplorerUrls: ['https://polygonscan.com/'],
+	},
+	80001: {
+		chainId: '0x13881', // A 0x-prefixed hexadecimal string
+		chainName: 'Polygon Testnet',
+		nativeCurrency: {
+			name: 'Matic',
+			symbol: 'MATIC', // 2-6 characters long
+			decimals: 18,
+		},
+		blockExplorerUrls: ['https://mumbai.polygonscan.com/'],
+	},
 };
 
 export const gwei2wei = (gweiAmount: string): string =>

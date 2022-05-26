@@ -23,10 +23,20 @@ const config: GlobalConfig = {
 		chain: '0x64',
 		mainToken: 'XDAI',
 	},
+	THIRD_NETWORK: {
+		name: 'Polygon Testnet',
+		id: 80001,
+		chain: '80001',
+		mainToken: 'MATIC',
+	},
 	...envConfig,
 	NETWORKS_CONFIG: {
 		[envConfig.MAINNET_NETWORK_NUMBER]: envConfig.MAINNET_CONFIG,
 		[envConfig.XDAI_NETWORK_NUMBER]: envConfig.XDAI_CONFIG,
+		[envConfig.POLYGON_TEST_NETWORK_NUMBER]:
+			envConfig.POLYGON_TESTNET_CONFIG,
+		[envConfig.POLYGON_MAIN_NETWORK_NUMBER]:
+			envConfig.POLYGON_MAINNET_CONFIG,
 	},
 	// Used for adding networks to user wallet, useless since just xDAI is not
 	// included in metamask by default and its rpc endpoint is not infura
@@ -36,6 +46,8 @@ const config: GlobalConfig = {
 };
 
 config.MAINNET_CONFIG.nodeUrl = process.env.NEXT_PUBLIC_NODE_URL || '';
+config.POLYGON_TESTNET_CONFIG.nodeUrl = process.env.NEXT_PUBLIC_NODE_URL || '';
+config.POLYGON_MAINNET_CONFIG.nodeUrl = process.env.NEXT_PUBLIC_NODE_URL || '';
 config.XDAI_CONFIG.nodeUrl = process.env.NEXT_PUBLIC_XDAI_NODE_URL || '';
 
 export default config;

@@ -59,6 +59,8 @@ import FailedDonation from '@/components/modals/FailedDonation';
 
 const ethereumChain = config.PRIMARY_NETWORK;
 const xdaiChain = config.SECONDARY_NETWORK;
+const polygonTestnetChain = config.THIRD_NETWORK;
+const polygonMainnetChain = config.THIRD_NETWORK;
 const stableCoins = [xdaiChain.mainToken, 'DAI', 'USDT'];
 const POLL_DELAY_TOKENS = config.SUBGRAPH_POLLING_INTERVAL;
 
@@ -152,7 +154,22 @@ const CryptoDonation = (props: {
 				fetchPolicy: 'no-cache',
 			})
 			.then((res: IProjectAcceptedTokensGQL) => {
-				setAcceptedTokens(res.data.getProjectAcceptTokens);
+				// setAcceptedTokens(res.data.getProjectAcceptTokens);
+				// todo
+				const acceptTokens = [
+					{
+						id: '1',
+						symbol: 'MATIC',
+						networkId: 80001,
+						address: '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE',
+						name: 'MATIC',
+						decimals: 18,
+						mainnetAddress:
+							'0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE',
+						isGivbackEligible: true,
+					},
+				];
+				setAcceptedTokens(acceptTokens);
 			})
 			.catch((error: unknown) => {
 				showToastError(error);
@@ -222,6 +239,8 @@ const CryptoDonation = (props: {
 		// Native token balance is provided by the Web3Provider
 		if (
 			selectedToken.symbol === ethereumChain.mainToken ||
+			selectedToken.symbol === polygonTestnetChain.mainToken ||
+			selectedToken.symbol === polygonMainnetChain.mainToken ||
 			selectedToken.symbol === xdaiChain.mainToken
 		) {
 			return setSelectedTokenBalance(balance);
@@ -321,12 +340,12 @@ const CryptoDonation = (props: {
 	return (
 		<MainContainer>
 			{geminiModal && <GeminiModal setShowModal={setGeminiModal} />}
-			{showChangeNetworkModal && acceptedChains && (
+			{/* {showChangeNetworkModal && acceptedChains && (
 				<DonateWrongNetwork
 					setShowModal={setShowChangeNetworkModal}
 					targetNetworks={acceptedChains}
 				/>
-			)}
+			)} */}
 			{showInsufficientModal && (
 				<InsufficientFundModal
 					setShowModal={setShowInsufficientModal}
@@ -356,7 +375,7 @@ const CryptoDonation = (props: {
 			)}
 
 			<InputContainer>
-				{networkId &&
+				{/* {networkId &&
 					acceptedChains &&
 					!acceptedChains.includes(networkId) && (
 						<NetworkToast>
@@ -373,24 +392,26 @@ const CryptoDonation = (props: {
 								Switch network
 							</SwitchCaption>
 						</NetworkToast>
-					)}
-				{networkId &&
+					)} */}
+				{/* {networkId &&
 					networkId === ethereumChain.id &&
 					acceptedChains?.includes(xdaiChain.id) && (
 						<NetworkToast>
 							<div>
 								<img src='/images/gas_station.svg' alt='gas' />
 								<Caption medium>
-									Save on gas fees, switch to Gnosis Chain.
+									Save on gas fees, switch to Polygon Chain.
 								</Caption>
 							</div>
 							<SwitchCaption
-								onClick={() => switchNetwork(xdaiChain.id)}
+								onClick={() =>
+									switchNetwork(polygonTestnetChain.id)
+								}
 							>
 								Switch network
 							</SwitchCaption>
 						</NetworkToast>
-					)}
+					)} */}
 				<SearchContainer error={error} focused={inputBoxFocused}>
 					<DropdownContainer>
 						<TokenPicker
@@ -438,13 +459,13 @@ const CryptoDonation = (props: {
 					</AvText>
 				)}
 			</InputContainer>
-			{selectedToken && (
+			{/* {selectedToken && (
 				<GIVBackToast
 					projectEligible={projectIsGivBackEligible}
 					tokenEligible={tokenIsGivBackEligible}
 				/>
-			)}
-			<CheckBoxContainer>
+			)} */}
+			{/* <CheckBoxContainer>
 				<CheckBox
 					title={'Make it anonymous'}
 					checked={anonymous}
@@ -455,14 +476,14 @@ const CryptoDonation = (props: {
 					as a donor for this donation and won't show it on public
 					pages.
 				</B>
-			</CheckBoxContainer>
+			</CheckBoxContainer> */}
 
 			{!isActive && <InlineToast message='This project is not active.' />}
 
 			{isEnabled && (
 				<>
 					<MainButton
-						label='DONATE'
+						label='Collect'
 						disabled={donationDisabled}
 						size='large'
 						onClick={handleDonate}

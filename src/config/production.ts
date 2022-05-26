@@ -12,6 +12,8 @@ const config: EnvConfig = {
 	BACKEND_LINK: 'https://mainnet.serve.giveth.io/graphql',
 	MAINNET_NETWORK_NUMBER: 1, // ETH
 	XDAI_NETWORK_NUMBER: 100, // xDAI
+	POLYGON_TEST_NETWORK_NUMBER: 137,
+	POLYGON_MAIN_NETWORK_NUMBER: 80001,
 
 	GARDEN_LINK:
 		'https://gardens.1hive.org/#/xdai/garden/0xb25f0ee2d26461e2b5b3d3ddafe197a0da677b98',

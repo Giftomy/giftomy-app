@@ -33,7 +33,8 @@ export const DonateWrongNetwork: FC<IDonateWrongNetwork> = ({
 	return (
 		<Modal setShowModal={setShowModal}>
 			<ModalContainer>
-				{!targetNetworks.includes(config.SECONDARY_NETWORK.id) ? (
+				{!targetNetworks.includes(config.SECONDARY_NETWORK.id) ||
+				!targetNetworks.includes(config.THIRD_NETWORK.id) ? (
 					<IconEthereum size={64} />
 				) : (
 					<>
