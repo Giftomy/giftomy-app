@@ -5,7 +5,7 @@ export const slugToProjectView = (slug: string) => {
 };
 
 export const slugToProjectDonate = (slug: string) => {
-	return Routes.Donate + '/' + slug;
+	return Routes.Collect + '/' + slug;
 };
 
 export const idToProjectEdit = (id?: string) => {
