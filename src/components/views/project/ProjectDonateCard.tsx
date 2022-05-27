@@ -229,7 +229,7 @@ const ProjectDonateCard = ({
 			)}
 			<Wrapper
 				ref={wrapperRef}
-				initialPosition={wrapperHeight}
+				initialposition={wrapperHeight}
 				drag='y'
 				dragConstraints={{ top: -(wrapperHeight - 168), bottom: 120 }}
 			>
