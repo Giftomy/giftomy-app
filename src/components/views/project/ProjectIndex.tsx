@@ -1,28 +1,27 @@
-import React, { useEffect, useState } from 'react';
+import { Caption, Container, semanticColors } from '@giveth/ui-design-system';
+import { captureException } from '@sentry/nextjs';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { Caption, Container, semanticColors } from '@giveth/ui-design-system';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-
-import { captureException } from '@sentry/nextjs';
+import ProjectDonateCard from './ProjectDonateCard';
 import ProjectHeader from './ProjectHeader';
 import ProjectTabs from './ProjectTabs';
-import ProjectDonateCard from './ProjectDonateCard';
-import { FETCH_PROJECT_DONATIONS } from '@/apollo/gql/gqlDonations';
 import { client } from '@/apollo/apolloClient';
+import { FETCH_PROJECT_DONATIONS } from '@/apollo/gql/gqlDonations';
 import { FETCH_PROJECT_BY_SLUG } from '@/apollo/gql/gqlProjects';
-import useUser from '@/context/UserProvider';
-import { IDonation, IProject } from '@/apollo/types/types';
 import { EDirection, EProjectStatus, gqlEnums } from '@/apollo/types/gqlEnums';
-import InfoBadge from '@/components/badges/InfoBadge';
 import { IDonationsByProjectIdGQL } from '@/apollo/types/gqlTypes';
-import SuccessfulCreation from '@/components/views/create/SuccessfulCreation';
-import { deviceSize, mediaQueries } from '@/lib/constants/constants';
+import { IDonation, IProject } from '@/apollo/types/types';
+import InfoBadge from '@/components/badges/InfoBadge';
 import InlineToast from '@/components/toasts/InlineToast';
-import { ProjectMeta } from '@/lib/meta';
+import SuccessfulCreation from '@/components/views/create/SuccessfulCreation';
 import SimilarProjects from '@/components/views/project/SimilarProjects';
+import useUser from '@/context/UserProvider';
+import { deviceSize, mediaQueries } from '@/lib/constants/constants';
 import { showToastError } from '@/lib/helpers';
+import { ProjectMeta } from '@/lib/meta';
 
 const ProjectDonations = dynamic(() => import('./ProjectDonations'));
 const ProjectUpdates = dynamic(() => import('./ProjectUpdates'));
@@ -150,7 +149,7 @@ const ProjectIndex = (props: { project?: IProject }) => {
 		<>
 			<Wrapper>
 				<Head>
-					<title>{title && `${title} |`} Giveth</title>
+					<title>{title && `${title} |`} Giftomy</title>
 					<ProjectMeta project={project} preTitle='Check out' />
 				</Head>
 
