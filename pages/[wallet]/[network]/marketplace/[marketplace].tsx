@@ -1,6 +1,6 @@
 import { useContractMetadata } from "@3rdweb-sdk/react";
 import { useMarketplace } from "@thirdweb-dev/react";
-import { AppLayout } from "components/app-layouts/app";
+import { Providers } from 'components/app-layouts/providers';
 import { ListButton } from "components/contract-pages/action-buttons/ListButton";
 import { ContractLayout } from "components/contract-pages/contract-layout";
 import { ContractItemsTable } from "components/contract-pages/table";
@@ -35,5 +35,5 @@ export default function MarketplacePage() {
 }
 
 MarketplacePage.getLayout = (page: ReactElement) => (
-  <AppLayout>{page}</AppLayout>
+  <Providers>{page}</Providers>
 );
