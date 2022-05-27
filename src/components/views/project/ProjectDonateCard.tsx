@@ -270,7 +270,7 @@ const ProjectDonateCard = ({
 						onClick={() =>
 							router.push(slugToProjectDonate(slug || ''))
 						}
-						label='DONATE'
+						label='Collect NFT'
 						disabled={!isActive}
 					/>
 				)}
@@ -285,7 +285,7 @@ const ProjectDonateCard = ({
 						onClick={likeUnlikeProject}
 					/>
 				</BadgeWrapper>
-				{!isAdmin && verified && (
+				{/* {!isAdmin && verified && (
 					<GivBackNotif>
 						<Caption color={brandColors.giv[300]}>
 							When you donate to verified projects, you get
@@ -295,7 +295,7 @@ const ProjectDonateCard = ({
 							<IconHelp size={16} />
 						</ExternalLink>
 					</GivBackNotif>
-				)}
+				)} */}
 				{isCategories && (
 					<CategoryWrapper>
 						{categories.map(i => (

@@ -29,7 +29,8 @@ const ProjectTabs = (props: IProjectTabs) => {
 	const tabsArray = [
 		{ title: 'About' },
 		{ title: 'Updates', badge: totalProjectUpdates },
-		{ title: 'Donations', badge: totalDonations },
+		// { title: 'Donations', badge: totalDonations },
+		{ title: 'NFT' },
 	];
 
 	return (

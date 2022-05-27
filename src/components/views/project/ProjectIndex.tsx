@@ -22,6 +22,7 @@ import useUser from '@/context/UserProvider';
 import { deviceSize, mediaQueries } from '@/lib/constants/constants';
 import { showToastError } from '@/lib/helpers';
 import { ProjectMeta } from '@/lib/meta';
+import ProjectNFT from './NFT';
 
 const ProjectDonations = dynamic(() => import('./ProjectDonations'));
 const ProjectUpdates = dynamic(() => import('./ProjectUpdates'));
@@ -184,7 +185,7 @@ const ProjectIndex = (props: { project?: IProject }) => {
 								fetchProject={fetchProject}
 							/>
 						)}
-						{activeTab === 2 && (
+						{/* {activeTab === 2 && (
 							<ProjectDonations
 								donationsByProjectId={{
 									donations,
@@ -194,7 +195,8 @@ const ProjectIndex = (props: { project?: IProject }) => {
 								isActive={isActive}
 								isDraft={isDraft}
 							/>
-						)}
+						)} */}
+						{activeTab === 2 && <ProjectNFT />}
 					</ContentWrapper>
 					{project && (
 						<ProjectDonateCard

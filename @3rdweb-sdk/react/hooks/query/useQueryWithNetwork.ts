@@ -26,6 +26,7 @@ export function useQueryWithNetwork<
   >,
 ): UseQueryResult<TData, TError> {
   const activeChainId = useActiveChainId();
+  console.log('activeChainId: ', activeChainId)
 
   const mergedOptions: Omit<
     UseQueryOptions<TQueryFnData, TError, TData, TQueryKey>,
