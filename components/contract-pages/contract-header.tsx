@@ -37,7 +37,7 @@ export const ContractHeader = <
   return (
     <Flex flexDirection={"row"} justify="space-between" align="center">
       <Flex gap={2} direction="row" align="center">
-        <Box display={{ base: "none", md: "block" }}>
+        {/* <Box display={{ base: "none", md: "block" }}>
           {contractImage ? (
             <Image
               src={contractImage}
@@ -62,7 +62,8 @@ export const ContractHeader = <
               <AddressCopyButton variant="solid" address={address} />
             </Flex>
           )}
-        </Flex>
+        </Flex> */}
+        <Heading>Manage NFTs</Heading>
       </Flex>
       <Stack direction={{ base: "column", md: "row" }} as={ButtonGroup}>
         {tertiaryAction}
