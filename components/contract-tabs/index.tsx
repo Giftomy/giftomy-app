@@ -24,22 +24,22 @@ export function useContractTabs(
   const isAdmin = useIsAdmin(contract);
   return useMemo(() => {
     const tabs: ContractTab[] = [];
-    if (isContractWithRoles(contract)) {
-      tabs.push({
-        title: "Permissions",
-        content: <ContractPermissions contract={contract} />,
-      });
-    }
+    // if (isContractWithRoles(contract)) {
+    //   tabs.push({
+    //     title: "Permissions",
+    //     content: <ContractPermissions contract={contract} />,
+    //   });
+    // }
 
-    if (
-      (contract instanceof NFTDrop || contract instanceof TokenDrop) &&
-      isAdmin
-    ) {
-      tabs.push({
-        title: "Claim Phases",
-        content: <DropPhases contract={contract} />,
-      });
-    }
+    // if (
+    //   (contract instanceof NFTDrop || contract instanceof TokenDrop) &&
+    //   isAdmin
+    // ) {
+    //   tabs.push({
+    //     title: "Claim Phases",
+    //     content: <DropPhases contract={contract} />,
+    //   });
+    // }
     if (
       contract instanceof NFTDrop ||
       contract instanceof EditionDrop ||
@@ -51,14 +51,14 @@ export function useContractTabs(
       });
     }
 
-    tabs.push({
-      title: "Code",
-      content: <ContractCode contract={contract} />,
-    });
-    tabs.push({
-      title: "Settings",
-      content: <ContractSettings contract={contract} />,
-    });
+    // tabs.push({
+    //   title: "Code",
+    //   content: <ContractCode contract={contract} />,
+    // });
+    // tabs.push({
+    //   title: "Settings",
+    //   content: <ContractSettings contract={contract} />,
+    // });
 
     return tabs;
   }, [contract, isAdmin]);
