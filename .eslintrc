@@ -18,12 +18,21 @@
 			"warn",
 			{ "vars": "all", "varsIgnorePattern": "^_", "args": "after-used", "argsIgnorePattern": "^_" }
 		],
-    "prettier/prettier": [
-      "error",
-      {
-        "endOfLine": "auto"
-      }
-    ],
+    // "prettier/prettier": [
+    //   "error",
+    //   {
+    //     "singleQuote": true,
+    //     "semi": true,
+    //     "jsxSingleQuote": true,
+    //     "trailingComma": "all",
+    //     "arrowParens": "avoid",
+    //     "endOfLine": "auto"
+
+    //   }
+    // ],
+    "prettier/prettier": ["error", {}, {
+      "usePrettierrc": false
+    }],
     "import/named": "error"
   },
   "settings": {
