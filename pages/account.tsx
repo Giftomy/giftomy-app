@@ -16,7 +16,7 @@ const UserRoute: FC = () => {
 	return (
 		<>
 			<Head>
-				<title>Giveth | {user?.name}</title>
+				<title>Giftomy | {user?.name}</title>
 			</Head>
 			{user ? (
 				<UserPublicProfileView user={user} myAccount={true} />
