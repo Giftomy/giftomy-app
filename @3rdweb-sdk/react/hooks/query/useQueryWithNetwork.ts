@@ -11,7 +11,6 @@ import {
   useQuery,
   useQueryClient,
 } from "react-query";
-import { useWeb3React } from '@web3-react/core';
 
 export function useQueryWithNetwork<
   TQueryFnData = unknown,
@@ -26,9 +25,7 @@ export function useQueryWithNetwork<
     "queryKey" | "queryFn"
   >,
 ): UseQueryResult<TData, TError> {
-  // const activeChainId = useActiveChainId();
-  const { chainId: activeChainId } = useWeb3React();
-
+  const activeChainId = useActiveChainId();
   const mergedOptions: Omit<
     UseQueryOptions<TQueryFnData, TError, TData, TQueryKey>,
     "queryKey" | "queryFn"
