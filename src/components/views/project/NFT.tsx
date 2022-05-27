@@ -1,10 +1,11 @@
-import { useMarketplace } from '@thirdweb-dev/react';
-import React from 'react';
 import { useContractMetadata } from '@3rdweb-sdk/react';
+import { ConnectWallet } from '@3rdweb-sdk/react';
+import { useMarketplace } from '@thirdweb-dev/react';
 import { Providers } from 'components/app-layouts/providers';
 import { ListButton } from 'components/contract-pages/action-buttons/ListButton';
 import { ContractLayout } from 'components/contract-pages/contract-layout';
 import { ContractItemsTable } from 'components/contract-pages/table';
+import React from 'react';
 
 export default function MarketplacePage() {
   // const marketAddress = useSingleQueryParam('marketplace');
@@ -19,6 +20,7 @@ export default function MarketplacePage() {
         metadata={metadata}
         primaryAction={<ListButton contract={contract} />}
       >
+        <ConnectWallet borderRadius='full' colorScheme='primary' />
         <ContractItemsTable
           contract={contract}
           emptyState={{
