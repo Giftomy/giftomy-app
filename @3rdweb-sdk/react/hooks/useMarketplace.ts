@@ -72,3 +72,32 @@ export function useMarketplaceCancelMutation(contractAddress?: string) {
     },
   );
 }
+
+interface PurchaseProps {
+  listingId: string;
+  listingType: ListingType;
+  amount?: number;
+}
+
+export function useMarketplacePurchaseMutation(contractAddress?: string) {
+  const marketplace = useMarketplace(contractAddress);
+  return useMutationWithInvalidate(
+    async (data: PurchaseProps) => {
+      const { listingId, listingType, amount = 1 } = data;
+      if (listingType === ListingType.Auction) {
+        const bufferBps = 500;
+        return await marketplace?.setBidBufferBps(bufferBps);
+      } else {
+        return await marketplace?.buyoutListing(listingId, amount);
+      }
+    },
+    {
+      onSuccess: (_data, _variables, _options, invalidate) => {
+        return invalidate([
+          getAllQueryKey(marketplace),
+          getTotalCountQueryKey(marketplace),
+        ]);
+      },
+    },
+  );
+}
