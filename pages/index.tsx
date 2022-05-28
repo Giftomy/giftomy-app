@@ -52,7 +52,7 @@ const HomeRoute = (props: IHomeRoute) => {
 	return (
 		<>
 			<Head>
-				<title>Home | Giveth</title>
+				<title>Home | Giftomy</title>
 				<HomeMeta />
 			</Head>
 			<HomeIndex projects={projects} totalCount={totalCount} />
