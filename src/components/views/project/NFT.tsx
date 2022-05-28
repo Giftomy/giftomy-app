@@ -1,19 +1,20 @@
-import { useMarketplace } from "@thirdweb-dev/react";
-import React from "react";
-import { useEffect } from "react";
 import { useContractMetadata } from "@3rdweb-sdk/react";
 import { ConnectWallet } from "@3rdweb-sdk/react";
+import { useMarketplace } from "@thirdweb-dev/react";
 import { Providers } from "components/app-layouts/providers";
 import { ListButton } from "components/contract-pages/action-buttons/ListButton";
 import { ContractLayout } from "components/contract-pages/contract-layout";
 import { ContractItemsTable } from "components/contract-pages/table/marketplace";
+import React from "react";
+import { useEffect } from "react";
+
 
 export default function MarketplacePage({
   walletAddress,
 }: {
   walletAddress: string;
 }) {
-  const marketAddress = "0xEDBEFed02BD700DC0A2149F399c4110abaad8F46";
+  const marketAddress = process.env.NEXT_PUBLIC_MARKET_ADDRESS;
   const contract = useMarketplace(marketAddress);
   const metadata = useContractMetadata(contract);
   const marketplace = useMarketplace(marketAddress);

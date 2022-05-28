@@ -8,11 +8,12 @@ import React from "react";
 
 
 export default function Listings() {
-  const marketAddress = "0xEDBEFed02BD700DC0A2149F399c4110abaad8F46";
+  const marketAddress = process.env.NEXT_PUBLIC_MARKET_ADDRESS;
   const contract = useMarketplace(marketAddress);
   console.log('Listings component =============== ');
   return (
     <Providers>
+      <ConnectWallet borderRadius="full" colorScheme="primary" />
       <ContractItemsTable
         contract={contract}
         emptyState={{
