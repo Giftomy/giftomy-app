@@ -1,11 +1,12 @@
-import HomeHeader from './HomeHeader';
+import HomeChangeMakers from './HomeChangeMakers';
 import HomeExploreProjects from './HomeExploreProjects';
-import HomePurpleSection from './HomePurpleSection';
 import HomeFromBlog from './HomeFromBlog';
 import HomeGetUpdates from './HomeGetUpdates';
-import HomeChangeMakers from './HomeChangeMakers';
+import HomeHeader from './HomeHeader';
+import HomePurpleSection from './HomePurpleSection';
 import { IProject } from '@/apollo/types/types';
 import { BigArc } from '@/components/styled-components/Arc';
+import Listings from '@/components/views/homepage/Listings';
 
 interface IHomeView {
 	projects: IProject[];
@@ -20,6 +21,7 @@ const HomeIndex = (props: IHomeView) => {
 		<>
 			<BigArc />
 			<HomeHeader />
+			<Listings />
 			<HomeExploreProjects
 				totalCount={totalCount}
 				projects={projects.slice(0, projectsSlice)}
