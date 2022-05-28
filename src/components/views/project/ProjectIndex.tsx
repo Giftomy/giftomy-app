@@ -50,7 +50,7 @@ const ProjectIndex = (props: { project?: IProject }) => {
 		state: { user },
 	} = useUser();
 
-	const { description = '', title, status, id = '' } = project || {};
+	const { description = '', title, status, id = '', walletAddress } = project || {};
 	const router = useRouter();
 	const slug = router.query.projectIdSlug as string;
 
@@ -196,7 +196,7 @@ const ProjectIndex = (props: { project?: IProject }) => {
 								isDraft={isDraft}
 							/>
 						)} */}
-						{activeTab === 2 && <ProjectNFT />}
+						{activeTab === 2 && <ProjectNFT walletAddress={walletAddress} />}
 					</ContentWrapper>
 					{project && (
 						<ProjectDonateCard
