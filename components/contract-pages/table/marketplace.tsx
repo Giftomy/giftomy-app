@@ -1,17 +1,4 @@
 import {
-  ContractEmptyState,
-  IContractEmptyState,
-} from "../contract-emptystate";
-import { useExpandedRow } from "./expansions/useExpandedRow";
-import { useTableColumns } from "./table-columns/useTableColumns";
-import { TableProvider, useTableContext } from "./table-context";
-import { TTableType } from "./types";
-import {
-  ContractWithGetAll,
-  useGetAll,
-  useGetTotalCount,
-} from "@3rdweb-sdk/react/hooks/useGetAll";
-import {
   Box,
   Center,
   CloseButton,
@@ -40,6 +27,18 @@ import {
   MdNavigateNext,
 } from "react-icons/md";
 import { Row, usePagination, useTable } from "react-table";
+import {
+  ContractEmptyState,
+  IContractEmptyState,
+} from "../contract-emptystate";
+import { useExpandedRow } from "./expansions/useExpandedRow";
+import { useTableColumns } from "./table-columns/useTableColumns";
+import { TableProvider, useTableContext } from "./table-context";
+import { TTableType } from "./types";
+import {
+  ContractWithGetAll,
+  useGetTotalCount,
+} from "@3rdweb-sdk/react/hooks/useGetAll";
 import { Card, Heading, Text } from "tw-components";
 
 interface IRawContractItemsTable<TContract extends ContractWithGetAll> {
@@ -51,9 +50,32 @@ const RawContractItemsTable = <TContract extends ContractWithGetAll>({
   contract,
   emptyState,
 }: PropsWithChildren<IRawContractItemsTable<TContract>>) => {
-  const [queryParams, setQueryParams] = useState({ count: 50, start: 0 });
-  const items = useGetAll(contract, queryParams);
-  console.log("items", items);
+  const [queryParams, setQueryParams] = useState({
+    count: 50,
+    start: 0,
+    seller: "0x01AbECbEB70f67163a3aC8543E88d9C234A71Fa6",
+  });
+  const [items, setItems] = useState([]);
+  // const items = useGetAll(contract, queryParams);
+  // console.log("items", items);
+  // TODO: use hooks
+  useEffect(() => {
+    const getListings = async () => {
+      try {
+        console.log("marketplace: ", contract);
+        const listings = await contract?.getAllListings({
+          seller: "0x01AbECbEB70f67163a3aC8543E88d9C234A71Fa6",
+        });
+        // const listings = await contract?.getActiveListings();
+        console.log("listings: ", listings);
+        setItems(listings);
+        // const priceOfFirstActiveListing = listings[0].price;
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getListings();
+  }, []);
   const totalCount = useGetTotalCount(contract);
 
   const columns = useTableColumns(contract);
@@ -76,7 +98,7 @@ const RawContractItemsTable = <TContract extends ContractWithGetAll>({
   } = useTable(
     {
       columns,
-      data: (items.data || []) as TTableType<TContract>[],
+      data: (items || []) as TTableType<TContract>[],
       initialState: {
         pageSize: queryParams.count,
         pageIndex: 0,
@@ -85,12 +107,12 @@ const RawContractItemsTable = <TContract extends ContractWithGetAll>({
       manualPagination: true,
       pageCount: Math.max(
         Math.ceil(
-          BigNumber.from(totalCount.data || "0").toNumber() / queryParams.count,
+          BigNumber.from(totalCount.data || "0").toNumber() / queryParams.count
         ),
-        1,
+        1
       ),
     },
-    usePagination,
+    usePagination
   );
   const { closeAllRows } = useTableContext();
   const { renderExpandedRow, title } = useExpandedRow(contract);
@@ -282,7 +304,7 @@ interface IContractItemsTableProps<TContract extends ContractWithGetAll> {
 }
 
 export const ContractItemsTable = <TContract extends ContractWithGetAll>(
-  props: IContractItemsTableProps<TContract>,
+  props: IContractItemsTableProps<TContract>
 ) => {
   return (
     <TableProvider>
