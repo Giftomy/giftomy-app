@@ -1,9 +1,11 @@
 import { MarketplaceActionsCell } from "./actions/MarketplaceActionsCell";
-import { MediaCell } from "./cells/media-cell";
+import { ProjectCell } from "./cells/ProjectCell";
+import { MediaCell } from './cells/media-cell';
 import { AuctionListing, DirectListing, ListingType } from "@thirdweb-dev/sdk";
 import React from "react";
 import { Cell, Column } from "react-table";
 import { AddressCopyButton, Text } from "tw-components";
+
 
 type ListingMetadata = AuctionListing | DirectListing;
 
@@ -46,6 +48,13 @@ export function generateMarketplaceTableColumns() {
       Header: "Actions",
       id: "actions",
       Cell: MarketplaceActionsCell,
+    },
+    {
+      Header: "Project",
+      accessor: (row) => row.sellerAddress,
+      Cell: ({ cell }: { cell: Cell<ListingMetadata, string> }) => (
+        <ProjectCell address={cell.value} />
+      ),
     },
   ] as Column<DirectListing | AuctionListing>[];
 }

@@ -93,6 +93,51 @@ export const FETCH_ALL_PROJECTS = gql`
 	}
 `;
 
+export const FETCH_PROJECT_BY_WALLET = gql`
+	query ProjectByAddress($address: String!, $connectedWalletUserId: Int) {
+		projectByAddress(
+			address: $address
+			connectedWalletUserId: $connectedWalletUserId
+		) {
+			id
+			title
+			image
+			slug
+			description
+			verified
+			traceCampaignId
+			walletAddress
+			totalProjectUpdates
+			totalDonations
+			totalTraceDonations
+			creationDate
+			reaction {
+				id
+				userId
+			}
+			totalReactions
+			traceCampaignId
+			categories {
+				name
+			}
+			adminUser {
+				id
+				name
+				walletAddress
+			}
+			status {
+				id
+				name
+			}
+			organization {
+				name
+				label
+				supportCustomTokens
+			}
+		}
+	}
+`;
+
 export const FETCH_PROJECT_BY_SLUG = gql`
 	query ProjectBySlug($slug: String!, $connectedWalletUserId: Int) {
 		projectBySlug(
