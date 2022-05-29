@@ -1,22 +1,24 @@
+import PublicProfileNFTsTab from './PublicProfileNFTsTab';
+import PublicProfileLikedTab from './PublicProfileLikedTab';
+import PublicProfileOverviewTab from './PublicProfileOverviewTab';
+import { IUserPublicProfileView } from './UserPublicProfile.view';
+import PublicProfileDonationsTab from './donationsTab/PublicProfileDonationsTab';
+import PublicProfileProjectsTab from './projectsTab/PublicProfileProjectsTab';
+import { Container } from '@/components/Grid';
+import { Flex } from '@/components/styled-components/Flex';
+import ContributeCard from '@/components/views/userPublicProfile/PublicProfileContributeCard';
+import { brandColors, neutralColors, P } from '@giveth/ui-design-system';
 import { useRouter } from 'next/router';
 import { FC, useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { brandColors, neutralColors, P } from '@giveth/ui-design-system';
 
-import { Flex } from '@/components/styled-components/Flex';
-import PublicProfileDonationsTab from './donationsTab/PublicProfileDonationsTab';
-import PublicProfileLikedTab from './PublicProfileLikedTab';
-import PublicProfileProjectsTab from './projectsTab/PublicProfileProjectsTab';
-import PublicProfileOverviewTab from './PublicProfileOverviewTab';
-import { IUserPublicProfileView } from './UserPublicProfile.view';
-import { Container } from '@/components/Grid';
-import ContributeCard from '@/components/views/userPublicProfile/PublicProfileContributeCard';
 
 enum EPublicProfile {
 	OVERVIEW,
 	PROJECTS,
 	DONATIONS,
 	LIKED,
+	NFTS,
 }
 
 interface ITab {
@@ -43,6 +45,9 @@ const PublicProfileContributes: FC<IUserPublicProfileView> = ({
 				break;
 			case 'liked':
 				setTab(EPublicProfile.LIKED);
+				break;
+			case 'nfts':
+				setTab(EPublicProfile.NFTS);
 				break;
 			default:
 				setTab(
@@ -102,6 +107,17 @@ const PublicProfileContributes: FC<IUserPublicProfileView> = ({
 						</Count>
 					)}
 				</PublicProfileTab>
+				<PublicProfileTab
+					active={tab === EPublicProfile.NFTS}
+					onClick={() => setTab(EPublicProfile.NFTS)}
+				>
+					NFTs
+					{/* {myAccount && !!user.likedProjectsCount && (
+						<Count active={tab === EPublicProfile.NFTS}>
+							{user?.likedProjectsCount}
+						</Count>
+					)} */}
+				</PublicProfileTab>
 			</PublicProfileTabsContainer>
 			{tab === EPublicProfile.OVERVIEW && (
 				<PublicProfileOverviewTab user={user} />
@@ -114,6 +130,9 @@ const PublicProfileContributes: FC<IUserPublicProfileView> = ({
 			)}
 			{tab === EPublicProfile.LIKED && (
 				<PublicProfileLikedTab user={user} myAccount={myAccount} />
+			)}
+			{tab === EPublicProfile.NFTS && (
+				<PublicProfileNFTsTab user={user} myAccount={myAccount} />
 			)}
 		</ProfileContainer>
 	);
