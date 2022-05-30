@@ -58,8 +58,7 @@ interface IQueries {
 const allCategoryObj = { value: 'All', label: 'All' };
 const sortByObj = [
 	{ label: 'Default', value: gqlEnums.QUALITYSCORE },
-	{ label: 'Amount Raised', value: gqlEnums.DONATIONS },
-	{ label: 'Accepts GIV Token', value: gqlEnums.ACCEPTGIV },
+	{ label: 'Amount Sold', value: gqlEnums.DONATIONS },
 	{ label: 'Hearts', value: gqlEnums.HEARTS },
 	{ label: 'Newest', value: gqlEnums.CREATIONDATE },
 	{
@@ -68,7 +67,6 @@ const sortByObj = [
 		direction: EDirection.ASC,
 	},
 	{ label: 'Verified', value: gqlEnums.VERIFIED },
-	{ label: 'Traceable', value: gqlEnums.TRACEABLE },
 ];
 
 const buildCategoryObj = (array: ICategory[]) => {
@@ -212,9 +210,7 @@ const ProjectsIndex = (props: IProjectsView) => {
 				<Title weight={700}>Projects</Title>
 
 				<Subtitle>
-					Support for-good projects, nonprofits & charities with
-					crypto donations. Give directly with zero added fees. Get
-					rewarded when you donate to verified projects!
+					Support public goods projects by purchasing NFTs.
 				</Subtitle>
 
 				<FiltersSection>
