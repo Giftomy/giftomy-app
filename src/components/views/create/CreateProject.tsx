@@ -1,54 +1,29 @@
-import React, { useEffect, useRef, useState } from 'react';
-import {
-	brandColors,
-	Button,
-	Caption,
-	H3,
-	H4,
-	IconExternalLink,
-	neutralColors,
-	OulineButton,
-	H6,
-} from '@giveth/ui-design-system';
-import { useMutation } from '@apollo/client';
-import { utils } from 'ethers';
-import styled from 'styled-components';
-import { useWeb3React } from '@web3-react/core';
-import Debounced from 'lodash.debounce';
-import { useRouter } from 'next/router';
-import Image from 'next/image';
-import { captureException } from '@sentry/nextjs';
-
-import {
-	ACTIVATE_PROJECT,
-	CREATE_PROJECT,
-	UPDATE_PROJECT,
-} from '@/apollo/gql/gqlProjects';
-import { getAddressFromENS, isAddressENS } from '@/lib/wallet';
-import { IProjectCreation, IProjectEdition } from '@/apollo/types/types';
-import {
-	CategoryInput,
-	DescriptionInput,
-	ImageInput,
-	LocationInput,
-	NameInput,
-	WalletAddressInput,
-} from './Inputs';
-import useUser from '@/context/UserProvider';
+import { CategoryInput, DescriptionInput, ImageInput, LocationInput, NameInput, WalletAddressInput } from './Inputs';
 import SuccessfulCreation from './SuccessfulCreation';
-import { ProjectGuidelineModal } from '@/components/modals/ProjectGuidelineModal';
-import {
-	isDescriptionHeavy,
-	titleValidation,
-	walletAddressValidation,
-} from '@/helpers/createProjectValidation';
-import { compareAddresses, showToastError } from '@/lib/helpers';
-import { EProjectStatus } from '@/apollo/types/gqlEnums';
-import { slugToProjectView } from '@/lib/routeCreators';
-import { client } from '@/apollo/apolloClient';
 import LightBulbIcon from '/public/images/icons/lightbulb.svg';
+import { client } from '@/apollo/apolloClient';
+import { ACTIVATE_PROJECT, CREATE_PROJECT, UPDATE_PROJECT } from '@/apollo/gql/gqlProjects';
+import { EProjectStatus } from '@/apollo/types/gqlEnums';
+import { IProjectCreation, IProjectEdition } from '@/apollo/types/types';
+import { ProjectGuidelineModal } from '@/components/modals/ProjectGuidelineModal';
 import { Shadow } from '@/components/styled-components/Shadow';
+import useUser from '@/context/UserProvider';
+import { isDescriptionHeavy, titleValidation, walletAddressValidation } from '@/helpers/createProjectValidation';
 import { deviceSize, mediaQueries } from '@/lib/constants/constants';
+import { compareAddresses, showToastError } from '@/lib/helpers';
+import { slugToProjectView } from '@/lib/routeCreators';
+import { getAddressFromENS, isAddressENS } from '@/lib/wallet';
+import { useMutation } from '@apollo/client';
+import { brandColors, Button, Caption, H3, H4, IconExternalLink, neutralColors, OulineButton, H6 } from '@giveth/ui-design-system';
+import { captureException } from '@sentry/nextjs';
+import { useWeb3React } from '@web3-react/core';
+import { utils } from 'ethers';
+import Debounced from 'lodash.debounce';
+import Image from 'next/image';
+import { useRouter } from 'next/router';
+import React, { useEffect, useRef, useState } from 'react';
+import styled from 'styled-components';
+
 
 export enum ECreateErrFields {
 	NAME = 'name',
@@ -496,13 +471,13 @@ const Title = styled(H3)`
 `;
 
 const PublishTitle = styled(H4)`
-	margin: 45px 0 24px 0;
-	color: ${brandColors.deep[900]};
-	font-weight: bold;
+  margin: 45px 0 24px 0;
+  color: ${neutralColors.gray[100]};
+  font-weight: bold;
 `;
 
 const PublishList = styled(Caption)`
-	color: ${neutralColors.gray[900]};
+  color: ${neutralColors.gray[100]};
 `;
 
 export default CreateProject;
