@@ -5,7 +5,7 @@ import { getColor, mode } from "@chakra-ui/theme-tools";
 
 const chakraTheme: Theme = extendTheme({
   config: {
-    initialColorMode: "dark",
+    initialColorMode: "light",
     useSystemColorMode: false,
   } as Theme["config"],
   fonts: {
@@ -16,14 +16,14 @@ const chakraTheme: Theme = extendTheme({
   styles: {
     global: {
       "html, body": {
-        background: "#000",
+        bg: "#f7f7f9",
         padding: 0,
         margin: 0,
         fontFeatureSettings: `'zero' 1`,
         scrollBehavior: "smooth",
       },
       body: {
-        colorScheme: "dark",
+        colorScheme: "light",
       },
       "::selection": {
         backgroundColor: "#90cdf4",
@@ -61,7 +61,7 @@ const chakraTheme: Theme = extendTheme({
             border: "3px solid",
             borderColor: "transparent",
             borderRadius: "full",
-            background: `linear-gradient(${bgColor}, ${bgColor}) padding-box, 
+            background: `linear-gradient(${bgColor}, ${bgColor}) padding-box,
             linear-gradient(135deg, ${lgFrom}, ${lgTo}) border-box`,
             "> *": {
               background: `linear-gradient(135deg, ${lgFrom}, ${lgTo})`,
@@ -69,7 +69,7 @@ const chakraTheme: Theme = extendTheme({
               textFillColor: "transparent",
             },
             _hover: {
-              background: `linear-gradient(${bgColor}, ${bgColor}) padding-box, 
+              background: `linear-gradient(${bgColor}, ${bgColor}) padding-box,
               linear-gradient(315deg, ${lgFrom}, ${lgTo}) border-box`,
               "> *": {
                 background: `linear-gradient(315deg, ${lgFrom}, ${lgTo})`,
