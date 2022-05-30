@@ -72,7 +72,7 @@ const TextContainer = styled.div`
 
 const UpperSection = styled.div`
 	background: ${brandColors.giv[500]};
-	background-image: url('/images/GIV_homepage.svg');
+	/* background-image: url('/images/GIV_homepage.svg'); */
 	height: 794px;
 	color: white;
 	overflow: hidden;

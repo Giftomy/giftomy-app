@@ -133,7 +133,7 @@ export const TextContainer = styled.div`
 
 export const ErrorContainer = styled.div`
 	background: ${brandColors.giv[500]};
-	background-image: url('/images/GIV_homepage.svg');
+	/* background-image: url('/images/GIV_homepage.svg'); */
 	height: 100vh;
 	color: white;
 	overflow: hidden;

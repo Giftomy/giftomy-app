@@ -11,16 +11,16 @@ export const headerRoutes = [
 		href: Routes.Projects,
 		desktopOnly: true,
 	},
-	{
-		title: 'GIVeconomy',
-		href: Routes.GIVECONOMY,
-		desktopOnly: true,
-	},
-	{
-		title: 'Community',
-		href: Routes.Join,
-		desktopOnly: true,
-	},
+	// {
+	// 	title: 'GIVeconomy',
+	// 	href: Routes.GIVECONOMY,
+	// 	desktopOnly: true,
+	// },
+	// {
+	// 	title: 'Community',
+	// 	href: Routes.Join,
+	// 	desktopOnly: true,
+	// },
 	{
 		title: 'Create a Project',
 		href: Routes.CreateProject,

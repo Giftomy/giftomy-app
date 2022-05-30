@@ -1,28 +1,22 @@
-import { useEffect, useState } from 'react';
-import { useWeb3React } from '@web3-react/core';
-import { formatEther } from '@ethersproject/units';
-import { BigNumberish } from '@ethersproject/bignumber';
-import { useRouter } from 'next/router';
-import styled from 'styled-components';
-import {
-	brandColors,
-	neutralColors,
-	Subline,
-	P,
-	Overline,
-} from '@giveth/ui-design-system';
-
-import { captureException } from '@sentry/nextjs';
-import Routes from '@/lib/constants/Routes';
-import useUser from '@/context/UserProvider';
-import links from '@/lib/constants/links';
-import { SignWithWalletModal } from '@/components/modals/SignWithWalletModal';
-import { switchNetworkHandler } from '@/lib/wallet';
 import { MenuContainer } from './Menu.sc';
+import { SignWithWalletModal } from '@/components/modals/SignWithWalletModal';
+import useModal from '@/context/ModalProvider';
+import useUser from '@/context/UserProvider';
 import { ETheme, useGeneral } from '@/context/general.context';
+import Routes from '@/lib/constants/Routes';
+import links from '@/lib/constants/links';
 import { isUserRegistered, networkInfo } from '@/lib/helpers';
 import StorageLabel from '@/lib/localStorage';
-import useModal from '@/context/ModalProvider';
+import { switchNetworkHandler } from '@/lib/wallet';
+import { BigNumberish } from '@ethersproject/bignumber';
+import { formatEther } from '@ethersproject/units';
+import { brandColors, neutralColors, Subline, P, Overline } from '@giveth/ui-design-system';
+import { captureException } from '@sentry/nextjs';
+import { useWeb3React } from '@web3-react/core';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+import styled from 'styled-components';
+
 
 const MenuWallet = () => {
 	const [isMounted, setIsMounted] = useState(false);
@@ -152,29 +146,29 @@ const MenuWallet = () => {
 };
 
 const walletMenuArray = [
-	{
-		title: 'My Account',
-		url: Routes.MyAccount,
-		requiresSign: true,
-	},
-	{
-		title: 'My Projects',
-		url: Routes.MyProjects,
-		requiresSign: true,
-	},
-	{
-		title: 'My Donations',
-		url: Routes.MyDonations,
-		requiresSign: true,
-	},
-	{
-		title: 'Create a Project',
-		url: Routes.CreateProject,
-		requiresSign: true,
-		requiresRegistration: true,
-	},
-	{ title: 'Report a bug', url: links.REPORT_ISSUE, requiresSign: false },
-	{ title: 'Support', url: Routes.Support, requiresSign: false },
+  {
+    title: 'My Account',
+    url: Routes.MyAccount,
+    requiresSign: true,
+  },
+  {
+    title: 'My Projects',
+    url: Routes.MyProjects,
+    requiresSign: true,
+  },
+  {
+    title: 'My NFTs',
+    url: Routes.MyAccount,
+    requiresSign: true,
+  },
+  {
+    title: 'Create a Project',
+    url: Routes.CreateProject,
+    requiresSign: true,
+    requiresRegistration: true,
+  },
+  // { title: 'Report a bug', url: links.REPORT_ISSUE, requiresSign: false },
+  // { title: 'Support', url: Routes.Support, requiresSign: false },
 ];
 
 const MenuItem = styled.a`
@@ -214,12 +208,14 @@ const StyledButton = styled(Subline)`
 `;
 
 const LeftSection = styled(P)`
-	font-weight: 500;
+  font-weight: 500;
+  /* color: #4f576a; */
+  color: ${neutralColors.gray[600]};
 
-	> span {
-		font-size: 14px;
-		font-weight: 400;
-	}
+  > span {
+    font-size: 14px;
+    font-weight: 400;
+  }
 `;
 
 const Subtitle = styled(Overline)`
@@ -229,10 +225,10 @@ const Subtitle = styled(Overline)`
 `;
 
 const Title = styled(Overline)`
-	/* color: ${neutralColors.gray[800]}; */
-	text-transform: uppercase;
-	/* font-weight: 500; */
-	margin-bottom: 2px;
+  color: ${neutralColors.gray[800]};
+  text-transform: uppercase;
+  /* font-weight: 500; */
+  margin-bottom: 2px;
 `;
 
 interface IWalletMenuContainer {

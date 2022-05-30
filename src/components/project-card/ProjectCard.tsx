@@ -108,7 +108,7 @@ const ProjectCard = (props: IProjectCard) => {
 						<PriceText>
 							${Math.ceil(totalDonations as number)}
 						</PriceText>
-						<RaisedText> Raised</RaisedText>
+						<RaisedText> Sold</RaisedText>
 					</Flex>
 					<Hr />
 					<BadgesContainer gap='16px'>
@@ -134,11 +134,11 @@ const ProjectCard = (props: IProjectCard) => {
 						)}
 					</BadgesContainer>
 					<ActionButtons>
-						<Link href={slugToProjectDonate(slug)} passHref>
+						<Link href={slugToProjectView(slug)} passHref>
 							<CustomizedDonateButton
 								linkType='primary'
 								size='small'
-								label='Collect NFT'
+								label='View'
 							/>
 						</Link>
 					</ActionButtons>

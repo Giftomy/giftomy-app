@@ -26,14 +26,14 @@ const HomeIndex = (props: IHomeView) => {
 				totalCount={totalCount}
 				projects={projects.slice(0, projectsSlice)}
 			/>
-			<HomePurpleSection />
+			{/* <HomePurpleSection />
 			<HomeExploreProjects
 				projects={projects.slice(projectsSlice)}
 				noTitle
 			/>
 			<HomeChangeMakers />
 			<HomeFromBlog />
-			<HomeGetUpdates />
+			<HomeGetUpdates /> */}
 		</>
 	);
 };

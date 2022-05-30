@@ -221,7 +221,7 @@ const Header: FC<IHeader> = () => {
 				</SmallCreateProjectParent>
 				{active && account && chainId ? (
 					<>
-						<MenuAndButtonContainer
+						{/* <MenuAndButtonContainer
 							onClick={() => setShowRewardMenu(true)}
 							onMouseEnter={() => setShowRewardMenu(true)}
 							onMouseLeave={handleRewardMenuOnLeave}
@@ -251,7 +251,7 @@ const Header: FC<IHeader> = () => {
 									}
 								/>
 							)}
-						</MenuAndButtonContainer>
+						</MenuAndButtonContainer> */}
 						<MenuAndButtonContainer
 							onClick={() => setShowUserMenu(true)}
 							onMouseEnter={() => setShowUserMenu(true)}

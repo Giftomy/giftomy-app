@@ -21,12 +21,12 @@ import { Container } from '@/components/Grid';
 
 const Footer = () => {
 	const { theme } = useGeneral();
-	const textColor =
-		theme === ETheme.Dark ? brandColors.deep[100] : brandColors.deep[800];
+	const textColor = "white"
+		// theme === ETheme.Dark ? brandColors.deep[100] : brandColors.deep[800];
 	return (
 		<FooterContainer>
 			<ContainerStyled>
-				<LeftContainer wrap={1}>
+				{/* <LeftContainer wrap={1}>
 					<LinkColumn>
 						<Link href={Routes.Home}>
 							<a>
@@ -101,29 +101,29 @@ const Footer = () => {
 							<LinkItem color={textColor}>We’re Hiring!</LinkItem>
 						</a>
 					</LinkColumn>
-				</LeftContainer>
+				</LeftContainer> */}
 				<RightContainer color={textColor}>
 					<SocialContainer>
-						<a href={links.MEDIUM}>
+						{/* <a href={links.MEDIUM}>
 							<IconMedium size={24} color={textColor} />
-						</a>
+						</a> */}
 						<a href={links.GITHUB}>
 							<IconGithub size={24} color={textColor} />
 						</a>
-						<a href={links.REDDIT}>
+						{/* <a href={links.REDDIT}>
 							<IconRedit size={24} color={textColor} />
-						</a>
+						</a> */}
 						<a href={links.TWITTER}>
 							<IconTwitter size={24} color={textColor} />
 						</a>
-						<a href={links.YOUTUBE}>
+						{/* <a href={links.YOUTUBE}>
 							<IconYoutube size={24} color={textColor} />
-						</a>
-						<a href={links.DOCS}>
+						</a> */}
+						{/* <a href={links.DOCS}>
 							<IconDocs size={24} color={textColor} />
-						</a>
+						</a> */}
 					</SocialContainer>
-					<SupportUs>
+					{/* <SupportUs>
 						<Caption medium>Support us</Caption>
 						<Link href={links.SUPPORT_US}>
 							<a>
@@ -132,7 +132,7 @@ const Footer = () => {
 								</CaptionRed>
 							</a>
 						</Link>
-					</SupportUs>
+					</SupportUs> */}
 				</RightContainer>
 			</ContainerStyled>
 		</FooterContainer>

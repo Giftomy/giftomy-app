@@ -5,7 +5,7 @@ import { getColor, mode } from "@chakra-ui/theme-tools";
 
 const chakraTheme: Theme = extendTheme({
   config: {
-    initialColorMode: "light",
+    initialColorMode: "dark",
     useSystemColorMode: false,
   } as Theme["config"],
   fonts: {
@@ -16,14 +16,14 @@ const chakraTheme: Theme = extendTheme({
   styles: {
     global: {
       "html, body": {
-        bg: "#f7f7f9",
+        // bg: "#f7f7f9",
         padding: 0,
         margin: 0,
         fontFeatureSettings: `'zero' 1`,
         scrollBehavior: "smooth",
       },
       body: {
-        colorScheme: "light",
+        colorScheme: "dark",
       },
       "::selection": {
         backgroundColor: "#90cdf4",

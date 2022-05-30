@@ -30,10 +30,9 @@ const HomeHeader = () => {
 
 	return (
 		<Wrapper>
-			<Title weight={700}>Welcome to the Future of Giving</Title>
+			<Title weight={700}>Build with public goods, for public goods</Title>
 			<Subtitle>
-				Get rewarded for giving to for-good projects with zero added
-				fees.
+				Giftomy is a NFT marketplace for public goods, which include open source software, open science, open education, open data and so on. We help public goods creators to value their work and connect with their supporters. Finally it will unleash unlimited creativity.
 			</Subtitle>
 			<AllProjectsButton
 				buttonType='primary'
@@ -47,7 +46,7 @@ const HomeHeader = () => {
 				label='Create a Project'
 				onClick={handleCreateButton}
 			/>
-			<MustardArc />
+			{/* <MustardArc /> */}
 		</Wrapper>
 	);
 };
@@ -102,7 +101,7 @@ const Wrapper = styled(FlexCenter)`
 	flex-direction: column;
 	z-index: 2;
 	position: relative;
-	background-image: url('/images/GIV_homepage.svg');
+	/* background-image: url('/images/GIV_homepage.svg'); */
 `;
 
 export default HomeHeader;
