@@ -179,13 +179,14 @@ const ProjectIndex = (props: { project?: IProject }) => {
 						{activeTab === 0 && (
 							<RichTextViewer content={description} />
 						)}
-						{activeTab === 1 && (
+						{activeTab === 1 && <ProjectNFT walletAddress={walletAddress} />}
+						{/* {activeTab === 2 && (
 							<ProjectUpdates
 								project={project}
 								fetchProject={fetchProject}
 							/>
-						)}
-						{/* {activeTab === 2 && (
+						)} */}
+						{/* {activeTab === 3 && (
 							<ProjectDonations
 								donationsByProjectId={{
 									donations,
@@ -196,7 +197,6 @@ const ProjectIndex = (props: { project?: IProject }) => {
 								isDraft={isDraft}
 							/>
 						)} */}
-						{activeTab === 2 && <ProjectNFT walletAddress={walletAddress} />}
 					</ContentWrapper>
 					{project && (
 						<ProjectDonateCard

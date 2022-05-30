@@ -5,7 +5,7 @@ const CreateRoute = () => {
 	return (
 		<>
 			<Head>
-				<title>Create a Project | Giveth</title>
+				<title>Create a Project | Giftomy</title>
 			</Head>
 			<CreateView />
 		</>

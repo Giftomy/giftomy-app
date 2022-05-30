@@ -36,9 +36,9 @@ const DescriptionInput = (props: {
 			</H5>
 			<CaptionContainer>
 				Aim for 200-500 words.{' '}
-				<span onClick={() => setShowModal(true)}>
+				{/* <span onClick={() => setShowModal(true)}>
 					How to write a good project description.
-				</span>
+				</span> */}
 			</CaptionContainer>
 			<InputContainerStyled error={error}>
 				<Label>Project story</Label>

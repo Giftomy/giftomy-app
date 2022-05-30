@@ -27,7 +27,7 @@ export const ProjectGuidelineModal: FC<IModal> = ({ setShowModal }) => {
 						<P>A unique or custom banner photo.</P>
 					</li>
 
-					<li>
+					{/* <li>
 						<P>
 							No violations of our{' '}
 							<InlineLink
@@ -47,7 +47,7 @@ export const ProjectGuidelineModal: FC<IModal> = ({ setShowModal }) => {
 							</InlineLink>
 							.
 						</P>
-					</li>
+					</li> */}
 
 					<li>
 						<P>

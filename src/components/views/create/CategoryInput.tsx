@@ -1,13 +1,18 @@
-import React, { Dispatch, SetStateAction } from 'react';
-import { H5, Caption, brandColors } from '@giveth/ui-design-system';
-import styled from 'styled-components';
-
 import { InputContainer } from './Create.sc';
+import { ICategory } from '@/apollo/types/types';
 import CheckBox from '@/components/Checkbox';
 import { categoryList, maxSelectedCategory } from '@/lib/constants/Categories';
-import { ICategory } from '@/apollo/types/types';
-import { showToastError } from '@/lib/helpers';
 import { mediaQueries } from '@/lib/constants/constants';
+import { showToastError } from '@/lib/helpers';
+import {
+  H5,
+  Caption,
+  brandColors,
+  neutralColors,
+} from '@giveth/ui-design-system';
+import React, { Dispatch, SetStateAction } from 'react';
+import styled from 'styled-components';
+
 
 const CategoryInput = (props: {
 	value: ICategory[];
@@ -77,19 +82,20 @@ const CaptionContainer = styled(Caption)`
 `;
 
 const CategoriesGrid = styled.div`
-	display: grid;
-	grid-template-columns: auto;
-	padding: 10px 10px 22px 10px;
-	div {
-		padding: 10px 0;
-	}
+  display: grid;
+  grid-template-columns: auto;
+  padding: 10px 10px 22px 10px;
+  div {
+    padding: 10px 0;
+    color: ${neutralColors.gray[100]};
+  }
 
-	${mediaQueries.tablet} {
-		grid-template-columns: auto auto auto !important;
-	}
-	${mediaQueries.mobileM} {
-		grid-template-columns: auto auto;
-	}
+  ${mediaQueries.tablet} {
+    grid-template-columns: auto auto auto !important;
+  }
+  ${mediaQueries.mobileM} {
+    grid-template-columns: auto auto;
+  }
 `;
 
 export default CategoryInput;

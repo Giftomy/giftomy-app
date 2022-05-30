@@ -183,7 +183,7 @@ const ProjectDonateCard = ({
 
 	const handleProjectStatus = async (deactivate?: boolean) => {
 		if (deactivate) {
-			setDeactivateModal(true);
+			// setDeactivateModal(true);
 		} else {
 			try {
 				if (!isSignedIn) {
@@ -220,13 +220,13 @@ const ProjectDonateCard = ({
 			{showModal && slug && (
 				<ShareModal setShowModal={setShowModal} projectHref={slug} />
 			)}
-			{deactivateModal && (
+			{/* {deactivateModal && (
 				<DeactivateProjectModal
 					setShowModal={setDeactivateModal}
 					projectId={id}
 					setIsActive={setIsActive}
 				/>
-			)}
+			)} */}
 			<Wrapper
 				ref={wrapperRef}
 				initialposition={wrapperHeight}
@@ -249,14 +249,14 @@ const ProjectDonateCard = ({
 								router.push(idToProjectEdit(project?.id || ''))
 							}
 						/>
-						{!verified && !isDraft && (
+						{/* {!verified && !isDraft && (
 							<FullOutlineButton
 								buttonType='primary'
 								label='VERIFY YOUR PROJECT'
 								disabled={!isActive}
 								onClick={() => setShowVerificationModal(true)}
 							/>
-						)}
+						)} */}
 						{isDraft && (
 							<FullButton
 								buttonType='primary'
@@ -266,13 +266,14 @@ const ProjectDonateCard = ({
 						)}
 					</>
 				) : (
-					<FullButton
-						onClick={() =>
-							router.push(slugToProjectDonate(slug || ''))
-						}
-						label='Collect NFT'
-						disabled={!isActive}
-					/>
+					<></>
+					// <FullButton
+					// 	onClick={() =>
+					// 		router.push(slugToProjectDonate(slug || ''))
+					// 	}
+					// 	label='Collect NFT'
+					// 	disabled={!isActive}
+					// />
 				)}
 				<BadgeWrapper>
 					<ShareLikeBadge
@@ -305,10 +306,10 @@ const ProjectDonateCard = ({
 				)}
 				{!isDraft && !isAdmin && (
 					<Links>
-						<ExternalLink
+						{/* <ExternalLink
 							href={links.REPORT_ISSUE}
 							title='Report an issue'
-						/>
+						/> */}
 						<InternalLink
 							href={Routes.Projects}
 							title='View similar projects'
@@ -316,7 +317,7 @@ const ProjectDonateCard = ({
 					</Links>
 				)}
 
-				{isAdmin && !isDraft && (
+				{/* {isAdmin && !isDraft && (
 					<ArchiveButton
 						buttonType='texty'
 						size='small'
@@ -324,7 +325,7 @@ const ProjectDonateCard = ({
 						icon={<Image src={ArchiveIcon} alt='Archive icon.' />}
 						onClick={() => handleProjectStatus(isActive)}
 					/>
-				)}
+				)} */}
 			</Wrapper>
 		</>
 	);

@@ -35,12 +35,12 @@ const Wrapper = styled.div<ICheckBox>`
 	align-items: center;
 	gap: 12px;
 	color: ${(props: any) =>
-		props.checked ? neutralColors.gray[900] : neutralColors.gray[700]};
+		props.checked ? neutralColors.gray[100] : neutralColors.gray[100]};
 	img {
 		border: 2px solid
 			${(props: any) =>
 				props.checked
-					? neutralColors.gray[900]
+					? neutralColors.gray[100]
 					: neutralColors.gray[400]};
 		border-radius: 4px;
 		padding: 8px 8px 8px 6.67px;

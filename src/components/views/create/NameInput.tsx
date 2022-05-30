@@ -52,8 +52,8 @@ const CharLength = styled(SublineBold)`
 	justify-content: center;
 	align-items: center;
 	font-size: 12px;
-	background: ${neutralColors.gray[300]};
-	color: ${neutralColors.gray[700]};
+	/* background: ${neutralColors.gray[300]}; */
+	color: ${neutralColors.gray[100]};
 	font-weight: 500;
 	border-radius: 64px;
 	width: 52px;

@@ -329,10 +329,10 @@ const CreateProject = (props: { project?: IProjectEdition }) => {
 								value={categories}
 								setValue={setCategories}
 							/>
-							<LocationInput
+							{/* <LocationInput
 								defaultValue={defaultImpactLocation}
 								setValue={setImpactLocation}
-							/>
+							/> */}
 							<ImageInput
 								value={image}
 								setValue={setImage}
@@ -491,7 +491,7 @@ const Buttons = styled.div`
 `;
 
 const Title = styled(H3)`
-	color: ${brandColors.deep[600]};
+	color: ${neutralColors.gray[100]};
 	font-weight: bold;
 `;
 

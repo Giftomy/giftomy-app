@@ -32,7 +32,7 @@ a {
 	height: 54px;
 }
 .select__control:focus-within {
-	border-color: #3811bf !important;
+	/* border-color: #3811bf !important; */
 }
 .select__value-container {
 	padding-left: 16px !important;
@@ -65,8 +65,15 @@ a {
 	overflow-y: auto;
 	width: 100%;
 }
+.ql-editor:focus-within {
+	border: 1px solid white;
+}
 
-.ql-snow {
+/* .ql-snow {
+	background: white;
+} */
+
+.ql-toolbar.ql-snow {
 	background: white;
 }
 
