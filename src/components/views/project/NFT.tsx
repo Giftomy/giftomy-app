@@ -1,12 +1,13 @@
 import { useContractMetadata } from "@3rdweb-sdk/react";
 import { ConnectWallet } from "@3rdweb-sdk/react";
 import { useMarketplace } from "@thirdweb-dev/react";
+import { useWeb3React } from '@web3-react/core';
 import { Providers } from "components/app-layouts/providers";
 import { ListButton } from "components/contract-pages/action-buttons/ListButton";
 import { ContractLayout } from "components/contract-pages/contract-layout";
 import { ContractItemsTable } from "components/contract-pages/table/marketplace";
-import React from "react";
-import { useEffect } from "react";
+import React from 'react';
+import { useEffect } from 'react';
 
 
 export default function MarketplacePage({
@@ -15,37 +16,30 @@ export default function MarketplacePage({
   walletAddress: string;
 }) {
   const marketAddress = process.env.NEXT_PUBLIC_MARKET_ADDRESS;
-  const contract = useMarketplace(marketAddress);
-  const metadata = useContractMetadata(contract);
   const marketplace = useMarketplace(marketAddress);
-
-  useEffect(() => {
-    const getListings = async () => {
-      try {
-        console.log("walletAddress: ", walletAddress);
-        const listings = await marketplace?.getActiveListings({
-          seller: walletAddress,
-        });
-        // const listings = await marketplace?.getAllListings();
-
-        console.log("listings: ", listings);
-        // const priceOfFirstActiveListing = listings[0].price;
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getListings();
-  }, []);
+  const metadata = useContractMetadata(marketplace);
+  const { chainId, active, account, library } = useWeb3React();
+  const isProjectOwner = account.toLowerCase() === walletAddress.toLowerCase();
+  console.log(' isProjectOwner', isProjectOwner);
+  const primaryAction = isProjectOwner && (
+    <div>
+      <ListButton contract={marketplace} />
+      <ConnectWallet borderRadius='full' colorScheme='primary' />
+    </div>
+  );
+  // const conectWallet = isprojectOwner && (
+  // );
   return (
     <Providers>
       <ContractLayout
-        contract={contract}
+        contract={marketplace}
         metadata={metadata}
-        primaryAction={<ListButton contract={contract} />}
+        primaryAction={primaryAction}
       >
-        <ConnectWallet borderRadius="full" colorScheme="primary" />
+        {/* {conectWallet} */}
         <ContractItemsTable
-          contract={contract}
+          contract={marketplace}
+          walletAddress={walletAddress}
           emptyState={{
             title: "You have not created any listings yet.",
           }}
