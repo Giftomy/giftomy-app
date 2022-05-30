@@ -44,30 +44,29 @@ import { Card, Heading, Text } from "tw-components";
 interface IRawContractItemsTable<TContract extends ContractWithGetAll> {
   contract?: TContract;
   emptyState?: IContractEmptyState;
+  walletAddress: string;
 }
 
 const RawContractItemsTable = <TContract extends ContractWithGetAll>({
   contract,
   emptyState,
+  walletAddress,
 }: PropsWithChildren<IRawContractItemsTable<TContract>>) => {
   const [queryParams, setQueryParams] = useState({
     count: 50,
     start: 0,
-    seller: "0x01AbECbEB70f67163a3aC8543E88d9C234A71Fa6",
+    seller: walletAddress,
   });
   const [items, setItems] = useState([]);
   // const items = useGetAll(contract, queryParams);
   // console.log("items", items);
-  // TODO: use hooks
   useEffect(() => {
     const getListings = async () => {
       try {
-        console.log("marketplace: ", contract);
         const listings = await contract?.getAllListings({
-          seller: "0x01AbECbEB70f67163a3aC8543E88d9C234A71Fa6",
+          seller: walletAddress,
         });
         // const listings = await contract?.getActiveListings();
-        console.log("listings: ", listings);
         setItems(listings);
         // const priceOfFirstActiveListing = listings[0].price;
       } catch (error) {
