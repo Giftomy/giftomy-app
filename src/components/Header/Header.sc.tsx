@@ -1,18 +1,13 @@
-import styled from 'styled-components';
-import {
-	neutralColors,
-	brandColors,
-	Button,
-	GLink,
-	ButtonLink,
-} from '@giveth/ui-design-system';
-import { zIndex } from '@/lib/constants/constants';
-import { Flex } from '@/components/styled-components/Flex';
-import { Button as CButton } from '@/components/styled-components/Button';
 import { IHeader } from './Header';
-import { mediaQueries } from '@/lib/constants/constants';
-import { ETheme } from '@/context/general.context';
+import { Button as CButton } from '@/components/styled-components/Button';
+import { Flex } from '@/components/styled-components/Flex';
 import { Shadow } from '@/components/styled-components/Shadow';
+import { ETheme } from '@/context/general.context';
+import { zIndex } from '@/lib/constants/constants';
+import { mediaQueries } from '@/lib/constants/constants';
+import { neutralColors, brandColors, Button, GLink, ButtonLink } from '@giveth/ui-design-system';
+import styled from 'styled-components';
+
 
 export const StyledHeader = styled(Flex)<IHeader>`
 	position: fixed;
@@ -140,20 +135,19 @@ interface IHeaderLinkProps {
 }
 
 export const HeaderLinks = styled(Flex)<IThemed>`
-	background-color: ${props =>
-		props.theme === ETheme.Dark ? brandColors.giv[900] : 'white'};
-	border: 1px solid
-		${props =>
-			props.theme === ETheme.Dark ? brandColors.giv[600] : 'white'};
-	border-radius: 48px;
-	padding: 6px;
-	gap: 8px;
-	display: none;
-	box-shadow: ${props =>
-		props.theme === ETheme.Dark ? '' : Shadow.Dark[500]};
-	${mediaQueries.laptopL} {
-		display: flex;
-	}
+  color: ${neutralColors.gray[900]};
+  background-color: ${props =>
+    props.theme === ETheme.Dark ? brandColors.giv[900] : 'white'};
+  border: 1px solid
+    ${props => (props.theme === ETheme.Dark ? brandColors.giv[600] : 'white')};
+  border-radius: 48px;
+  padding: 6px;
+  gap: 8px;
+  display: none;
+  box-shadow: ${props => (props.theme === ETheme.Dark ? '' : Shadow.Dark[500])};
+  ${mediaQueries.laptopL} {
+    display: flex;
+  }
 `;
 
 export const HeaderLink = styled(GLink)<IHeaderLinkProps>`
