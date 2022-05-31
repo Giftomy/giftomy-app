@@ -17,7 +17,7 @@ const links: any = {
 	DISCOURSE,
 	GIVBACK_TOKENS_FORUM: 'https://forum.giveth.io/t/givbacks-token-list/253',
 	GITHUB: 'https://github.com/LoopDAO/giftomy-app',
-	TWITTER: 'https://twitter.com/LoopDAO',
+	TWITTER: 'https://twitter.com/giftomy',
 	TELEGRAM: 'https://t.me/Givethio',
 	MEDIUM: 'https://medium.com/giveth/',
 	YOUTUBE: 'https://www.youtube.com/channel/UClfutpRoY0WTVnq0oB0E0wQ',
