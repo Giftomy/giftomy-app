@@ -11,7 +11,6 @@ import error502 from '/public/images/icons/errors/502.svg';
 import error504 from '/public/images/icons/errors/504.svg';
 import twitter from '/public/images/icons/twitter.svg';
 import discord from '/public/images/icons/discord.svg';
-import medium from '/public/images/icons/medium.svg';
 import givFontLogo from '/public/images/icons/giv_font_logo.svg';
 import { useGeneral } from '@/context/general.context';
 import links from '@/lib/constants/links';
@@ -89,15 +88,7 @@ const ErrorsIndex = ({ statusCode }: IErrorProps) => {
 						src={discord}
 						width='20'
 						height='20'
-						alt='giveth discord'
-					/>
-				</a>
-				<a href={mediumLink} target='_blank' rel='noreferrer noopener'>
-					<Image
-						src={medium}
-						width='20'
-						height='20'
-						alt='giveth medium'
+						alt='giftomy discord'
 					/>
 				</a>
 				<a href={twitterLink} target='_blank' rel='noreferrer noopener'>
@@ -106,7 +97,7 @@ const ErrorsIndex = ({ statusCode }: IErrorProps) => {
 						src={twitter}
 						width='20'
 						height='20'
-						alt='giveth twitter'
+						alt='giftomy twitter'
 					/>
 				</a>
 			</SocialContainer>
