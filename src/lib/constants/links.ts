@@ -16,7 +16,7 @@ const links: any = {
 	DISCORD: 'https://discord.gg/Uq2TaXP9bC',
 	DISCOURSE,
 	GIVBACK_TOKENS_FORUM: 'https://forum.giftomy.xyz/t/givbacks-token-list/253',
-	GITHUB: 'https://github.com/LoopDAO/giftomy-app',
+	GITHUB: 'https://github.com/LoopDAO',
 	TWITTER: 'https://twitter.com/giftomy',
 	TELEGRAM: 'https://t.me/giftomy',
 	MEDIUM: 'https://medium.com/giftomy/',
