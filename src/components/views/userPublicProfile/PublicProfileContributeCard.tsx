@@ -1,11 +1,11 @@
-import { brandColors, H2, H5, Subline } from '@giveth/ui-design-system';
+import { Flex } from '../../styled-components/Flex';
+import { IUserPublicProfileView } from '@/components/views/userPublicProfile/UserPublicProfile.view';
+import { mediaQueries } from '@/lib/constants/constants';
+import { formatUSD } from '@/lib/helpers';
+import { brandColors, neutralColors, H2, H5, Subline } from '@giveth/ui-design-system';
 import { FC } from 'react';
 import styled from 'styled-components';
 
-import { mediaQueries } from '@/lib/constants/constants';
-import { Flex } from '../../styled-components/Flex';
-import { IUserPublicProfileView } from '@/components/views/userPublicProfile/UserPublicProfile.view';
-import { formatUSD } from '@/lib/helpers';
 
 const PublicProfileContributeCard: FC<IUserPublicProfileView> = ({
 	user,
@@ -18,22 +18,22 @@ const PublicProfileContributeCard: FC<IUserPublicProfileView> = ({
 			{!myAccount && (
 				<UserContributeTitle
 					weight={700}
-				>{`${userName}’s donations & projects`}</UserContributeTitle>
+				>{`${userName}’s nfts & projects`}</UserContributeTitle>
 			)}
 
 			<ContributeCardContainer>
-				<ContributeCard>
+				{/* <ContributeCard>
 					<ContributeCardTitles>donations</ContributeCardTitles>
 					<ContributeCardTitles>
 						Total amount donated
 					</ContributeCardTitles>
 					<H2>{user.donationsCount || 0}</H2>
 					<H5>${formatUSD(user.totalDonated)}</H5>
-				</ContributeCard>
+				</ContributeCard> */}
 				<ContributeCard>
 					<ContributeCardTitles>Projects</ContributeCardTitles>
 					<ContributeCardTitles>
-						Donation received
+						NFT Sold
 					</ContributeCardTitles>
 					<H2>{user.projectsCount || 0}</H2>
 					<H5>${formatUSD(user.totalReceived)}</H5>
@@ -59,13 +59,13 @@ const ContributeCardContainer = styled(Flex)`
 `;
 
 const ContributeCard = styled.div`
-	background: ${brandColors.giv['000']};
-	box-shadow: 0 3px 20px rgba(212, 218, 238, 0.4);
-	border-radius: 12px;
-	display: grid;
-	padding: 24px;
-	grid-template-columns: 1fr 1fr;
-	width: 100%;
+  background: ${neutralColors.gray[900]};
+  box-shadow: 0 3px 20px rgba(212, 218, 238, 0.4);
+  border-radius: 12px;
+  display: grid;
+  padding: 24px;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
 `;
 
 const ContributeCardTitles = styled(Subline)`

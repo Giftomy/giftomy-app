@@ -85,7 +85,7 @@ const PublicProfileContributes: FC<IUserPublicProfileView> = ({
 						</Count>
 					)}
 				</PublicProfileTab>
-				<PublicProfileTab
+				{/* <PublicProfileTab
 					active={tab === EPublicProfile.DONATIONS}
 					onClick={() => setTab(EPublicProfile.DONATIONS)}
 				>
@@ -95,7 +95,7 @@ const PublicProfileContributes: FC<IUserPublicProfileView> = ({
 							{user?.donationsCount}
 						</Count>
 					)}
-				</PublicProfileTab>
+				</PublicProfileTab> */}
 				<PublicProfileTab
 					active={tab === EPublicProfile.LIKED}
 					onClick={() => setTab(EPublicProfile.LIKED)}

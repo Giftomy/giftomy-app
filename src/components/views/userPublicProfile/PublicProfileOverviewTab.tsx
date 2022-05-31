@@ -5,7 +5,7 @@ import useModal from '@/context/ModalProvider';
 import Routes from '@/lib/constants/Routes';
 import { mediaQueries } from '@/lib/constants/constants';
 import { isUserRegistered } from '@/lib/helpers';
-import { brandColors, H1, QuoteText, Button, OulineButton } from '@giveth/ui-design-system';
+import { brandColors, neutralColors, H1, QuoteText, Button, OulineButton } from '@giveth/ui-design-system';
 import { IButtonProps } from '@giveth/ui-design-system/lib/esm/components/buttons/type';
 import { useRouter } from 'next/router';
 import { FC, useEffect, useState } from 'react';
@@ -50,9 +50,9 @@ const PublicProfileOverviewTab: FC<IUserPublicProfileView> = ({ user }) => {
       ],
     },
     donate: {
-      title: 'Start donating or raising funds',
+      title: 'Start the NFT journey',
       subtitle:
-        'Giftomy is the place to donate to or raise funds for awesome projects with zero added feeds. ',
+        'Giftomy is the place to help public goods project create and sell NFTs',
       buttons: [
         {
           label: 'CREATE A PROJECT',
@@ -122,7 +122,7 @@ const AccountHero = styled.div<{ leftAlign: boolean }>`
 	flex-direction: column;
 	width: 100%;
 	height: 580px;
-	background-image: url('/images/backgrounds/account-bg.png');
+	background: ${neutralColors.gray[900]};
 	margin: 31px 0 0 0;
 	border-radius: 8px;
 	color: ${brandColors.giv[500]};

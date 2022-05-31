@@ -65,7 +65,7 @@ const PublicProfileNFTsTab: FC<IUserPublicProfileView> = ({
         <LikedContainer>
           {nfts?.map((nft) => (
             // <ProjectCard key={nft.id} nft={nft} />
-						<p key={nft.id}>{nft.get("buyer")} | {nft.get("totalPricePaid")}</p>
+						<p key={nft.id}>{nft.get("assetContract")} | {nft.get("totalPricePaid")}</p>
           ))}
           {loading && <Loading />}
         </LikedContainer>
