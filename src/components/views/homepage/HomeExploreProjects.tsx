@@ -51,7 +51,7 @@ const HomeExploreProjects = (props: IHomeExploreProjects) => {
 						Explore <span>{totalCount} Projects</span>
 					</Title>
 					<Subtitle>
-						Donate crypto directly to for-good projects.
+						Click to see stories of each public good project and what NFTs they are selling.
 					</Subtitle>
 				</>
 			)}
@@ -119,13 +119,13 @@ const Title = styled(H5)`
 	font-weight: 700;
 
 	span {
-		color: ${neutralColors.gray[700]};
+		color: ${neutralColors.gray[100]};
 	}
 `;
 
 const Subtitle = styled(H6)`
 	font-weight: 400;
-	color: ${neutralColors.gray[700]};
+	color: ${neutralColors.gray[100]};
 	margin-top: 4px;
 `;
 
@@ -133,7 +133,7 @@ const Wrapper = styled.div`
 	max-width: ${deviceSize.desktop + 'px'};
 	margin: 0 auto;
 	padding: 60px 33px;
-	color: ${neutralColors.gray[900]};
+	color: ${neutralColors.gray[100]};
 	position: relative;
 `;
 
