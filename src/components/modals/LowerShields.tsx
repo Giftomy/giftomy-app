@@ -29,7 +29,7 @@ const LowerShields = (props: { onClose: () => void }) => {
 		>
 			<Container>
 				<Lead>
-					Please lower shields on your browser in order to use Giveth
+					Please lower shields on your browser in order to use Giftomy
 					with your Torus Wallet.
 				</Lead>
 				<Image src={ShieldImage} alt='shield icon' />

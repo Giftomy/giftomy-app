@@ -17,15 +17,8 @@ const AboutHistory = () => {
 		<>
 			<Upper>
 				<Rect>
-					<span>Giveth</span> was founded in 2016 and provided value
-					to the Blockchain4Good ecosystem for 5 years, funded solely
-					by donations.
+					<span>Giftomy</span> was founded in 2022.
 				</Rect>
-				<UpperText>
-					The launch of the <span>GIVeconomy</span> in December 2021
-					provided a new way to fund our initiatives to evolve
-					philanthropy.
-				</UpperText>
 			</Upper>
 			<End>
 				{sliderContent.map((elem, index) => (
@@ -123,26 +116,8 @@ const Upper = styled.div`
 
 const sliderContent = [
 	{
-		title: 'Rising out of the ashes of TheDAO',
-		body: 'The Giveth founding team was a group of altruistic whitehat hackers who set out to build systems to turn non-profits into DAOs of their own, starting with platforms for P2P giving on the blockchain.',
-	},
-	{
-		title: 'Starting with traceable donations',
-		body: 'After writing and open-sourcing innovative smart contracts like the MiniMe token, the team launched the first Giveth DApp, now called Giveth TRACE, to enable a traceable & accountable donations to for-good Campaigns.',
-	},
-	{
-		title: 'And now... the GIVeconomy',
-		body: 'Building on that foundation and heaven-bent on using blockchain to fund public goods regeneratively, we created the GIVeconomy. Fueled by GIV, the GIVeconomy is rewarding & empowering all who give.',
-	},
-	{
-		title: 'Take a dive into the History of Giveth',
-		body: (
-			<ReadMoreButton
-				href={links.HISTORY}
-				target='_blank'
-				label='READ MORE'
-			/>
-		),
+		title: 'Start our journey',
+		body: 'We are a team of passionate people who build dapps in web3 field.',
 	},
 ];
 

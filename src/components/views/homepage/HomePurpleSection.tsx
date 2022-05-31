@@ -43,7 +43,7 @@ const HomePurpleSection = () => {
 	const url = !isSSRMode ? window?.location?.href : null;
 	const shareTitle = `Imagine a future where...
 Giving is effortless and people all around the world are rewarded for creating positive change.
-	
+
 Explore @givethio to support this vision for the Future of Giving. 💜`;
 
 	return (
@@ -68,7 +68,7 @@ Explore @givethio to support this vision for the Future of Giving. 💜`;
 					<TwitterShareButton
 						title={shareTitle}
 						url={url || ''}
-						hashtags={['Giveth']}
+						hashtags={['Giftomy']}
 					>
 						<TwitterButton>
 							<Image

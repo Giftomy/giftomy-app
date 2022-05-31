@@ -5,7 +5,7 @@ const PartnershipsRoute = () => {
 	return (
 		<>
 			<Head>
-				<title>Partnerships | Giveth</title>
+				<title>Partnerships | Giftomy</title>
 			</Head>
 			<PartnershipsIndex />
 		</>

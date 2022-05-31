@@ -52,7 +52,7 @@ const MaintenanceIndex = () => {
 					alt='error icon'
 				/>
 				<H1>
-					Giveth.io is currently offline for scheduled maintenance!
+					Giftomy.xyz is currently offline for scheduled maintenance!
 				</H1>
 				<div>
 					<H4>Check again in a few hours to dive</H4>
@@ -69,7 +69,7 @@ const MaintenanceIndex = () => {
 							src={givFontLogo}
 							width='150'
 							height='50'
-							alt='giveth logo'
+							alt='Giftomy logo'
 						/>
 					</Link>
 				</LogoContainer>
@@ -80,7 +80,7 @@ const MaintenanceIndex = () => {
 						src={discord}
 						width='20'
 						height='20'
-						alt='giveth discord'
+						alt='Giftomy discord'
 					/>
 				</a>
 				<a href={mediumLink} target='_blank' rel='noreferrer noopener'>
@@ -88,7 +88,7 @@ const MaintenanceIndex = () => {
 						src={medium}
 						width='20'
 						height='20'
-						alt='giveth medium'
+						alt='Giftomy medium'
 					/>
 				</a>
 				<a href={twitterLink} target='_blank' rel='noreferrer noopener'>
@@ -97,7 +97,7 @@ const MaintenanceIndex = () => {
 						src={twitter}
 						width='20'
 						height='20'
-						alt='giveth twitter'
+						alt='Giftomy twitter'
 					/>
 				</a>
 			</SocialContainer>

@@ -1,16 +1,16 @@
-import Image from 'next/image';
-import { brandColors, D3 } from '@giveth/ui-design-system';
-import styled from 'styled-components';
-
 // import SearchBox from '../SearchBox';
 import Accordion from '../Accordion';
-import faqContent from '@/content/FAQ';
-import { Arc } from '@/components/styled-components/Arc';
 import FlowerIcon from '/public//images/flower_faq.svg';
 import { Container } from '@/components/Grid';
+import { Arc } from '@/components/styled-components/Arc';
+import faqContent from '@/content/FAQ';
 import { deviceSize, mediaQueries } from '@/lib/constants/constants';
+import { brandColors, D3 } from '@giveth/ui-design-system';
+import Image from 'next/image';
+import styled from 'styled-components';
 
-type TFAQ = 'General' | 'Giveth' | 'GIVeconomy';
+
+type TFAQ = 'General' | 'Giftomy';
 
 const FAQIndex = () => {
 	return (

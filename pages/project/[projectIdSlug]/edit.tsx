@@ -5,7 +5,7 @@ const editRoute = () => {
 	return (
 		<>
 			<Head>
-				<title>Edit Project | Giveth</title>
+				<title>Edit Project | Giftomy</title>
 			</Head>
 			<EditIndex />
 		</>

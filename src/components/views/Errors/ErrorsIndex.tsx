@@ -77,7 +77,7 @@ const ErrorsIndex = ({ statusCode }: IErrorProps) => {
 							src={givFontLogo}
 							width='150'
 							height='50'
-							alt='giveth logo'
+							alt='Giftomy logo'
 						/>
 					</Link>
 				</LogoContainer>

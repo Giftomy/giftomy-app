@@ -32,7 +32,7 @@ const HomeGetUpdates = () => {
 				</Title>
 				<P>
 					{successSubscription
-						? 'Thank you for subscribing to Giveth newsletter. Our first news are coming to your inbox soon.'
+						? 'Thank you for subscribing to Giftomy newsletter. Our first news are coming to your inbox soon.'
 						: 'Subscribe to our newsletter to get monthly updates straight to your mailbox!'}
 				</P>
 				{!successSubscription && (

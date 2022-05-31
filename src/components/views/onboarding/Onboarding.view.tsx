@@ -1,17 +1,17 @@
-import { B, brandColors, H5 } from '@giveth/ui-design-system';
-import { FC, useState } from 'react';
-import styled from 'styled-components';
-import { Container } from '@/components/Grid';
-
 import DoneStep from './DoneStep';
 import InfoStep from './InfoStep';
 import PhotoStep from './PhotoStep';
+import { Container } from '@/components/Grid';
+import { B, brandColors, H5 } from '@giveth/ui-design-system';
+import { FC, useState } from 'react';
+import styled from 'styled-components';
+
 
 const StatesLabel = [
-	'Register on Giveth',
-	'Who you are?',
-	'Fancy profile photo',
-	'Done',
+  'Register on Giftomy',
+  'Who you are?',
+  'Fancy profile photo',
+  'Done',
 ];
 
 export enum OnboardSteps {

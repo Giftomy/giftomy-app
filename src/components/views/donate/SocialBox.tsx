@@ -15,7 +15,7 @@ Donate directly on Ethereum Mainnet or @gnosischain w/ no fees or intermediaries
 
 	const shareTitleFacebookAndLinkedin = `Our project is raising funds in crypto on @givethio!
 	Donate directly on Ethereum Mainnet or Gnosis Chain with no fees or intermediaries.
-	
+
 	Here's the link to our project:
 	`;
 
@@ -35,7 +35,7 @@ Donate directly on Ethereum Mainnet or @gnosischain w/ no fees or intermediaries
 					<TwitterShareButton
 						title={shareTitleTwitter}
 						url={projectUrl || ''}
-						hashtags={['Giveth']}
+						hashtags={['Giftomy']}
 					>
 						<Image
 							src={'/images/social-tw.svg'}
@@ -63,7 +63,7 @@ Donate directly on Ethereum Mainnet or @gnosischain w/ no fees or intermediaries
 					<FacebookShareButton
 						quote={shareTitleFacebookAndLinkedin}
 						url={projectUrl || ''}
-						hashtag='#Giveth'
+						hashtag='#Giftomy'
 					>
 						<Image
 							src={'/images/social-fb.svg'}

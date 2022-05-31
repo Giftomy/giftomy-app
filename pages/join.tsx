@@ -6,7 +6,7 @@ const Join = () => {
 	return (
 		<>
 			<Head>
-				<title>Join | Giveth</title>
+				<title>Join | Giftomy</title>
 			</Head>
 			<JoinIndex />
 			<JoinEngage />

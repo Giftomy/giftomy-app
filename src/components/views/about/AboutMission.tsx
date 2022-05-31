@@ -26,57 +26,57 @@ const AboutMission = () => {
 				<H2>Our Values</H2>
 			</ValuesItem>
 			<ValuesItem>
-				<H5 className='mb-3'>Giveth encourages Decentralization:</H5>
+				<H5 className='mb-3'>Giftomy encourages Decentralization:</H5>
 				<ul>
 					<ListItem>
-						Giveth offers innovative open-source solutions built on
+						Giftomy offers innovative open-source solutions built on
 						blockchain technology, which is inherently
 						decentralized.
 					</ListItem>
 					<ListItem>
-						Giveth is pioneering and experimenting with
+						Giftomy is pioneering and experimenting with
 						decentralized governance and communication techniques
 						and supporting their adoption by other communities.
 					</ListItem>
 				</ul>
 			</ValuesItem>
 			<ValuesItem>
-				<H5 className='mb-3'>Giveth promotes Altruism:</H5>
+				<H5 className='mb-3'>Giftomy promotes Altruism:</H5>
 				<ul>
 					<ListItem>
-						Giveth is an open, non-hierarchical global initiative
+						Giftomy is an open, non-hierarchical global initiative
 						empowering social, environmental and humanistic impact
 						projects with modern technologies.
 					</ListItem>
 					<ListItem>
-						Giveth supports many like-minded initiatives that are
+						Giftomy supports many like-minded initiatives that are
 						adding value to the world without necessarily having a
 						direct profit motive.
 					</ListItem>
 					<ListItem>
-						Giveth is building a self-sustaining giving economy that
+						Giftomy is building a self-sustaining giving economy that
 						encourages and rewards altruistic intention.
 					</ListItem>
 				</ul>
 			</ValuesItem>
 			<ValuesItem>
-				<H5 className='mb-3'>Giveth builds Community:</H5>
+				<H5 className='mb-3'>Giftomy builds Community:</H5>
 				<ul>
 					<ListItem>
-						Giveth is an inclusive community united around a common
+						Giftomy is an inclusive community united around a common
 						goal.
 					</ListItem>
 					<ListItem>
-						Giveth is a community-owned platform, building and
+						Giftomy is a community-owned platform, building and
 						developing our DApps based on feedback from our members.
 					</ListItem>
 					<ListItem>
-						Giveth enables trust within communities by increasing
+						Giftomy enables trust within communities by increasing
 						transparency and accountability through blockchain.
 						technology
 					</ListItem>
 					<ListItem>
-						Giveth proactively reaches out to similar initiatives
+						Giftomy proactively reaches out to similar initiatives
 						which we see as potential collaborators, as opposed to
 						competitors.
 					</ListItem>

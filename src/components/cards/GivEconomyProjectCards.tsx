@@ -20,7 +20,7 @@ const GivEconomyProjectCards = () => {
 						/>
 					}
 				>
-					Donate to verified projects on Giveth. Get GIV and increase
+					Donate to verified projects on Giftomy. Get GIV and increase
 					your GIVstream with the GIVbacks program.
 				</IGsDataBox>
 			</Col>

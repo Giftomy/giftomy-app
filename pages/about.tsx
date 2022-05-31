@@ -5,7 +5,7 @@ const AboutRoute = () => {
 	return (
 		<>
 			<Head>
-				<title>About Us | Giveth</title>
+				<title>About Us | Giftomy</title>
 			</Head>
 			<AboutIndex />
 		</>

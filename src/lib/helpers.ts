@@ -235,7 +235,7 @@ export async function signMessage(
 		// const hashedMsg = keccak256(finalMessage)
 
 		// const domain = {
-		//   name: 'Giveth Login',
+		//   name: 'Giftomy Login',
 		//   version: '1',
 		//   chainId
 		// }
@@ -289,7 +289,7 @@ export async function signMessage(
 				User: [{ name: 'wallets', type: 'address[]' }],
 			},
 			domain: {
-				name: 'Giveth Login',
+				name: 'Giftomy Login',
 				chainId,
 				version: '1',
 			},

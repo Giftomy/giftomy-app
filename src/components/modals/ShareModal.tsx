@@ -55,8 +55,8 @@ const ShareModal = ({ projectHref, setShowModal }: IShareModal) => {
 			<FlexCenter gap={'16px'}>
 				<SocialButtonContainer>
 					<TwitterShareButton
-						hashtags={['giveth']}
-						title={'Check out on @Givethio'}
+						hashtags={['giftomy']}
+						title={'Check out on @Giftomy'}
 						url={url}
 					>
 						<Image src={TwitterIcon} alt='twitter icon' />
@@ -64,7 +64,7 @@ const ShareModal = ({ projectHref, setShowModal }: IShareModal) => {
 				</SocialButtonContainer>
 				<SocialButtonContainer>
 					<LinkedinShareButton
-						title={'Check out on @Givethio'}
+						title={'Check out on @giftomy'}
 						url={url}
 					>
 						<Image src={LinkedinIcon} alt='twitter icon' />
@@ -72,8 +72,8 @@ const ShareModal = ({ projectHref, setShowModal }: IShareModal) => {
 				</SocialButtonContainer>
 				<SocialButtonContainer>
 					<FacebookShareButton
-						hashtag='#giveth'
-						quote='Check out on @Givethio'
+						hashtag='#giftomy'
+						quote='Check out on @giftomy'
 						url={url}
 					>
 						<Image src={FacebookIcon} alt='twitter icon' />

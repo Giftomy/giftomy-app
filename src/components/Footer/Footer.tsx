@@ -26,7 +26,7 @@ const Footer = () => {
 	return (
 		<FooterContainer>
 			<ContainerStyled>
-				{/* <LeftContainer wrap={1}>
+				<LeftContainer wrap={1}>
 					<LinkColumn>
 						<Link href={Routes.Home}>
 							<a>
@@ -38,7 +38,7 @@ const Footer = () => {
 								<LinkItem color={textColor}>Projects</LinkItem>
 							</a>
 						</Link>
-						<Link href={Routes.AboutUs}>
+						{/* <Link href={Routes.AboutUs}>
 							<a>
 								<LinkItem color={textColor}>About Us</LinkItem>
 							</a>
@@ -52,9 +52,9 @@ const Footer = () => {
 							<a>
 								<LinkItem color={textColor}>Support</LinkItem>
 							</a>
-						</Link>
+						</Link> */}
 					</LinkColumn>
-					<LinkColumn>
+					{/* <LinkColumn>
 						<Link href={Routes.Join}>
 							<a>
 								<LinkItem color={textColor}>
@@ -64,7 +64,7 @@ const Footer = () => {
 						</Link>
 						<a href={links.GIVETH_DOCS}>
 							<LinkItem color={textColor}>
-								What is Giveth?
+								What is Giftomy?
 							</LinkItem>
 						</a>
 						<a href={links.USER_DOCS}>
@@ -82,26 +82,8 @@ const Footer = () => {
 								</LinkItem>
 							</a>
 						</Link>
-					</LinkColumn>
-					<LinkColumn>
-						<a href={links.TRACE}>
-							<LinkItem color={textColor}>Giveth TRACE</LinkItem>
-						</a>
-						<a href={links.COMMONS_STACK}>
-							<LinkItem color={textColor}>Commons Stack</LinkItem>
-						</a>
-						<Link href={Routes.Partnerships}>
-							<a>
-								<LinkItem color={textColor}>
-									Partnerships
-								</LinkItem>
-							</a>
-						</Link>
-						<a href={links.RECRUITEE}>
-							<LinkItem color={textColor}>We’re Hiring!</LinkItem>
-						</a>
-					</LinkColumn>
-				</LeftContainer> */}
+					</LinkColumn> */}
+				</LeftContainer>
 				<RightContainer color={textColor}>
 					<SocialContainer>
 						{/* <a href={links.MEDIUM}>

@@ -47,7 +47,7 @@ export const FirstWelcomeModal: FC<IModal> = ({ setShowModal }) => {
 								{' '}
 								projects
 							</InlineLink>{' '}
-							on Giveth.
+							on Giftomy.
 						</Paragraph>
 					</li>
 					<li>

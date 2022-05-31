@@ -1,13 +1,14 @@
-import { brandColors, D3 } from '@giveth/ui-design-system';
-import styled from 'styled-components';
-import { Arc } from '@/components/styled-components/Arc';
 import questionIcon from '/public/images/ask_question.svg';
 import feedbackIcon from '/public/images/feedback.svg';
 import reportIcon from '/public/images/report_issue.svg';
 import featureIcon from '/public/images/request_feature.svg';
 import SupportCard from '@/components/GeneralCard';
-import links from '@/lib/constants/links';
+import { Arc } from '@/components/styled-components/Arc';
 import { mediaQueries } from '@/lib/constants/constants';
+import links from '@/lib/constants/links';
+import { brandColors, D3 } from '@giveth/ui-design-system';
+import styled from 'styled-components';
+
 
 const SupportIndex = () => {
 	return (
@@ -43,38 +44,37 @@ const CardsSection = styled.div`
 `;
 
 const cardsArray = [
-	{
-		icon: questionIcon,
-		title: 'Ask us a Question',
-		caption:
-			'Do you have a specific question or a general inquiry that requires a response?',
-		buttonLabel: 'ask us a question',
-		route: links.ASK_QUESTION,
-	},
-	{
-		icon: reportIcon,
-		title: 'Report an issue',
-		caption:
-			'Having problems with our site? Is something not functioning as expected?',
-		buttonLabel: 'Report an issue',
-		route: links.REPORT_ISSUE,
-	},
-	{
-		icon: feedbackIcon,
-		title: 'Leave Feedback',
-		caption:
-			'Let us know how your experience was! \n' + 'How can we improve?',
-		buttonLabel: 'Leave Feedback',
-		route: links.FEEDBACK,
-	},
-	{
-		icon: featureIcon,
-		title: 'Request a New Feature',
-		caption:
-			'Want to see a new feature on Giveth? Are we missing a critical functionality?',
-		buttonLabel: 'Request a New Feature',
-		route: links.FEATURE_REQUEST,
-	},
+  {
+    icon: questionIcon,
+    title: 'Ask us a Question',
+    caption:
+      'Do you have a specific question or a general inquiry that requires a response?',
+    buttonLabel: 'ask us a question',
+    route: links.ASK_QUESTION,
+  },
+  {
+    icon: reportIcon,
+    title: 'Report an issue',
+    caption:
+      'Having problems with our site? Is something not functioning as expected?',
+    buttonLabel: 'Report an issue',
+    route: links.REPORT_ISSUE,
+  },
+  {
+    icon: feedbackIcon,
+    title: 'Leave Feedback',
+    caption: 'Let us know how your experience was! \n' + 'How can we improve?',
+    buttonLabel: 'Leave Feedback',
+    route: links.FEEDBACK,
+  },
+  {
+    icon: featureIcon,
+    title: 'Request a New Feature',
+    caption:
+      'Want to see a new feature on Giftomy? Are we missing a critical functionality?',
+    buttonLabel: 'Request a New Feature',
+    route: links.FEATURE_REQUEST,
+  },
 ];
 
 const ArcPurple = styled(Arc)`

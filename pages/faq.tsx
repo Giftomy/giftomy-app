@@ -5,7 +5,7 @@ const FAQRoute = () => {
 	return (
 		<div style={{ position: 'relative' }}>
 			<Head>
-				<title>FAQ | Giveth</title>
+				<title>FAQ | Giftomy</title>
 			</Head>
 			<FAQIndex />
 		</div>

@@ -9,19 +9,19 @@ const termsArray = [
 				<p>
 					These Terms of Use constitute a legally binding agreement
 					made between you, whether personally or on behalf of an
-					entity (“you”) and Giveth Foundation, doing business as
-					Giveth (&quot;Giveth&quot;, “we”, “us”, or “our”),
+					entity (“you”) and Giftomy Foundation, doing business as
+					Giftomy (&quot;Giftomy&quot;, “we”, “us”, or “our”),
 					concerning your access to and use of the{' '}
-					<ExternalLink href={Routes.Home} title='giveth.io' />{' '}
+					<ExternalLink href={Routes.Home} title='Giftomy.xyz' />{' '}
 					website as well as any other media form, media channel,
 					mobile website or mobile application related, linked, or
 					otherwise connected thereto (collectively, the “Site”). The
 					Site provides an online marketplace for the following goods,
-					products, and/or services: Giveth does not sell goods nor
-					services. Giveth is an open directory of projects accepting
+					products, and/or services: Giftomy does not sell goods nor
+					services. Giftomy is an open directory of projects accepting
 					donations. All money and property transferred to projects
-					listed on Giveth.io shall be an irrevocable gift to the
-					recipient. On 09.07.2020, the Giveth Foundation was
+					listed on Giftomy.io shall be an irrevocable gift to the
+					recipient. On 09.07.2020, the Giftomy Foundation was
 					established as a component of the SDG Impact Fund, which is
 					an IRS recognized 501(c)(3) tax-exempt public charity and
 					not for profit corporation having its principal office in
@@ -797,12 +797,12 @@ const termsArray = [
 				</p>
 				<ul style={{ listStyle: 'none' }}>
 					<strong>
-						Giveth Foundation
+						Giftomy Foundation
 						<p>
 							475 E. Main Street #154 Cartersville, GA 30121
 							United States
 						</p>
-						info@giveth.io
+						info@giftomy.io
 					</strong>
 				</ul>
 				<p>

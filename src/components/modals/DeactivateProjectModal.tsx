@@ -224,7 +224,7 @@ const DeactivatingContent = ({ show }: IDeactivatingContent) => (
 );
 
 const bulletPointsText = [
-	'Your project will be unlisted from Giveth',
+	'Your project will be unlisted from Giftomy',
 	'All donors will be notified about this action',
 	'Your project will be accessible only via direct link and donations will be disabled',
 	'If you decide to activate it later, your project will have to be reviewed again',
@@ -384,7 +384,7 @@ const DoneContent = ({ show }: IDonoContent) => {
 		<>
 			<Lead>
 				Your project was successfully deactivated. Thank you for using
-				Giveth.
+				Giftomy.
 			</Lead>
 			<RedirectLink onClick={() => router.push(Routes.Projects)}>
 				Go to projects

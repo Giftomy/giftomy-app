@@ -230,7 +230,7 @@ export const CongratulationsCard = () => {
 						</SocialButton>
 					</a>
 					<a
-						href='https://swag.giveth.io/'
+						href='https://swag.giftomy.io/'
 						target='_blank'
 						rel='noreferrer'
 					>
@@ -245,7 +245,7 @@ export const CongratulationsCard = () => {
 						</SocialButton>
 					</a>
 					<a
-						href='https://discord.giveth.io/'
+						href='https://discord.giftomy.io/'
 						target='_blank'
 						rel='noreferrer'
 					>

@@ -134,9 +134,9 @@ export const DonateCard: FC<IClaimViewCardProps> = ({ index }) => {
 			<DonateHeader>
 				<Title>Donate &amp; get GIV back</Title>
 				<Desc>
-					Donate to verified projects to get GIV with <b>GIVbacks</b>.
+					Donate to verified projects to get GIFT.
 					The project gets 100% of your donation, and you get rewarded
-					by Giveth with GIV!
+					by Giftomy with GIFT!
 				</Desc>
 			</DonateHeader>
 			<APRRow alignItems={'center'} justifyContent={'space-between'}>

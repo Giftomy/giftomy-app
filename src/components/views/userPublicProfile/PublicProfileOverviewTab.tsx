@@ -1,22 +1,16 @@
+import ContributeCard from './PublicProfileContributeCard';
+import { Flex } from '@/components/styled-components/Flex';
+import { IUserPublicProfileView } from '@/components/views/userPublicProfile/UserPublicProfile.view';
+import useModal from '@/context/ModalProvider';
+import Routes from '@/lib/constants/Routes';
+import { mediaQueries } from '@/lib/constants/constants';
+import { isUserRegistered } from '@/lib/helpers';
+import { brandColors, H1, QuoteText, Button, OulineButton } from '@giveth/ui-design-system';
+import { IButtonProps } from '@giveth/ui-design-system/lib/esm/components/buttons/type';
 import { useRouter } from 'next/router';
 import { FC, useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { IButtonProps } from '@giveth/ui-design-system/lib/esm/components/buttons/type';
-import {
-	brandColors,
-	H1,
-	QuoteText,
-	Button,
-	OulineButton,
-} from '@giveth/ui-design-system';
 
-import Routes from '@/lib/constants/Routes';
-import ContributeCard from './PublicProfileContributeCard';
-import { Flex } from '@/components/styled-components/Flex';
-import { isUserRegistered } from '@/lib/helpers';
-import useModal from '@/context/ModalProvider';
-import { IUserPublicProfileView } from '@/components/views/userPublicProfile/UserPublicProfile.view';
-import { mediaQueries } from '@/lib/constants/constants';
 
 interface IBtnProps extends IButtonProps {
 	outline?: boolean;
@@ -44,44 +38,44 @@ const PublicProfileOverviewTab: FC<IUserPublicProfileView> = ({ user }) => {
 	};
 
 	const Sections = {
-		stranger: {
-			title: 'Don’t be a stranger!',
-			subtitle:
-				'Complete your profile for better management of your donations & projects',
-			buttons: [
-				{
-					label: 'COMPLETE PROFILE',
-					onClick: () => router.push(Routes.Onboard),
-				},
-			],
-		},
-		donate: {
-			title: 'Start donating or raising funds',
-			subtitle:
-				'Giveth is the place to donate to or raise funds for awesome projects with zero added feeds. ',
-			buttons: [
-				{
-					label: 'CREATE A PROJECT',
-					onClick: handleCreateButton,
-				},
-				{
-					label: 'VIEW PROJECTS',
-					onClick: () => router.push(Routes.Projects),
-					outline: true,
-				},
-			],
-		},
-		getGiv: {
-			title: 'Give and get GIV',
-			subtitle: ' Donate to verified projects and get rewarded with GIV',
-			buttons: [
-				{
-					label: 'EXPLORE GIVBACKS',
-					onClick: () => router.push(Routes.GIVbacks),
-				},
-			],
-		},
-	};
+    stranger: {
+      title: 'Don’t be a stranger!',
+      subtitle:
+        'Complete your profile for better management of your donations & projects',
+      buttons: [
+        {
+          label: 'COMPLETE PROFILE',
+          onClick: () => router.push(Routes.Onboard),
+        },
+      ],
+    },
+    donate: {
+      title: 'Start donating or raising funds',
+      subtitle:
+        'Giftomy is the place to donate to or raise funds for awesome projects with zero added feeds. ',
+      buttons: [
+        {
+          label: 'CREATE A PROJECT',
+          onClick: handleCreateButton,
+        },
+        {
+          label: 'VIEW PROJECTS',
+          onClick: () => router.push(Routes.Projects),
+          outline: true,
+        },
+      ],
+    },
+    getGiv: {
+      title: 'Give and get GIV',
+      subtitle: ' Donate to verified projects and get rewarded with GIV',
+      buttons: [
+        {
+          label: 'EXPLORE GIVBACKS',
+          onClick: () => router.push(Routes.GIVbacks),
+        },
+      ],
+    },
+  };
 
 	const [section, setSection] = useState<ISection>(Sections.getGiv);
 	const { title, subtitle, buttons } = section;

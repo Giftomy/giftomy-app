@@ -26,7 +26,7 @@ const UserRoute: FC<IUserRouteProps> = ({ user }) => {
 	return (
 		<>
 			<Head>
-				<title>Giveth | {user.name}</title>
+				<title>Giftomy | {user.name}</title>
 			</Head>
 			<UserPublicProfileView user={user} myAccount={false} />
 		</>

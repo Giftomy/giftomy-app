@@ -152,7 +152,7 @@ const Header: FC<IHeader> = () => {
 						<Image
 							width='26px'
 							height='26px'
-							alt='Giveth logo'
+							alt='Giftomy logo'
 							src={`/images/back-2.svg`}
 						/>
 					</Logo>
@@ -164,7 +164,7 @@ const Header: FC<IHeader> = () => {
 									<Image
 										width='48px'
 										height='48px'
-										alt='Giveth logo'
+										alt='Giftomy logo'
 										src={`/images/logo/logo.svg`}
 									/>
 								</Logo>

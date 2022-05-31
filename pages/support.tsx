@@ -5,7 +5,7 @@ const SupportRoute = () => {
 	return (
 		<>
 			<Head>
-				<title>Support | Giveth</title>
+				<title>Support | Giftomy</title>
 			</Head>
 			<SupportIndex />
 		</>

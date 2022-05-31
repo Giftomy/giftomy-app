@@ -21,7 +21,7 @@ const JoinEngage = () => {
 	return (
 		<UpperSection>
 			<LeadText>
-				Giveth is first and foremost a community of givers and
+				Giftomy is first and foremost a community of givers and
 				changemakers. We are passionate people working together to build
 				a crypto-economic system that can reward giving to good causes.
 				Our project is open-source, decentralized, altruistic, and
@@ -72,7 +72,7 @@ const engageArray = [
 		icon: discourse_icon,
 		title: 'Discourse',
 		caption:
-			'The Giveth forum is where we create discourse around new and existing proposals. We share ideas involving development and governance, cultivating discussions about important topics around our team and community.',
+			'The Giftomy forum is where we create discourse around new and existing proposals. We share ideas involving development and governance, cultivating discussions about important topics around our team and community.',
 		buttonLabel: 'join us on discourse',
 		route: links.DISCOURSE,
 	},
@@ -88,7 +88,7 @@ const engageArray = [
 		icon: telegram_icon,
 		title: 'Telegram',
 		caption:
-			'Not on Discord? Join our Telegram! This group is bridged directly to the #general channel in the Giveth discord so we’ll see all of your messages here.',
+			'Not on Discord? Join our Telegram! This group is bridged directly to the #general channel in the Giftomy discord so we’ll see all of your messages here.',
 		buttonLabel: 'join us on telegram',
 		route: links.TELEGRAM,
 	},
@@ -115,7 +115,7 @@ const consumeArray = [
 		icon: youtube_icon,
 		title: 'Youtube',
 		caption:
-			'Check out presentations, interviews, AMAs and more on the Giveth Youtube. Also follow our Transparency channel for recordings of our calls.',
+			'Check out presentations, interviews, AMAs and more on the Giftomy Youtube. Also follow our Transparency channel for recordings of our calls.',
 		buttonLabel: 'join us on youtube',
 		route: links.YOUTUBE,
 	},
@@ -123,7 +123,7 @@ const consumeArray = [
 		icon: reddit_icon,
 		title: 'Reddit',
 		caption:
-			'Subscribe to our r/Giveth subreddit to stay abreast of updates, engage in discussions and upvote all the things.',
+			'Subscribe to our r/Giftomy subreddit to stay abreast of updates, engage in discussions and upvote all the things.',
 		buttonLabel: 'join us on reddit',
 		route: links.REDDIT,
 	},

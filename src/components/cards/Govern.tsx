@@ -186,8 +186,8 @@ const GovernCard: FC<IClaimViewCardProps> = ({ index }) => {
 				<Title as='h1'>Engage in Governance</Title>
 
 				<Desc>
-					Participate in Giveth governance using the <b>GIVgarden</b>.
-					Wrap GIV to vote on proposals and earn rewards.
+					Participate in Giftomy governance using the <b>GIVgarden</b>.
+					Wrap GIFT to vote on proposals and earn rewards.
 				</Desc>
 			</GovernHeader>
 			<APRRow alignItems={'center'} justifyContent={'flex-end'}>

@@ -68,10 +68,10 @@ const WelcomeModal: FC<IModal> = ({ setShowModal }) => {
 				<ModalGrid>
 					<BGContainer />
 					<ContentContainer>
-						<H3>Sign in to Giveth</H3>
+						<H3>Sign in to Giftomy</H3>
 						<ContentSubtitle>
 							Please sign in to your account and start using
-							Giveth.
+							Giftomy.
 						</ContentSubtitle>
 						<IconContentContainer>
 							<EthIconContainer onClick={showWalletModal}>

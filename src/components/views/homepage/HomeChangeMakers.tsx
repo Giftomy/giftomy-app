@@ -1,37 +1,37 @@
-import { useRouter } from 'next/router';
+import { Col } from '@/components/Grid';
+import { Arc } from '@/components/styled-components/Arc';
+import { HomeContainer } from '@/components/views/homepage/Home.sc';
+import useModal from '@/context/ModalProvider';
+import useUser from '@/context/UserProvider';
+import Routes from '@/lib/constants/Routes';
+import { mediaQueries } from '@/lib/constants/constants';
+import { isUserRegistered } from '@/lib/helpers';
 import { D3, Lead, Button, H3, brandColors } from '@giveth/ui-design-system';
+import { useRouter } from 'next/router';
 import styled from 'styled-components';
 
-import Routes from '@/lib/constants/Routes';
-import { Arc } from '@/components/styled-components/Arc';
-import { isUserRegistered } from '@/lib/helpers';
-import useUser from '@/context/UserProvider';
-import { HomeContainer } from '@/components/views/homepage/Home.sc';
-import { mediaQueries } from '@/lib/constants/constants';
-import { Col } from '@/components/Grid';
-import useModal from '@/context/ModalProvider';
 
 const content = [
-	{
-		title: 'Easy Onboarding',
-		description:
-			'New to crypto? No Problem. Create a Torus wallet and connect to the DApp by logging in via your favourite web2 platform.',
-	},
-	{
-		title: 'Zero-Added Fees',
-		description:
-			'Create a project or donate directly to for-good projects with zero fees added by Giveth.',
-	},
-	{
-		title: 'Project Verification',
-		description:
-			'Encourage project accountability by donating to trusted projects. Apply for verification and your donors will be rewarded with GIVbacks.',
-	},
-	{
-		title: 'The GIVeconomy',
-		description:
-			'Give, earn and govern using GIV and the GIVeconomy. Get rewarded for being a GIVer.',
-	},
+  {
+    title: 'Easy Onboarding',
+    description:
+      'New to crypto? No Problem. Create a Torus wallet and connect to the DApp by logging in via your favourite web2 platform.',
+  },
+  {
+    title: 'Zero-Added Fees',
+    description:
+      'Create a project or donate directly to for-good projects with zero fees added by Giftomy.',
+  },
+  {
+    title: 'Project Verification',
+    description:
+      'Encourage project accountability by donating to trusted projects. Apply for verification and your donors will be rewarded with GIVbacks.',
+  },
+  {
+    title: 'The GIVeconomy',
+    description:
+      'Give, earn and govern using GIV and the GIVeconomy. Get rewarded for being a GIVer.',
+  },
 ];
 
 const HomeChangeMakers = () => {
@@ -65,7 +65,7 @@ const HomeChangeMakers = () => {
 			</Lead>
 			<MiddleSection>
 				<Lead>
-					Establish your project on Giveth to tap into the
+					Establish your project on Giftomy to tap into the
 					revolutionary funding opportunities of the Ethereum
 					Ecosystem. Start raising funds within minutes. Creating a
 					project is absolutely free!

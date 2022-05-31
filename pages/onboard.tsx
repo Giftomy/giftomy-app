@@ -5,7 +5,7 @@ const OnboardingRoute = () => {
 	return (
 		<>
 			<Head>
-				<title>Onboarding | Giveth</title>
+				<title>Onboarding | Giftomy</title>
 			</Head>
 			<OnboardView />
 		</>

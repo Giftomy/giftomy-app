@@ -1,5 +1,5 @@
 export const ORGANIZATION = {
-	giveth: 'giveth',
+	giftomy: 'giftomy',
 	trace: 'trace',
 	givingBlock: 'givingBlock',
 	change: 'change',

@@ -1,13 +1,13 @@
-import { Web3ReactContextInterface } from '@web3-react/core/dist/types';
-import { captureException } from '@sentry/nextjs';
-
-import { IProjectAcceptedToken } from '@/apollo/types/gqlTypes';
-import { networksParams } from '@/helpers/blockchain';
-import { getAddressFromENS, isAddressENS } from '@/lib/wallet';
-import { sendTransaction, showToastError } from '@/lib/helpers';
-import { saveDonation, updateDonation } from '@/services/donation';
-import { IDonateModalProps } from '@/components/modals/DonateModal';
 import { EDonationStatus } from '@/apollo/types/gqlEnums';
+import { IProjectAcceptedToken } from '@/apollo/types/gqlTypes';
+import { IDonateModalProps } from '@/components/modals/DonateModal';
+import { networksParams } from '@/helpers/blockchain';
+import { sendTransaction, showToastError } from '@/lib/helpers';
+import { getAddressFromENS, isAddressENS } from '@/lib/wallet';
+import { saveDonation, updateDonation } from '@/services/donation';
+import { captureException } from '@sentry/nextjs';
+import { Web3ReactContextInterface } from '@web3-react/core/dist/types';
+
 
 export interface ISelectedToken extends IProjectAcceptedToken {
 	value?: IProjectAcceptedToken;
@@ -33,12 +33,12 @@ export const prepareTokenList = (tokens: IProjectAcceptedToken[]) => {
 	});
 	_tokens.forEach((token: IProjectAcceptedToken, index: number) => {
 		if (
-			token.symbol === 'GIV' ||
-			token.symbol === 'TestGIV' ||
-			token.name === 'Giveth'
-		) {
-			givIndex = index;
-		}
+      token.symbol === 'GIV' ||
+      token.symbol === 'TestGIV' ||
+      token.name === 'Giftomy'
+    ) {
+      givIndex = index;
+    }
 		_tokens[index] = {
 			...token,
 			value: token,

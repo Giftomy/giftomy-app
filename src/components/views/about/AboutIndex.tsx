@@ -40,19 +40,19 @@ const AboutIndex = () => {
 						width='100%'
 						height='45vh'
 						layout='responsive'
-						alt='giveth team'
+						alt='Giftomy team'
 					/>
 				</TeamImageWrapper>
 				<Container>
 					<UpperTitle>Building the Future of Giving</UpperTitle>
 					<UpperCaption>
-						Giveth is a community focused on Building the Future of
+						Giftomy is a community focused on Building the Future of
 						Giving using blockchain technology. Our vision is to
 						make giving effortless, to reward people all over the
 						world for creating positive change.
 					</UpperCaption>
 					<Link href={links.SUPPORT_US} passHref>
-						<UpperButton label='SUPPORT GIVETH' />
+						<UpperButton label='SUPPORT Giftomy' />
 					</Link>
 				</Container>
 			</Upper>
@@ -65,7 +65,7 @@ const AboutIndex = () => {
 					<H1>About us</H1>
 					<br />
 					<Lead>
-						Giveth is a community focused on Building the Future of
+						Giftomy is a community focused on Building the Future of
 						Giving using blockchain technology. Our intention is to
 						support and reward the funding of public goods by
 						creating open, transparent and free access to the
@@ -74,7 +74,7 @@ const AboutIndex = () => {
 					</Lead>
 					<br />
 					<Lead>
-						Giveth is building a culture of giving that empowers and
+						Giftomy is building a culture of giving that empowers and
 						rewards those who give -- to projects, to society, and
 						to the world. We aim to inspire our community to
 						participate in an ecosystem of collective support,
