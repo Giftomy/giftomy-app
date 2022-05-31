@@ -45,11 +45,11 @@ const ProjectsTable: FC<IProjectsTable> = ({
 				<img src='/images/heart-black.svg' width='24px' height='24px' />
 			</TableHeader>
 			<TableHeader onClick={() => changeOrder(EOrderBy.Donations)}>
-				Total Raised
+				Total Sold
 				<SortIcon order={order} title={EOrderBy.Donations} />
 			</TableHeader>
-			<TableHeader>Listing</TableHeader>
 			<TableHeader>Actions</TableHeader>
+			<TableHeader></TableHeader>
 			{projects?.map(project => {
 				const status = project.status.name;
 				const isCancelled = status === EProjectStatus.CANCEL;
@@ -76,9 +76,6 @@ const ProjectsTable: FC<IProjectsTable> = ({
 							{formatUSD(project.totalDonations)} USD
 						</TableCell>
 						<TableCell>
-							<ListingBadge listed={project.listed!} />
-						</TableCell>
-						<TableCell>
 							<Actions isCancelled={isCancelled}>
 								<InternalLink
 									href={idToProjectEdit(project.id)}
@@ -91,6 +88,9 @@ const ProjectsTable: FC<IProjectsTable> = ({
 									disabled={isCancelled}
 								/>
 							</Actions>
+						</TableCell>
+						<TableCell>
+							{/* <ListingBadge listed={project.listed!} /> */}
 						</TableCell>
 					</RowWrapper>
 				);

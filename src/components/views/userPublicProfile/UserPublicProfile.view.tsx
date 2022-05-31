@@ -152,7 +152,7 @@ const UserInfo = styled(FlexCenter)`
 const PublicProfileHeader = styled.div`
 	padding-top: 120px;
 	padding-bottom: 32px;
-	background-color: ${neutralColors.gray[100]};
+	background-color: ${neutralColors.gray[900]};
 `;
 
 const EditProfile = styled(GLink)`

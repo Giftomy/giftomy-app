@@ -104,7 +104,7 @@ export const TabOverviewBottom = () => {
 				<TabTitle weight={700}>The Economy of Giving</TabTitle>
 				<Col md={10} lg={8}>
 					<TabDesc size='medium'>
-						Giveth is rewarding and empowering those who give to
+						Giftomy is rewarding and empowering those who give to
 						projects, to society, and to the world!
 					</TabDesc>
 				</Col>
@@ -133,9 +133,9 @@ export const TabOverviewBottom = () => {
 							title='GIVbacks'
 							subtitle='GIVE AND RECEIVE'
 						>
-							Giveth is a donor owned and governed economy. With
+							Giftomy is a donor owned and governed economy. With
 							GIVbacks, we reward donors to verified projects on
-							Giveth with GIV tokens.
+							Giftomy with GIV tokens.
 						</DataBlockWithMargin>
 					</Col>
 					<Col xs={12} sm={6} md={4}>

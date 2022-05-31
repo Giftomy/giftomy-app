@@ -1,13 +1,13 @@
-import React, { Dispatch, SetStateAction, useEffect } from 'react';
-import { H4, brandColors, P, Button } from '@giveth/ui-design-system';
+import ConfettiAnimation from '../../animations/confetti';
+import SocialBox from '../donate/SocialBox';
+import { IProject } from '@/apollo/types/types';
+import ProjectCard from '@/components/project-card/ProjectCardAlt';
+import { slugToProjectView } from '@/lib/routeCreators';
+import { H4, brandColors, neutralColors, P, Button } from '@giveth/ui-design-system';
 import Link from 'next/link';
+import React, { Dispatch, SetStateAction, useEffect } from 'react';
 import styled from 'styled-components';
 
-import ProjectCard from '@/components/project-card/ProjectCardAlt';
-import { IProject } from '@/apollo/types/types';
-import SocialBox from '../donate/SocialBox';
-import ConfettiAnimation from '../../animations/confetti';
-import { slugToProjectView } from '@/lib/routeCreators';
 
 const SuccessfulCreation = (props: {
 	project: IProject;
@@ -69,13 +69,13 @@ const ConfettiContainer = styled.div`
 	top: 200px;
 `;
 const GiverH4 = styled(H4)`
-	color: ${brandColors.deep[700]};
+	color: ${neutralColors.gray[100]};
 `;
 const BGImg = styled.img`
 	position: absolute;
 `;
 const Container = styled.div`
-	background-image: url('/images/creation_success.svg');
+	/* background-image: url('/images/creation_success.svg'); */
 `;
 const Wrapper = styled.div`
 	text-align: center;
@@ -117,23 +117,23 @@ const Right = styled.div`
 	border-bottom-right-radius: 16px;
 	height: 620px;
 	h4 {
-		color: ${brandColors.deep[700]};
+		/* color: ${brandColors.deep[700]}; */
 		font-weight: bold;
 	}
 `;
 const SucceessContainer = styled.div`
-	display: flex;
-	flex-direction: column;
-	justify-content: space-around;
-	align-items: center;
-	text-align: center;
-	padding: 0 39px;
-	color: ${brandColors.deep[900]};
-	height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  padding: 0 39px;
+  color: ${neutralColors.gray[100]};
+  height: 100%;
 `;
 const SuccessMessage = styled(P)`
-	margin: -19px 0 16px 0;
-	color: ${brandColors.deep[900]};
+  margin: -19px 0 16px 0;
+  color: ${neutralColors.gray[100]};
 `;
 const ProjectsButton = styled(Button)`
 	width: 242px;

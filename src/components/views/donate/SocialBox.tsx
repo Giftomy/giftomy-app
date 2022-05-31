@@ -81,7 +81,7 @@ Donate directly on Ethereum Mainnet or @gnosischain w/ no fees or intermediaries
 const BLead = styled(Lead)`
 	line-height: 30px;
 	font-weight: 400;
-	color: ${neutralColors.gray[900]};
+	color: ${neutralColors.gray[100]};
 	z-index: 2;
 `;
 
@@ -91,7 +91,7 @@ const Social = styled.div`
 	justify-content: center;
 	margin: ${(props: { isSuccess: boolean }) =>
 		props.isSuccess ? 0 : '18px 0'};
-	color: ${neutralColors.gray[900]};
+	color: ${neutralColors.gray[100]};
 	align-items: center;
 `;
 const SocialItems = styled.div`
