@@ -1,118 +1,49 @@
-import {
-  ConnectWallet,
-  useContractList,
-  useContractMetadataWithAddress,
-  useWeb3,
-} from '@3rdweb-sdk/react';
-import { useProjects } from '@3rdweb-sdk/react/hooks/useProjects';
-import { useRemoveContractMutation } from '@3rdweb-sdk/react/hooks/useRegistry';
-import {
-  Box,
-  Center,
-  Container,
-  Flex,
-  Icon,
-  IconButton,
-  Image,
-  Link,
-  LinkBox,
-  LinkOverlay,
-  Menu,
-  MenuButton,
-  MenuItemOption,
-  MenuList,
-  MenuOptionGroup,
-  Popover,
-  PopoverAnchor,
-  PopoverArrow,
-  PopoverBody,
-  PopoverContent,
-  SimpleGrid,
-  Skeleton,
-  Stack,
-  Tab,
-  TabList,
-  TabPanel,
-  TabPanels,
-  Table,
-  Tabs,
-  Tbody,
-  Td,
-  Th,
-  Thead,
-  Tr,
-  useDisclosure,
-} from '@chakra-ui/react';
-import { useNetwork } from '@thirdweb-dev/react';
-import {
-  CONTRACTS_MAP,
-  CommonContractOutputSchema,
-  ContractType,
-  ValidContractClass,
-} from '@thirdweb-dev/sdk';
-import { ChakraNextImage } from 'components/Image';
-import { AppLayout } from 'components/app-layouts/app';
-import {
-  CONTRACT_TYPE_NAME_MAP,
-  FeatureIconMap,
-  UrlMap,
-} from 'constants/mappings';
-import { utils } from 'ethers';
-import { useTrack } from 'hooks/analytics/useTrack';
-import { useSingleQueryParam } from 'hooks/useQueryParam';
-import OriginalNextLink from 'next/link';
-import { useRouter } from 'next/router';
-import * as React from 'react';
-import { ReactElement, useEffect, useMemo } from 'react';
-import { AiFillCode, AiFillLayout, AiOutlineWarning } from 'react-icons/ai';
-import { FaTrash } from 'react-icons/fa';
-import { FiPlus } from 'react-icons/fi';
-import { IoFilterSharp } from 'react-icons/io5';
-import {
-  SiGo,
-  SiJavascript,
-  SiPython,
-  SiReact,
-  SiSolidity,
-} from 'react-icons/si';
-import { VscDebugDisconnect } from 'react-icons/vsc';
-import { Column, useFilters, useGlobalFilter, useTable } from 'react-table';
-import {
-  AddressCopyButton,
-  Badge,
-  Button,
-  Card,
-  Heading,
-  LinkButton,
-  Text,
-} from 'tw-components';
-import {
-  ChainId,
-  SUPPORTED_CHAIN_ID,
-  SUPPORTED_CHAIN_IDS,
-  SupportedChainIdToNetworkMap,
-  getNetworkFromChainId,
-} from 'utils/network';
-import { shortenIfAddress } from 'utils/usedapp-external';
-import { z } from 'zod';
+import { ConnectWallet, useContractList, useContractMetadataWithAddress, useWeb3 } from "@3rdweb-sdk/react";
+import { useProjects } from "@3rdweb-sdk/react/hooks/useProjects";
+import { useRemoveContractMutation } from "@3rdweb-sdk/react/hooks/useRegistry";
+import { Box, Center, Container, Flex, Icon, IconButton, Image, Link, LinkBox, LinkOverlay, Menu, MenuButton, MenuItemOption, MenuList, MenuOptionGroup, Popover, PopoverAnchor, PopoverArrow, PopoverBody, PopoverContent, SimpleGrid, Skeleton, Stack, Tab, TabList, TabPanel, TabPanels, Table, Tabs, Tbody, Td, Th, Thead, Tr, useDisclosure } from "@chakra-ui/react";
+import { useNetwork } from "@thirdweb-dev/react";
+import { CONTRACTS_MAP, CommonContractOutputSchema, ContractType, ValidContractClass } from "@thirdweb-dev/sdk";
+import { ChakraNextImage } from "components/Image";
+import { AppLayout } from "components/app-layouts/app";
+import { CONTRACT_TYPE_NAME_MAP, FeatureIconMap, UrlMap } from "constants/mappings";
+import { utils } from "ethers";
+import { useTrack } from "hooks/analytics/useTrack";
+import { useSingleQueryParam } from "hooks/useQueryParam";
+import OriginalNextLink from "next/link";
+import { useRouter } from "next/router";
+import * as React from "react";
+import { ReactElement, useEffect, useMemo } from "react";
+import { AiFillCode, AiFillLayout, AiOutlineWarning } from "react-icons/ai";
+import { FaTrash } from "react-icons/fa";
+import { FiPlus } from "react-icons/fi";
+import { IoFilterSharp } from "react-icons/io5";
+import { SiGo, SiJavascript, SiPython, SiReact, SiSolidity } from "react-icons/si";
+import { VscDebugDisconnect } from "react-icons/vsc";
+import { Column, useFilters, useGlobalFilter, useTable } from "react-table";
+import { AddressCopyButton, Badge, Button, Card, Heading, LinkButton, Text } from "tw-components";
+import { ChainId, SUPPORTED_CHAIN_ID, SUPPORTED_CHAIN_IDS, SupportedChainIdToNetworkMap, getNetworkFromChainId } from "utils/network";
+import { shortenIfAddress } from "utils/usedapp-external";
+import { z } from "zod";
+
 
 export default function Dashboard() {
   const router = useRouter();
-  const wallet = useSingleQueryParam('wallet') || 'dashboard';
+  const wallet = useSingleQueryParam("wallet") || "dashboard";
   const { address } = useWeb3();
   const { data: projects } = useProjects(
-    wallet === 'dashboard' ? address : wallet,
+    wallet === "dashboard" ? address : wallet,
   );
 
   // redirect anything that is not a valid address or `/dashboard` to `/dashboard`
   useEffect(() => {
-    if (!utils.isAddress(wallet) && wallet !== 'dashboard') {
-      router.replace('/dashboard');
+    if (!utils.isAddress(wallet) && wallet !== "dashboard") {
+      router.replace("/dashboard");
     }
   }, [router, wallet]);
 
   const dashboardAddress = useMemo(() => {
-    return wallet === 'dashboard'
+    return wallet === "dashboard"
       ? address
       : utils.isAddress(wallet)
       ? wallet
@@ -166,29 +97,28 @@ export default function Dashboard() {
   ]);
 
   return (
-    <Flex direction='column' gap={8}>
-      {wallet === 'dashboard' && !address ? (
+    <Flex direction="column" gap={8}>
+      {wallet === "dashboard" && !address ? (
         <NoWallet />
       ) : (
         <>
           {!!combinedList.length && (
             <Flex
-              justify='space-between'
-              align='top'
+              justify="space-between"
+              align="top"
               gap={4}
-              direction={{ base: 'column', md: 'row' }}
+              direction={{ base: "column", md: "row" }}
             >
-              <Flex gap={2} direction='column'>
-                <Heading size='title.md'>Deployed contracts</Heading>
-                <Text fontStyle='italic' maxW='container.md'>
-                  The list of contract instances that you have deployed with
-                  thirdweb across all networks.
+              <Flex gap={2} direction="column">
+                <Heading size="title.md">Deployed contracts</Heading>
+                <Text fontStyle="italic" maxW="container.md">
+                  The list of contract instances that you have deployed.
                 </Text>
               </Flex>
               <LinkButton
                 leftIcon={<FiPlus />}
-                colorScheme='primary'
-                href='/contracts'
+                colorScheme="primary"
+                href="/contracts"
               >
                 Deploy new contract
               </LinkButton>
@@ -228,202 +158,202 @@ const LearnMoreSection: React.FC = () => {
       <Card
         p={6}
         as={LinkBox}
-        _hover={{ borderColor: 'primary.600' }}
-        role='group'
+        _hover={{ borderColor: "primary.600" }}
+        role="group"
       >
-        <Flex flexDir='column' gap={3}>
+        <Flex flexDir="column" gap={3}>
           <Flex>
             <Flex
-              borderRadius='full'
+              borderRadius="full"
               boxSize={9}
-              justifyContent='center'
-              alignItems='center'
-              border='1px solid'
-              borderColor='borderColor'
-              overflow='hidden'
-              bg='yellow'
+              justifyContent="center"
+              alignItems="center"
+              border="1px solid"
+              borderColor="borderColor"
+              overflow="hidden"
+              bg="yellow"
               p={1.5}
-              shadow='md'
+              shadow="md"
             >
-              <Icon boxSize='full' as={SiJavascript} bg='black' fill='yellow' />
+              <Icon boxSize="full" as={SiJavascript} bg="black" fill="yellow" />
             </Flex>
             <Flex
-              bgColor='backgroundCardHighlight'
-              borderRadius='full'
+              bgColor="backgroundCardHighlight"
+              borderRadius="full"
               boxSize={9}
-              justifyContent='center'
-              alignItems='center'
+              justifyContent="center"
+              alignItems="center"
               ml={-4}
-              border='1px solid'
-              borderColor='borderColor'
+              border="1px solid"
+              borderColor="borderColor"
               p={1.5}
-              overflow='hidden'
-              shadow='md'
+              overflow="hidden"
+              shadow="md"
               _groupHover={{
                 ml: -2,
               }}
-              transition='all 0.2s'
+              transition="all 0.2s"
             >
-              <Icon as={SiPython} boxSize='full' fill='#3e7aac' />
+              <Icon as={SiPython} boxSize="full" fill="#3e7aac" />
             </Flex>
             <Flex
-              bgColor='backgroundCardHighlight'
-              borderRadius='full'
+              bgColor="backgroundCardHighlight"
+              borderRadius="full"
               boxSize={9}
-              justifyContent='center'
-              alignItems='center'
+              justifyContent="center"
+              alignItems="center"
               ml={-4}
-              border='1px solid'
-              borderColor='borderColor'
+              border="1px solid"
+              borderColor="borderColor"
               p={1.5}
-              overflow='hidden'
-              shadow='md'
+              overflow="hidden"
+              shadow="md"
               _groupHover={{
                 ml: -2,
               }}
-              transition='all 0.2s'
+              transition="all 0.2s"
             >
-              <Icon as={SiReact} boxSize='full' fill='#61dafb' />
+              <Icon as={SiReact} boxSize="full" fill="#61dafb" />
             </Flex>
             <Flex
-              bgColor='backgroundCardHighlight'
-              borderRadius='full'
+              bgColor="backgroundCardHighlight"
+              borderRadius="full"
               boxSize={9}
-              justifyContent='center'
-              alignItems='center'
+              justifyContent="center"
+              alignItems="center"
               ml={-4}
-              border='1px solid'
-              borderColor='borderColor'
+              border="1px solid"
+              borderColor="borderColor"
               p={1.5}
-              overflow='hidden'
-              shadow='md'
+              overflow="hidden"
+              shadow="md"
               _groupHover={{
                 ml: -2,
               }}
-              transition='all 0.2s'
+              transition="all 0.2s"
             >
-              <Icon as={SiGo} boxSize='full' fill='#50b7e0' />
+              <Icon as={SiGo} boxSize="full" fill="#50b7e0" />
             </Flex>
             <Flex
-              bgColor='backgroundCardHighlight'
-              borderRadius='full'
+              bgColor="backgroundCardHighlight"
+              borderRadius="full"
               boxSize={9}
-              justifyContent='center'
-              alignItems='center'
+              justifyContent="center"
+              alignItems="center"
               ml={-4}
-              border='1px solid'
-              borderColor='borderColor'
+              border="1px solid"
+              borderColor="borderColor"
               p={1.5}
-              overflow='hidden'
-              shadow='md'
+              overflow="hidden"
+              shadow="md"
               _groupHover={{
                 ml: -2,
               }}
-              transition='all 0.2s'
+              transition="all 0.2s"
             >
               <Icon
                 as={SiSolidity}
-                boxSize='full'
-                fill='#1C1C1C'
-                _dark={{ filter: 'invert(1)' }}
+                boxSize="full"
+                fill="#1C1C1C"
+                _dark={{ filter: "invert(1)" }}
               />
             </Flex>
           </Flex>
-          <Flex flexDir='column' gap={1}>
+          <Flex flexDir="column" gap={1}>
             <LinkOverlay
-              href='https://portal.thirdweb.com/'
+              href="https://portal.thirdweb.com/"
               isExternal
               onClick={() =>
                 trackEvent({
-                  category: 'learn-more',
-                  action: 'click',
-                  label: 'sdks',
+                  category: "learn-more",
+                  action: "click",
+                  label: "sdks",
                 })
               }
             >
-              <Heading size='title.sm'>
-                Discover our{' '}
+              <Heading size="title.sm">
+                Discover our{" "}
                 <Heading
-                  as='span'
-                  size='title.sm'
-                  bgGradient='linear(to-tl, blue.300, purple.400)'
+                  as="span"
+                  size="title.sm"
+                  bgGradient="linear(to-tl, blue.300, purple.400)"
                   _light={{
-                    bgGradient: 'linear(to-tl, purple.500, blue.500)',
+                    bgGradient: "linear(to-tl, purple.500, blue.500)",
                   }}
-                  bgClip='text'
+                  bgClip="text"
                 >
                   SDKs
                 </Heading>
               </Heading>
             </LinkOverlay>
-            <Text size='body.md'>JavaScript, Python, React, Go, etc.</Text>
+            <Text size="body.md">JavaScript, Python, React, Go, etc.</Text>
           </Flex>
         </Flex>
       </Card>
-      <Card p={6} as={LinkBox} _hover={{ borderColor: 'primary.600' }}>
-        <Flex flexDir='column' gap={3}>
+      <Card p={6} as={LinkBox} _hover={{ borderColor: "primary.600" }}>
+        <Flex flexDir="column" gap={3}>
           <Icon as={AiFillCode} boxSize={9} />
-          <Flex flexDir='column' gap={1}>
+          <Flex flexDir="column" gap={1}>
             <LinkOverlay
-              href='https://portal.thirdweb.com/thirdweb-deploy'
+              href="https://portal.thirdweb.com/thirdweb-deploy"
               isExternal
               onClick={() =>
                 trackEvent({
-                  category: 'learn-more',
-                  action: 'click',
-                  label: 'sdks',
+                  category: "learn-more",
+                  action: "click",
+                  label: "sdks",
                 })
               }
             >
-              <Heading size='title.sm'>
+              <Heading size="title.sm">
                 <Heading
-                  as='span'
-                  size='title.sm'
-                  bgGradient='linear(to-tr, blue.300, purple.400)'
+                  as="span"
+                  size="title.sm"
+                  bgGradient="linear(to-tr, blue.300, purple.400)"
                   _light={{
-                    bgGradient: 'linear(to-tr, purple.500, blue.500)',
+                    bgGradient: "linear(to-tr, purple.500, blue.500)",
                   }}
-                  bgClip='text'
+                  bgClip="text"
                 >
                   thirdweb deploy
                 </Heading>
               </Heading>
             </LinkOverlay>
-            <Text size='body.md'>Your own contracts, all of our tools.</Text>
+            <Text size="body.md">Your own contracts, all of our tools.</Text>
           </Flex>
         </Flex>
       </Card>
-      <Card p={6} as={LinkBox} _hover={{ borderColor: 'primary.600' }}>
-        <Flex flexDir='column' gap={3}>
+      <Card p={6} as={LinkBox} _hover={{ borderColor: "primary.600" }}>
+        <Flex flexDir="column" gap={3}>
           <Icon as={AiFillLayout} boxSize={9} />
-          <Flex flexDir='column' gap={1}>
+          <Flex flexDir="column" gap={1}>
             <LinkOverlay
-              href='https://portal.thirdweb.com/pre-built-contracts'
+              href="https://portal.thirdweb.com/pre-built-contracts"
               isExternal
               onClick={() =>
                 trackEvent({
-                  category: 'learn-more',
-                  action: 'click',
-                  label: 'sdks',
+                  category: "learn-more",
+                  action: "click",
+                  label: "sdks",
                 })
               }
             >
-              <Heading size='title.sm'>
-                Explore our{' '}
+              <Heading size="title.sm">
+                Explore our{" "}
                 <Heading
-                  as='span'
-                  size='title.sm'
-                  bgGradient='linear(to-l, blue.300, purple.400)'
+                  as="span"
+                  size="title.sm"
+                  bgGradient="linear(to-l, blue.300, purple.400)"
                   _light={{
-                    bgGradient: 'linear(to-l, purple.500, blue.500)',
+                    bgGradient: "linear(to-l, purple.500, blue.500)",
                   }}
-                  bgClip='text'
+                  bgClip="text"
                 >
                   pre-built contracts
                 </Heading>
               </Heading>
             </LinkOverlay>
-            <Text size='body.md'>Your Solidity quick-start</Text>
+            <Text size="body.md">Your Solidity quick-start</Text>
           </Flex>
         </Flex>
       </Card>
@@ -448,20 +378,20 @@ export const ContractTable: React.FC<ContractTableProps> = ({
   const columns = useMemo(
     () => [
       {
-        Header: 'Name',
-        accessor: row => row.metadata,
+        Header: "Name",
+        accessor: (row) => row.metadata,
         Cell: (cell: any) => {
           return <AsyncContractCell cell={cell.row.original} />;
         },
       },
       {
-        Header: 'Contract Type',
-        accessor: row => row.contractType,
+        Header: "Contract Type",
+        accessor: (row) => row.contractType,
         Cell: (cell: any) => {
           const src =
             FeatureIconMap[cell.row.original.contractType as ContractType];
           return (
-            <Flex align='center' gap={2}>
+            <Flex align="center" gap={2}>
               {src ? (
                 <ChakraNextImage
                   boxSize={8}
@@ -475,7 +405,7 @@ export const ContractTable: React.FC<ContractTableProps> = ({
               ) : (
                 <Image
                   boxSize={8}
-                  src=''
+                  src=""
                   alt={
                     CONTRACT_TYPE_NAME_MAP[
                       cell.row.original.contractType as ContractType
@@ -483,7 +413,7 @@ export const ContractTable: React.FC<ContractTableProps> = ({
                   }
                 />
               )}
-              <Text size='label.md'>
+              <Text size="label.md">
                 {
                   CONTRACT_TYPE_NAME_MAP[
                     cell.row.original.contractType as ContractType
@@ -493,7 +423,7 @@ export const ContractTable: React.FC<ContractTableProps> = ({
             </Flex>
           );
         },
-        Filter: props => {
+        Filter: (props) => {
           const contractFilterOptions = Object.keys(
             CONTRACTS_MAP,
           ) as ContractType[];
@@ -504,29 +434,29 @@ export const ContractTable: React.FC<ContractTableProps> = ({
               <MenuButton
                 as={IconButton}
                 icon={<Icon as={IoFilterSharp} boxSize={4} />}
-                aria-label='open contract type filter menu'
-                size='sm'
+                aria-label="open contract type filter menu"
+                size="sm"
                 p={0}
-                variant='ghost'
+                variant="ghost"
               />
               <MenuList zIndex={10}>
                 <MenuOptionGroup
                   defaultValue={contractFilterOptions}
-                  title='Contract Types'
+                  title="Contract Types"
                   fontSize={12}
-                  type='checkbox'
+                  type="checkbox"
                   value={filterVal}
-                  onChange={e => props.setFilter(props.column.id, e)}
+                  onChange={(e) => props.setFilter(props.column.id, e)}
                 >
-                  {contractFilterOptions.map(contractType => (
+                  {contractFilterOptions.map((contractType) => (
                     <MenuItemOption value={contractType} key={contractType}>
-                      <Flex align='center' direction='row' gap={1}>
+                      <Flex align="center" direction="row" gap={1}>
                         <ChakraNextImage
                           boxSize={4}
                           src={FeatureIconMap[contractType]}
                           alt={contractType}
                         />
-                        <Text size='label.md'>
+                        <Text size="label.md">
                           {CONTRACT_TYPE_NAME_MAP[contractType]}
                         </Text>
                       </Flex>
@@ -538,33 +468,33 @@ export const ContractTable: React.FC<ContractTableProps> = ({
           );
         },
         filter: (rows, _columnIds, filterValue = []) => {
-          return rows.filter(row => {
+          return rows.filter((row) => {
             return filterValue.includes(row.original.contractType);
           });
         },
       },
       {
-        Header: 'Network',
-        accessor: row => row.chainId,
+        Header: "Network",
+        accessor: (row) => row.chainId,
         Cell: (cell: any) => {
           const data = getNetworkMetadata(
             cell.row.original.chainId as SUPPORTED_CHAIN_ID,
           );
           return (
-            <Flex align='center' gap={2}>
+            <Flex align="center" gap={2}>
               <Icon boxSize={6} as={data.icon} />
-              <Text size='label.md'>{data.chainName}</Text>
+              <Text size="label.md">{data.chainName}</Text>
               <Badge
-                colorScheme={data.isTestnet ? 'blue' : 'green'}
-                textTransform='capitalize'
+                colorScheme={data.isTestnet ? "blue" : "green"}
+                textTransform="capitalize"
               >
-                {data.isTestnet ? 'Testnet' : 'Mainnet'}
+                {data.isTestnet ? "Testnet" : "Mainnet"}
               </Badge>
             </Flex>
           );
         },
-        Filter: props => {
-          const options = SUPPORTED_CHAIN_IDS.map(chainId =>
+        Filter: (props) => {
+          const options = SUPPORTED_CHAIN_IDS.map((chainId) =>
             chainId.toString(),
           );
           return (
@@ -572,23 +502,23 @@ export const ContractTable: React.FC<ContractTableProps> = ({
               <MenuButton
                 as={IconButton}
                 icon={<Icon as={IoFilterSharp} boxSize={4} />}
-                aria-label='open contract type filter menu'
-                size='sm'
-                variant='ghost'
+                aria-label="open contract type filter menu"
+                size="sm"
+                variant="ghost"
                 p={0}
               />
               <MenuList zIndex={10}>
                 <MenuOptionGroup
                   defaultValue={options}
-                  title='Networks'
+                  title="Networks"
                   fontSize={12}
-                  type='checkbox'
+                  type="checkbox"
                   value={props.filterValue}
-                  onChange={e => props.setFilter(props.column.id, e)}
+                  onChange={(e) => props.setFilter(props.column.id, e)}
                 >
-                  {options.map(chainId => (
+                  {options.map((chainId) => (
                     <MenuItemOption value={chainId} key={chainId}>
-                      <Flex align='center' direction='row' gap={1}>
+                      <Flex align="center" direction="row" gap={1}>
                         <Icon
                           boxSize={4}
                           as={
@@ -597,7 +527,7 @@ export const ContractTable: React.FC<ContractTableProps> = ({
                             ).icon
                           }
                         />
-                        <Text size='label.md'>
+                        <Text size="label.md">
                           {
                             getNetworkMetadata(
                               parseInt(chainId) as SUPPORTED_CHAIN_ID,
@@ -613,20 +543,20 @@ export const ContractTable: React.FC<ContractTableProps> = ({
           );
         },
         filter: (rows, _columnIds, filterValue = []) => {
-          return rows.filter(row => {
+          return rows.filter((row) => {
             return filterValue.includes(row.original.chainId.toString());
           });
         },
       },
       {
-        Header: 'Contract Address',
-        accessor: row => row.address,
+        Header: "Contract Address",
+        accessor: (row) => row.address,
         Cell: (cell: any) => {
           return <AddressCopyButton address={cell.row.original.address} />;
         },
       },
       {
-        Header: 'Actions',
+        Header: "Actions",
         Cell: (cell: any) => (
           <RemoveContract
             contractType={cell.row.original.contractType}
@@ -642,7 +572,7 @@ export const ContractTable: React.FC<ContractTableProps> = ({
 
   const defaultColumn = useMemo(
     () => ({
-      Filter: '',
+      Filter: "",
     }),
     [],
   );
@@ -669,33 +599,33 @@ export const ContractTable: React.FC<ContractTableProps> = ({
 
   const router = useRouter();
 
-  const wallet = useSingleQueryParam('wallet') || 'dashboard';
+  const wallet = useSingleQueryParam("wallet") || "dashboard";
 
   if (!combinedList.length) {
     return <NoContracts />;
   }
 
   return (
-    <Box w='100%' overflowX='auto'>
+    <Box w="100%" overflowX="auto">
       <Table
         {...getTableProps()}
-        bg='backgroundHighlight'
+        bg="backgroundHighlight"
         p={4}
-        borderRadius='lg'
-        overflow='hidden'
+        borderRadius="lg"
+        overflow="hidden"
       >
-        <Thead bg='blackAlpha.50' _dark={{ bg: 'whiteAlpha.50' }}>
-          {headerGroups.map(headerGroup => (
+        <Thead bg="blackAlpha.50" _dark={{ bg: "whiteAlpha.50" }}>
+          {headerGroups.map((headerGroup) => (
             // eslint-disable-next-line react/jsx-key
             <Tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map(column => (
+              {headerGroup.headers.map((column) => (
                 // eslint-disable-next-line react/jsx-key
                 <Th {...column.getHeaderProps()}>
-                  <Flex align='center' gap={2}>
-                    <Text as='label' size='label.md'>
-                      {column.render('Header')}
+                  <Flex align="center" gap={2}>
+                    <Text as="label" size="label.md">
+                      {column.render("Header")}
                     </Text>
-                    {column.render('Filter')}
+                    {column.render("Filter")}
                   </Flex>
                 </Th>
               ))}
@@ -704,25 +634,25 @@ export const ContractTable: React.FC<ContractTableProps> = ({
         </Thead>
 
         <Tbody {...getTableBodyProps()}>
-          {rows.map(row => {
+          {rows.map((row) => {
             prepareRow(row);
             return (
               // eslint-disable-next-line react/jsx-key
               <Tr
                 {...row.getRowProps()}
-                role='group'
-                _hover={{ bg: 'blackAlpha.50' }}
+                role="group"
+                _hover={{ bg: "blackAlpha.50" }}
                 _dark={{
                   _hover: {
-                    bg: 'whiteAlpha.50',
+                    bg: "whiteAlpha.50",
                   },
                 }}
                 // this is a hack to get around the fact that safari does not handle position: relative on table rows
-                style={{ cursor: 'pointer' }}
+                style={{ cursor: "pointer" }}
                 onClick={() => {
                   const contractTypeUrlSegment =
-                    row.original.contractType === 'custom'
-                      ? ''
+                    row.original.contractType === "custom"
+                      ? ""
                       : `/${UrlMap[row.original.contractType]}`;
 
                   const href = `/${wallet}/${getNetworkFromChainId(
@@ -735,11 +665,11 @@ export const ContractTable: React.FC<ContractTableProps> = ({
                 borderBottomWidth={1}
                 _last={{ borderBottomWidth: 0 }}
               >
-                {row.cells.map(cell => {
+                {row.cells.map((cell) => {
                   return (
                     // eslint-disable-next-line react/jsx-key
-                    <Td borderBottomWidth='inherit' {...cell.getCellProps()}>
-                      {cell.render('Cell')}
+                    <Td borderBottomWidth="inherit" {...cell.getCellProps()}>
+                      {cell.render("Cell")}
                     </Td>
                   );
                 })}
@@ -757,12 +687,12 @@ interface AsyncContractCellProps {
     address: string;
     chainId: ChainId;
     contractType: ContractType;
-    metadata: () => Promise<z.output<ValidContractClass['schema']['output']>>;
+    metadata: () => Promise<z.output<ValidContractClass["schema"]["output"]>>;
   };
 }
 
 const AsyncContractCell: React.FC<AsyncContractCellProps> = ({ cell }) => {
-  const wallet = useSingleQueryParam('wallet') || 'dashboard';
+  const wallet = useSingleQueryParam("wallet") || "dashboard";
   const metadataQuery = useContractMetadataWithAddress(
     cell.address,
     cell.metadata,
@@ -770,7 +700,7 @@ const AsyncContractCell: React.FC<AsyncContractCellProps> = ({ cell }) => {
   );
 
   const contractTypeUrlSegment =
-    cell.contractType === 'custom' ? '' : `/${UrlMap[cell.contractType]}`;
+    cell.contractType === "custom" ? "" : `/${UrlMap[cell.contractType]}`;
 
   const href = `/${wallet}/${getNetworkFromChainId(
     cell.chainId as SUPPORTED_CHAIN_ID,
@@ -781,10 +711,10 @@ const AsyncContractCell: React.FC<AsyncContractCellProps> = ({ cell }) => {
       <OriginalNextLink href={href} passHref>
         <Link>
           <Text
-            color='blue.700'
-            _dark={{ color: 'blue.300' }}
-            size='label.md'
-            _groupHover={{ textDecor: 'underline' }}
+            color="blue.700"
+            _dark={{ color: "blue.300" }}
+            size="label.md"
+            _groupHover={{ textDecor: "underline" }}
           >
             {metadataQuery.data?.name || shortenIfAddress(cell.address)}
           </Text>
@@ -796,26 +726,26 @@ const AsyncContractCell: React.FC<AsyncContractCellProps> = ({ cell }) => {
 
 const NoContracts: React.FC = () => {
   return (
-    <Center w='100%'>
+    <Center w="100%">
       <Container as={Card}>
-        <Stack py={7} align='center' spacing={6} w='100%'>
+        <Stack py={7} align="center" spacing={6} w="100%">
           <ChakraNextImage
-            src={require('public/assets/illustrations/listing.png')}
-            alt='no apps'
+            src={require("public/assets/illustrations/listing.png")}
+            alt="no apps"
             boxSize={20}
-            maxW='200px'
+            maxW="200px"
             mb={3}
           />
-          <Flex direction='column' gap={0.5} align='center'>
-            <Heading size='title.md' textAlign='center'>
+          <Flex direction="column" gap={0.5} align="center">
+            <Heading size="title.md" textAlign="center">
               You don&apos;t have any contracts
             </Heading>
-            <Text size='body.lg'>Deploy a contract to get started</Text>
+            <Text size="body.lg">Deploy a contract to get started</Text>
           </Flex>
           <LinkButton
             leftIcon={<FiPlus />}
-            colorScheme='primary'
-            href='/contracts'
+            colorScheme="primary"
+            href="/contracts"
           >
             Deploy new contract
           </LinkButton>
@@ -827,19 +757,19 @@ const NoContracts: React.FC = () => {
 
 const NoWallet: React.FC = () => {
   return (
-    <Center w='100%'>
+    <Center w="100%">
       <Container as={Card}>
-        <Stack py={7} align='center' spacing={6} w='100%'>
+        <Stack py={7} align="center" spacing={6} w="100%">
           <ChakraNextImage
-            src={require('public/assets/illustrations/wallet.png')}
-            alt='no apps'
+            src={require("public/assets/illustrations/wallet.png")}
+            alt="no apps"
             boxSize={20}
-            maxW='200px'
+            maxW="200px"
             mb={3}
           />
-          <Flex direction='column' gap={2} align='center'>
-            <Heading size='title.md'>Connect your wallet</Heading>
-            <Text size='body.lg' textAlign='center'>
+          <Flex direction="column" gap={2} align="center">
+            <Heading size="title.md">Connect your wallet</Heading>
+            <Text size="body.lg" textAlign="center">
               You need to connect your wallet to deploy and interact with your
               contracts.
             </Text>
@@ -872,10 +802,10 @@ const ProjectCell: React.FC<IProjectCellProps> = ({
       >
         <Link>
           <Text
-            color='blue.700'
-            _dark={{ color: 'blue.300' }}
-            size='label.md'
-            _groupHover={{ textDecor: 'underline' }}
+            color="blue.700"
+            _dark={{ color: "blue.300" }}
+            size="label.md"
+            _groupHover={{ textDecor: "underline" }}
           >
             {name || shortenIfAddress(address)}
           </Text>
@@ -899,7 +829,7 @@ const OldProjects: React.FC<IOldProjects> = ({ projects }) => {
   const columns = useMemo(
     () => [
       {
-        Header: 'Name',
+        Header: "Name",
         Cell: (cell: any) => {
           return (
             <ProjectCell
@@ -911,27 +841,27 @@ const OldProjects: React.FC<IOldProjects> = ({ projects }) => {
         },
       },
       {
-        Header: 'Network',
-        accessor: row => row.chainId,
+        Header: "Network",
+        accessor: (row) => row.chainId,
         Cell: (cell: any) => {
           const data = getNetworkMetadata(
             cell.row.original.chainId as SUPPORTED_CHAIN_ID,
           );
           return (
-            <Flex align='center' gap={2}>
+            <Flex align="center" gap={2}>
               <Icon boxSize={6} as={data.icon} />
-              <Text size='label.md'>{data.chainName}</Text>
+              <Text size="label.md">{data.chainName}</Text>
               <Badge
-                colorScheme={data.isTestnet ? 'blue' : 'green'}
-                textTransform='capitalize'
+                colorScheme={data.isTestnet ? "blue" : "green"}
+                textTransform="capitalize"
               >
-                {data.isTestnet ? 'Testnet' : 'Mainnet'}
+                {data.isTestnet ? "Testnet" : "Mainnet"}
               </Badge>
             </Flex>
           );
         },
-        Filter: props => {
-          const options = SUPPORTED_CHAIN_IDS.map(chainId =>
+        Filter: (props) => {
+          const options = SUPPORTED_CHAIN_IDS.map((chainId) =>
             chainId.toString(),
           );
           return (
@@ -939,23 +869,23 @@ const OldProjects: React.FC<IOldProjects> = ({ projects }) => {
               <MenuButton
                 as={IconButton}
                 icon={<Icon as={IoFilterSharp} boxSize={4} />}
-                aria-label='open contract type filter menu'
-                size='sm'
-                variant='ghost'
+                aria-label="open contract type filter menu"
+                size="sm"
+                variant="ghost"
                 p={0}
               />
               <MenuList zIndex={10}>
                 <MenuOptionGroup
                   defaultValue={options}
-                  title='Networks'
+                  title="Networks"
                   fontSize={12}
-                  type='checkbox'
+                  type="checkbox"
                   value={props.filterValue}
-                  onChange={e => props.setFilter(props.column.id, e)}
+                  onChange={(e) => props.setFilter(props.column.id, e)}
                 >
-                  {options.map(chainId => (
+                  {options.map((chainId) => (
                     <MenuItemOption value={chainId} key={chainId}>
-                      <Flex align='center' direction='row' gap={1}>
+                      <Flex align="center" direction="row" gap={1}>
                         <Icon
                           boxSize={4}
                           as={
@@ -964,7 +894,7 @@ const OldProjects: React.FC<IOldProjects> = ({ projects }) => {
                             ).icon
                           }
                         />
-                        <Text size='label.md'>
+                        <Text size="label.md">
                           {
                             getNetworkMetadata(
                               parseInt(chainId) as SUPPORTED_CHAIN_ID,
@@ -980,14 +910,14 @@ const OldProjects: React.FC<IOldProjects> = ({ projects }) => {
           );
         },
         filter: (rows, _columnIds, filterValue = []) => {
-          return rows.filter(row => {
+          return rows.filter((row) => {
             return filterValue.includes(row.original.chainId.toString());
           });
         },
       },
       {
-        Header: 'Project Address',
-        accessor: row => row.address,
+        Header: "Project Address",
+        accessor: (row) => row.address,
         Cell: (cell: any) => {
           return <AddressCopyButton address={cell.row.original.address} />;
         },
@@ -999,7 +929,7 @@ const OldProjects: React.FC<IOldProjects> = ({ projects }) => {
 
   const defaultColumn = useMemo(
     () => ({
-      Filter: '',
+      Filter: "",
     }),
     [],
   );
@@ -1031,26 +961,26 @@ const OldProjects: React.FC<IOldProjects> = ({ projects }) => {
   }
 
   return (
-    <Box w='100%' overflowX='auto'>
+    <Box w="100%" overflowX="auto">
       <Table
         {...getTableProps()}
-        bg='backgroundHighlight'
+        bg="backgroundHighlight"
         p={4}
-        borderRadius='lg'
-        overflow='hidden'
+        borderRadius="lg"
+        overflow="hidden"
       >
-        <Thead bg='blackAlpha.50' _dark={{ bg: 'whiteAlpha.50' }}>
-          {headerGroups.map(headerGroup => (
+        <Thead bg="blackAlpha.50" _dark={{ bg: "whiteAlpha.50" }}>
+          {headerGroups.map((headerGroup) => (
             // eslint-disable-next-line react/jsx-key
             <Tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map(column => (
+              {headerGroup.headers.map((column) => (
                 // eslint-disable-next-line react/jsx-key
                 <Th {...column.getHeaderProps()}>
-                  <Flex align='center' gap={2}>
-                    <Text as='label' size='label.md' color='inherit'>
-                      {column.render('Header')}
+                  <Flex align="center" gap={2}>
+                    <Text as="label" size="label.md" color="inherit">
+                      {column.render("Header")}
                     </Text>
-                    {column.render('Filter')}
+                    {column.render("Filter")}
                   </Flex>
                 </Th>
               ))}
@@ -1059,21 +989,21 @@ const OldProjects: React.FC<IOldProjects> = ({ projects }) => {
         </Thead>
 
         <Tbody {...getTableBodyProps()}>
-          {rows.map(row => {
+          {rows.map((row) => {
             prepareRow(row);
             return (
               // eslint-disable-next-line react/jsx-key
               <Tr
                 {...row.getRowProps()}
-                role='group'
-                _hover={{ bg: 'blackAlpha.50' }}
+                role="group"
+                _hover={{ bg: "blackAlpha.50" }}
                 _dark={{
                   _hover: {
-                    bg: 'whiteAlpha.50',
+                    bg: "whiteAlpha.50",
                   },
                 }}
                 // this is a hack to get around the fact that safari does not handle position: relative on table rows
-                style={{ cursor: 'pointer' }}
+                style={{ cursor: "pointer" }}
                 onClick={() => {
                   router.push(
                     `https://v1.thirdweb.com/${getNetworkFromChainId(
@@ -1085,11 +1015,11 @@ const OldProjects: React.FC<IOldProjects> = ({ projects }) => {
                 borderBottomWidth={1}
                 _last={{ borderBottomWidth: 0 }}
               >
-                {row.cells.map(cell => {
+                {row.cells.map((cell) => {
                   return (
                     // eslint-disable-next-line react/jsx-key
-                    <Td borderBottomWidth='inherit' {...cell.getCellProps()}>
-                      {cell.render('Cell')}
+                    <Td borderBottomWidth="inherit" {...cell.getCellProps()}>
+                      {cell.render("Cell")}
                     </Td>
                   );
                 })}
@@ -1131,14 +1061,14 @@ const RemoveContract: React.FC<IRemoveContract> = ({
       ? getNetworkFromChainId(signerChainId)
       : getNetworkMetadata(signerChainId as unknown as number).chainName
   )
-    .split('')
+    .split("")
     .map((s, idx) => (idx === 0 ? s.toUpperCase() : s))
-    .join('');
+    .join("");
 
   const twNetwork = getNetworkFromChainId(targetChainId)
-    .split('')
+    .split("")
     .map((s, idx) => (idx === 0 ? s.toUpperCase() : s))
-    .join('');
+    .join("");
 
   const onSwitchWallet = React.useCallback(async () => {
     if (actuallyCanAttemptSwitch && targetChainId) {
@@ -1156,12 +1086,12 @@ const RemoveContract: React.FC<IRemoveContract> = ({
       <PopoverAnchor>
         <Button
           padding={0}
-          ml='16px'
-          borderRadius='md'
-          variant='outline'
-          size='sm'
+          ml="16px"
+          borderRadius="md"
+          variant="outline"
+          size="sm"
           isLoading={isLoading}
-          onClick={e => {
+          onClick={(e) => {
             e.stopPropagation();
             e.preventDefault();
             if (!isOpen) {
@@ -1174,29 +1104,29 @@ const RemoveContract: React.FC<IRemoveContract> = ({
       </PopoverAnchor>
 
       <Card
-        maxW='sm'
-        w='auto'
+        maxW="sm"
+        w="auto"
         as={PopoverContent}
-        bg='backgroundCardHighlight'
+        bg="backgroundCardHighlight"
         mx={6}
-        boxShadow='0px 0px 2px 0px var(--popper-arrow-shadow-color)'
+        boxShadow="0px 0px 2px 0px var(--popper-arrow-shadow-color)"
       >
-        <PopoverArrow bg='backgroundCardHighlight' />
+        <PopoverArrow bg="backgroundCardHighlight" />
         {chainId === targetChainId ? (
           <PopoverBody>
-            <Flex direction='column' gap={4}>
+            <Flex direction="column" gap={4}>
               <Text>
                 Removing this contract will permanently remove it from the
-                dashboard. Your contract will{' '}
+                dashboard. Your contract will{" "}
                 <strong>still exist on the blockchain</strong>.
               </Text>
 
               <Button
                 ref={actuallyCanAttemptSwitch ? initialFocusRef : undefined}
                 leftIcon={<Icon as={VscDebugDisconnect} />}
-                size='sm'
-                borderRadius='md'
-                onClick={e => {
+                size="sm"
+                borderRadius="md"
+                onClick={(e) => {
                   e.stopPropagation();
                   e.preventDefault();
                   mutate({
@@ -1208,13 +1138,13 @@ const RemoveContract: React.FC<IRemoveContract> = ({
                 }}
                 isLoading={isLoading}
                 isDisabled={!actuallyCanAttemptSwitch}
-                colorScheme='red'
+                colorScheme="red"
               >
                 Remove Contract
               </Button>
 
               {!actuallyCanAttemptSwitch && (
-                <Text size='body.sm' fontStyle='italic'>
+                <Text size="body.sm" fontStyle="italic">
                   Your connected wallet does not support programatic switching.
                   <br />
                   Please manually switch the network in your wallet.
@@ -1224,38 +1154,38 @@ const RemoveContract: React.FC<IRemoveContract> = ({
           </PopoverBody>
         ) : (
           <PopoverBody>
-            <Flex direction='column' gap={4}>
-              <Heading size='label.lg'>
-                <Flex gap={2} align='center'>
+            <Flex direction="column" gap={4}>
+              <Heading size="label.lg">
+                <Flex gap={2} align="center">
                   <Icon boxSize={6} as={AiOutlineWarning} />
                   <span>Network Mismatch</span>
                 </Flex>
               </Heading>
 
               <Text>
-                Your wallet is connected to the <strong>{walletNetwork}</strong>{' '}
-                network but this action requires you to connect to the{' '}
+                Your wallet is connected to the <strong>{walletNetwork}</strong>{" "}
+                network but this action requires you to connect to the{" "}
                 <strong>{twNetwork}</strong> network.
               </Text>
 
               <Button
                 ref={actuallyCanAttemptSwitch ? initialFocusRef : undefined}
                 leftIcon={<Icon as={VscDebugDisconnect} />}
-                size='sm'
-                onClick={e => {
+                size="sm"
+                onClick={(e) => {
                   e.stopPropagation();
                   e.preventDefault();
                   onSwitchWallet();
                 }}
                 isLoading={network.loading}
                 isDisabled={!actuallyCanAttemptSwitch}
-                colorScheme='orange'
+                colorScheme="orange"
               >
                 Switch wallet to {twNetwork}
               </Button>
 
               {!actuallyCanAttemptSwitch && (
-                <Text size='body.sm' fontStyle='italic'>
+                <Text size="body.sm" fontStyle="italic">
                   Your connected wallet does not support programatic switching.
                   <br />
                   Please manually switch the network in your wallet.
