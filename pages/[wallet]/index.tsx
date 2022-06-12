@@ -57,34 +57,46 @@ export default function Dashboard() {
   const rinkebyQuery = useContractList(ChainId.Rinkeby, dashboardAddress);
   const goerliQuery = useContractList(ChainId.Goerli, dashboardAddress);
   const mumbaiQuery = useContractList(ChainId.Mumbai, dashboardAddress);
-
+  const filterFunc = (item) => item.contractType === "nft-drop";
   const combinedList = useMemo(() => {
     return (
       mainnetQuery.data?.map(d => ({ ...d, chainId: ChainId.Mainnet })) || []
     )
       .concat(
-        polygonQuery.data?.map(d => ({
-          ...d,
-          chainId: ChainId.Polygon,
-        })) || [],
+        polygonQuery.data
+          ?.filter(filterFunc)
+          .map(d => ({
+            ...d,
+            chainId: ChainId.Polygon,
+          })) || [],
       )
       .concat(
-        avalancheQuery.data?.map(d => ({
-          ...d,
-          chainId: ChainId.Avalanche,
-        })) || [],
+        avalancheQuery.data
+          ?.filter(filterFunc)
+          .map(d => ({
+            ...d,
+            chainId: ChainId.Avalanche,
+          })) || [],
       )
       .concat(
-        fantomQuery.data?.map(d => ({ ...d, chainId: ChainId.Fantom })) || [],
+        fantomQuery.data
+          ?.filter(filterFunc)
+          .map(d => ({ ...d, chainId: ChainId.Fantom })) || [],
       )
       .concat(
-        rinkebyQuery.data?.map(d => ({ ...d, chainId: ChainId.Rinkeby })) || [],
+        rinkebyQuery.data
+          ?.filter(filterFunc)
+          .map(d => ({ ...d, chainId: ChainId.Rinkeby })) || [],
       )
       .concat(
-        goerliQuery.data?.map(d => ({ ...d, chainId: ChainId.Goerli })) || [],
+        goerliQuery.data
+          ?.filter(filterFunc)
+          .map(d => ({ ...d, chainId: ChainId.Goerli })) || [],
       )
       .concat(
-        mumbaiQuery.data?.map(d => ({ ...d, chainId: ChainId.Mumbai })) || [],
+        mumbaiQuery.data
+          ?.filter(filterFunc)
+          .map(d => ({ ...d, chainId: ChainId.Mumbai })) || [],
       );
   }, [
     mainnetQuery.data,
