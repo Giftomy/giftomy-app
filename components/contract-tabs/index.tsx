@@ -31,25 +31,25 @@ export function useContractTabs(
     //   });
     // }
 
-    // if (
-    //   (contract instanceof NFTDrop || contract instanceof TokenDrop) &&
-    //   isAdmin
-    // ) {
-    //   tabs.push({
-    //     title: "Claim Phases",
-    //     content: <DropPhases contract={contract} />,
-    //   });
-    // }
     if (
-      contract instanceof NFTDrop ||
-      contract instanceof EditionDrop ||
-      contract instanceof Marketplace
+      (contract instanceof NFTDrop || contract instanceof TokenDrop) &&
+      isAdmin
     ) {
       tabs.push({
-        title: "Embed",
-        content: <WidgetSetup contract={contract} />,
+        title: "Claim Phases",
+        content: <DropPhases contract={contract} />,
       });
     }
+    // if (
+    //   contract instanceof NFTDrop ||
+    //   contract instanceof EditionDrop ||
+    //   contract instanceof Marketplace
+    // ) {
+    //   tabs.push({
+    //     title: "Embed",
+    //     content: <WidgetSetup contract={contract} />,
+    //   });
+    // }
 
     // tabs.push({
     //   title: "Code",
