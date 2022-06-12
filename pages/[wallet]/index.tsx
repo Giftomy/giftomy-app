@@ -57,7 +57,9 @@ export default function Dashboard() {
   const rinkebyQuery = useContractList(ChainId.Rinkeby, dashboardAddress);
   const goerliQuery = useContractList(ChainId.Goerli, dashboardAddress);
   const mumbaiQuery = useContractList(ChainId.Mumbai, dashboardAddress);
-  const filterFunc = (item) => item.contractType === "nft-drop";
+
+  const TYPES = ['nft-drop', 'edition-drop'];
+  const filterFunc = (item) => TYPES.indexOf(item.contractType) !== -1;
   const combinedList = useMemo(() => {
     return (
       mainnetQuery.data?.map(d => ({ ...d, chainId: ChainId.Mainnet })) || []

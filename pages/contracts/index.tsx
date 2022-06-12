@@ -25,6 +25,7 @@ const ContractsHomepageWrapped: React.FC = () => {
 
   const walletAddress = useAddress();
   const publishedContracts = usePublishedContractsQuery();
+  const TYPES = ["nft-drop", "edition-drop"];
 
   return (
     <Track>
@@ -37,7 +38,7 @@ const ContractsHomepageWrapped: React.FC = () => {
         </Flex>
         <DeployableContractTable
           hasDescription
-          contractIds={Object.keys(KNOWN_CONTRACTS_MAP)}
+          contractIds={TYPES}
         />
         <Box />
         <Flex gap={2} direction="column">
