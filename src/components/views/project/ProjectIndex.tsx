@@ -1,10 +1,5 @@
-import { Caption, Container, semanticColors } from '@giveth/ui-design-system';
-import { captureException } from '@sentry/nextjs';
-import dynamic from 'next/dynamic';
-import Head from 'next/head';
-import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
+import ProjectDeploy from './Deploy';
+import ProjectNFT from './NFT';
 import ProjectDonateCard from './ProjectDonateCard';
 import ProjectHeader from './ProjectHeader';
 import ProjectTabs from './ProjectTabs';
@@ -22,7 +17,14 @@ import useUser from '@/context/UserProvider';
 import { deviceSize, mediaQueries } from '@/lib/constants/constants';
 import { showToastError } from '@/lib/helpers';
 import { ProjectMeta } from '@/lib/meta';
-import ProjectNFT from './NFT';
+import { Caption, Container, semanticColors } from '@giveth/ui-design-system';
+import { captureException } from '@sentry/nextjs';
+import dynamic from 'next/dynamic';
+import Head from 'next/head';
+import { useRouter } from 'next/router';
+import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
+
 
 const ProjectDonations = dynamic(() => import('./ProjectDonations'));
 const ProjectUpdates = dynamic(() => import('./ProjectUpdates'));
@@ -180,6 +182,7 @@ const ProjectIndex = (props: { project?: IProject }) => {
 							<RichTextViewer content={description} />
 						)}
 						{activeTab === 1 && <ProjectNFT walletAddress={walletAddress} />}
+						{activeTab === 2 && <ProjectDeploy walletAddress={walletAddress} />}
 						{/* {activeTab === 2 && (
 							<ProjectUpdates
 								project={project}
