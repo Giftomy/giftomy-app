@@ -156,7 +156,7 @@ export default function Dashboard() {
           )}
         </>
       )}
-      <LearnMoreSection />
+      {/* <LearnMoreSection /> */}
     </Flex>
   );
 }
