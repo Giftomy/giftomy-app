@@ -23,7 +23,7 @@ export const ContractDeployActionCell: React.FC<
       </Drawer>
 
       <ButtonGroup size="sm">
-        {(value === "nft-drop" || value === "marketplace") && (
+        {/* {(value === "nft-drop" || value === "marketplace") && (
           <Tooltip label="Audited Contract" borderRadius="lg" placement="top">
             <TrackedIconButton
               as={LinkButton}
@@ -56,7 +56,7 @@ export const ContractDeployActionCell: React.FC<
             >
               Learn more
             </LinkButton>
-          )}
+          )} */}
         <Button
           isDisabled={publishMetadata.data?.deployDisabled}
           onClick={onOpen}
