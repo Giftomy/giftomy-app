@@ -1,14 +1,11 @@
+import { useWeb3React } from "@web3-react/core";
 import { useContractMetadata } from "@3rdweb-sdk/react";
 import { ConnectWallet } from "@3rdweb-sdk/react";
 import { useMarketplace } from "@thirdweb-dev/react";
-import { useWeb3React } from '@web3-react/core';
 import { Providers } from "components/app-layouts/providers";
 import { ListButton } from "components/contract-pages/action-buttons/ListButton";
 import { ContractLayout } from "components/contract-pages/contract-layout";
 import { ContractItemsTable } from "components/contract-pages/table/marketplace";
-import React from 'react';
-import { useEffect } from 'react';
-
 
 export default function MarketplacePage({
   walletAddress,
@@ -18,17 +15,19 @@ export default function MarketplacePage({
   const marketAddress = process.env.NEXT_PUBLIC_MARKET_ADDRESS;
   const marketplace = useMarketplace(marketAddress);
   const metadata = useContractMetadata(marketplace);
-  const { chainId, active, account, library } = useWeb3React();
+  const { account } = useWeb3React();
+
+  if (!account) return "Please connect to your wallet";
+
   const isProjectOwner = account.toLowerCase() === walletAddress.toLowerCase();
-  console.log(' isProjectOwner', isProjectOwner);
+
   const primaryAction = isProjectOwner && (
     <div>
       <ListButton contract={marketplace} />
-      <ConnectWallet borderRadius='full' colorScheme='primary' />
+      <ConnectWallet borderRadius="full" colorScheme="primary" />
     </div>
   );
-  // const conectWallet = isprojectOwner && (
-  // );
+
   return (
     <Providers>
       <ContractLayout
