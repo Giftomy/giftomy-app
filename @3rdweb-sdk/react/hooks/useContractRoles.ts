@@ -126,8 +126,10 @@ export function useIsAccountRole<TContract extends ContractWithRoles>(
 export function useIsAdmin<TContract extends ValidContractClass>(
   contract?: C.Instance<TContract>,
 ) {
-  // const { address } = useWeb3();
-  const { account: address } = useWeb3React();
+  // TODO: use one way to get account
+  const { address } = useWeb3();
+  // const { account: address } = useWeb3React();
+  console.log("useIsAdmin", address);
   const contractHasRoles = isContractWithRoles(contract);
   return useIsAccountRole(
     "admin",
