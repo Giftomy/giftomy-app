@@ -1,31 +1,26 @@
-import { Alert, AlertIcon, AlertTitle, Box, Center, Flex, Spinner } from '@chakra-ui/react';
-import { useAddress } from '@thirdweb-dev/react';
-import { ChainId, KNOWN_CONTRACTS_MAP } from '@thirdweb-dev/sdk';
-import { AppLayout } from 'components/app-layouts/app';
-import { Providers } from "components/app-layouts/providers";
-import { DeployableContractTable } from 'components/contract-components/contract-table';
-import { usePublishedContractsQuery } from 'components/contract-components/hooks';
-import { CustomSDKContext } from 'contexts/custom-sdk-context';
-import { useTrack } from 'hooks/analytics/useTrack';
-import { ReactElement } from 'react';
-import { IoRefreshSharp } from 'react-icons/io5';
-import { Badge, Button, Heading, LinkButton, Text } from 'tw-components';
-
+import { Flex } from "@chakra-ui/react";
+import { ChainId } from "@thirdweb-dev/sdk";
+import { ReactElement } from "react";
+import { AppLayout } from "components/app-layouts/app";
+import { DeployableContractTable } from "components/contract-components/contract-table";
+import { CustomSDKContext } from "contexts/custom-sdk-context";
+import { useTrack } from "hooks/analytics/useTrack";
+import { Heading, Text } from "tw-components";
 
 const ContractsHomepageWrapped: React.FC = () => {
   const { Track } = useTrack({
-    page: 'contracts',
+    page: "contracts",
   });
 
-  const TYPES = ['nft-drop', 'edition-drop'];
+  const TYPES = ["nft-drop", "edition-drop"];
 
   return (
     <Track>
-      <Flex gap={8} direction='column'>
-        <Flex gap={2} direction='column'>
-          <Heading size='title.md'>Pre-built contracts</Heading>
-          <Text fontStyle='italic'>
-            Contracts created by the thirdweb team that you can deploy
+      <Flex gap={8} direction="column">
+        <Flex gap={2} direction="column">
+          <Heading size="title.md">Pre-built contracts</Heading>
+          <Text fontStyle="italic">
+            Contracts templates that you can deploy
           </Text>
         </Flex>
         <DeployableContractTable hasDescription contractIds={TYPES} />
@@ -43,6 +38,6 @@ export default function ContractsHomepage() {
 }
 
 ContractsHomepage.getLayout = (page: ReactElement) => (
-  // <AppLayout>{page}</AppLayout>
-  <Providers>{page}</Providers>
+  <AppLayout>{page}</AppLayout>
+  // <Providers>{page}</Providers>
 );
