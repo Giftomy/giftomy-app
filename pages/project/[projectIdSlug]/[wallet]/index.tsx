@@ -151,7 +151,7 @@ export default function Dashboard() {
               <LinkButton
                 leftIcon={<FiPlus />}
                 colorScheme="primary"
-                href="/contracts"
+                href={`/project/${projectIdSlug}/contracts`}
               >
                 Deploy new contract
               </LinkButton>
