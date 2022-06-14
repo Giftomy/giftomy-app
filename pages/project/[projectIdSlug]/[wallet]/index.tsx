@@ -31,7 +31,6 @@ import { z } from "zod";
 
 export default function Dashboard() {
   const router = useRouter();
-  console.log("router", router);
   const {
     query: { projectIdSlug },
   } = router;
@@ -126,7 +125,7 @@ export default function Dashboard() {
         </BreadcrumbItem>
         <BreadcrumbItem>
           <NextLink href={`/project/${projectIdSlug}/dashboard`} passHref>
-            <BreadcrumbLink>Dashboard</BreadcrumbLink>
+            <BreadcrumbLink>Contracts</BreadcrumbLink>
           </NextLink>
         </BreadcrumbItem>
       </Breadcrumb>
@@ -735,8 +734,7 @@ const AsyncContractCell: React.FC<AsyncContractCellProps> = ({ cell }) => {
 
   const contractTypeUrlSegment =
     cell.contractType === "custom" ? "" : `/${UrlMap[cell.contractType]}`;
-  console.log("contractTypeUrlSegment", contractTypeUrlSegment);
-  console.log("cell.chainId", cell.chainId);
+
   const href = `${router.asPath}/${getNetworkFromChainId(
     cell.chainId as SUPPORTED_CHAIN_ID
   )}${contractTypeUrlSegment}/${cell.address}`;
@@ -760,6 +758,8 @@ const AsyncContractCell: React.FC<AsyncContractCellProps> = ({ cell }) => {
 };
 
 const NoContracts: React.FC = () => {
+  const router = useRouter();
+  const href = `${router.asPath}/contracts`
   return (
     <Center w="100%">
       <Container as={Card}>
@@ -780,7 +780,7 @@ const NoContracts: React.FC = () => {
           <LinkButton
             leftIcon={<FiPlus />}
             colorScheme="primary"
-            href="/contracts"
+            href={href}
           >
             Deploy new contract
           </LinkButton>
