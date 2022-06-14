@@ -8,10 +8,10 @@ import {
 import { useWeb3React } from '@web3-react/core';
 
 export function useActiveChainId(): SUPPORTED_CHAIN_ID | undefined {
-  // const networkFromUrl = useSingleQueryParam<SupportedNetwork>("network");
-  // return getChainIdFromNetwork(networkFromUrl);
+  const networkFromUrl = useSingleQueryParam<SupportedNetwork>("network");
+  const chainIdFromUrl = getChainIdFromNetwork(networkFromUrl);
   const { chainId } = useWeb3React();
-  return chainId;
+  return chainId || chainIdFromUrl;
 }
 
 export function useActiveNetwork(): SupportedNetwork | undefined {

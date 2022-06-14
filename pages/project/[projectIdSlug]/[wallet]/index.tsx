@@ -1,7 +1,9 @@
 import { ConnectWallet, useContractList, useContractMetadataWithAddress, useWeb3 } from "@3rdweb-sdk/react";
 import { useProjects } from "@3rdweb-sdk/react/hooks/useProjects";
 import { useRemoveContractMutation } from "@3rdweb-sdk/react/hooks/useRegistry";
+import { ChevronRightIcon } from "@chakra-ui/icons";
 import { Box, Center, Container, Flex, Icon, IconButton, Image, Link, LinkBox, LinkOverlay, Menu, MenuButton, MenuItemOption, MenuList, MenuOptionGroup, Popover, PopoverAnchor, PopoverArrow, PopoverBody, PopoverContent, SimpleGrid, Skeleton, Stack, Tab, TabList, TabPanel, TabPanels, Table, Tabs, Tbody, Td, Th, Thead, Tr, useDisclosure } from "@chakra-ui/react";
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from "@chakra-ui/react";
 import { useNetwork } from "@thirdweb-dev/react";
 import { CONTRACTS_MAP, CommonContractOutputSchema, ContractType, ValidContractClass } from "@thirdweb-dev/sdk";
 import { ChakraNextImage } from "components/Image";
@@ -11,6 +13,7 @@ import { utils } from "ethers";
 import { useTrack } from "hooks/analytics/useTrack";
 import { useSingleQueryParam } from "hooks/useQueryParam";
 import OriginalNextLink from "next/link";
+import NextLink from "next/link";
 import { useRouter } from "next/router";
 import * as React from "react";
 import { ReactElement, useEffect, useMemo } from "react";
@@ -26,13 +29,16 @@ import { ChainId, SUPPORTED_CHAIN_ID, SUPPORTED_CHAIN_IDS, SupportedChainIdToNet
 import { shortenIfAddress } from "utils/usedapp-external";
 import { z } from "zod";
 
-
 export default function Dashboard() {
   const router = useRouter();
+  console.log("router", router);
+  const {
+    query: { projectIdSlug },
+  } = router;
   const wallet = useSingleQueryParam("wallet") || "dashboard";
   const { address } = useWeb3();
   const { data: projects } = useProjects(
-    wallet === "dashboard" ? address : wallet,
+    wallet === "dashboard" ? address : wallet
   );
 
   // redirect anything that is not a valid address or `/dashboard` to `/dashboard`
@@ -58,47 +64,43 @@ export default function Dashboard() {
   const goerliQuery = useContractList(ChainId.Goerli, dashboardAddress);
   const mumbaiQuery = useContractList(ChainId.Mumbai, dashboardAddress);
 
-  const TYPES = ['nft-drop', 'edition-drop'];
+  const TYPES = ["nft-drop", "edition-drop"];
   const filterFunc = (item) => TYPES.indexOf(item.contractType) !== -1;
   const combinedList = useMemo(() => {
     return (
-      mainnetQuery.data?.map(d => ({ ...d, chainId: ChainId.Mainnet })) || []
+      mainnetQuery.data?.map((d) => ({ ...d, chainId: ChainId.Mainnet })) || []
     )
       .concat(
-        polygonQuery.data
-          ?.filter(filterFunc)
-          .map(d => ({
-            ...d,
-            chainId: ChainId.Polygon,
-          })) || [],
+        polygonQuery.data?.filter(filterFunc).map((d) => ({
+          ...d,
+          chainId: ChainId.Polygon,
+        })) || []
       )
       .concat(
-        avalancheQuery.data
-          ?.filter(filterFunc)
-          .map(d => ({
-            ...d,
-            chainId: ChainId.Avalanche,
-          })) || [],
+        avalancheQuery.data?.filter(filterFunc).map((d) => ({
+          ...d,
+          chainId: ChainId.Avalanche,
+        })) || []
       )
       .concat(
         fantomQuery.data
           ?.filter(filterFunc)
-          .map(d => ({ ...d, chainId: ChainId.Fantom })) || [],
+          .map((d) => ({ ...d, chainId: ChainId.Fantom })) || []
       )
       .concat(
         rinkebyQuery.data
           ?.filter(filterFunc)
-          .map(d => ({ ...d, chainId: ChainId.Rinkeby })) || [],
+          .map((d) => ({ ...d, chainId: ChainId.Rinkeby })) || []
       )
       .concat(
         goerliQuery.data
           ?.filter(filterFunc)
-          .map(d => ({ ...d, chainId: ChainId.Goerli })) || [],
+          .map((d) => ({ ...d, chainId: ChainId.Goerli })) || []
       )
       .concat(
         mumbaiQuery.data
           ?.filter(filterFunc)
-          .map(d => ({ ...d, chainId: ChainId.Mumbai })) || [],
+          .map((d) => ({ ...d, chainId: ChainId.Mumbai })) || []
       );
   }, [
     mainnetQuery.data,
@@ -112,6 +114,23 @@ export default function Dashboard() {
 
   return (
     <Flex direction="column" gap={8}>
+      <Breadcrumb
+        display={{ base: "none", md: "block" }}
+        separator={<ChevronRightIcon color="gray.500" />}
+        mb={8}
+      >
+        <BreadcrumbItem>
+          <NextLink href={`/project/${projectIdSlug}`} passHref>
+            <BreadcrumbLink>Project</BreadcrumbLink>
+          </NextLink>
+        </BreadcrumbItem>
+        <BreadcrumbItem>
+          <NextLink href={`/project/${projectIdSlug}/dashboard`} passHref>
+            <BreadcrumbLink>Dashboard</BreadcrumbLink>
+          </NextLink>
+        </BreadcrumbItem>
+      </Breadcrumb>
+
       {wallet === "dashboard" && !address ? (
         <NoWallet />
       ) : (
@@ -668,8 +687,8 @@ export const ContractTable: React.FC<ContractTableProps> = ({
                     row.original.contractType === "custom"
                       ? ""
                       : `/${UrlMap[row.original.contractType]}`;
-
-                  const href = `/${wallet}/${getNetworkFromChainId(
+                  console.log("row.original.chainId", row.original.chainId);
+                  const href = `${router.asPath}/${getNetworkFromChainId(
                     row.original.chainId as SUPPORTED_CHAIN_ID,
                   )}${contractTypeUrlSegment}/${row.original.address}`;
 
@@ -706,6 +725,7 @@ interface AsyncContractCellProps {
 }
 
 const AsyncContractCell: React.FC<AsyncContractCellProps> = ({ cell }) => {
+  const router = useRouter();
   const wallet = useSingleQueryParam("wallet") || "dashboard";
   const metadataQuery = useContractMetadataWithAddress(
     cell.address,
@@ -715,9 +735,10 @@ const AsyncContractCell: React.FC<AsyncContractCellProps> = ({ cell }) => {
 
   const contractTypeUrlSegment =
     cell.contractType === "custom" ? "" : `/${UrlMap[cell.contractType]}`;
-
-  const href = `/${wallet}/${getNetworkFromChainId(
-    cell.chainId as SUPPORTED_CHAIN_ID,
+  console.log("contractTypeUrlSegment", contractTypeUrlSegment);
+  console.log("cell.chainId", cell.chainId);
+  const href = `${router.asPath}/${getNetworkFromChainId(
+    cell.chainId as SUPPORTED_CHAIN_ID
   )}${contractTypeUrlSegment}/${cell.address}`;
 
   return (

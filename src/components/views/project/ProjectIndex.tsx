@@ -1,263 +1,240 @@
-import ProjectDeploy from './Deploy';
-import ProjectNFT from './NFT';
-import ProjectDonateCard from './ProjectDonateCard';
-import ProjectHeader from './ProjectHeader';
-import ProjectTabs from './ProjectTabs';
-import { client } from '@/apollo/apolloClient';
-import { FETCH_PROJECT_DONATIONS } from '@/apollo/gql/gqlDonations';
-import { FETCH_PROJECT_BY_SLUG } from '@/apollo/gql/gqlProjects';
-import { EDirection, EProjectStatus, gqlEnums } from '@/apollo/types/gqlEnums';
-import { IDonationsByProjectIdGQL } from '@/apollo/types/gqlTypes';
-import { IDonation, IProject } from '@/apollo/types/types';
-import InfoBadge from '@/components/badges/InfoBadge';
-import InlineToast from '@/components/toasts/InlineToast';
-import SuccessfulCreation from '@/components/views/create/SuccessfulCreation';
-import SimilarProjects from '@/components/views/project/SimilarProjects';
-import useUser from '@/context/UserProvider';
-import { deviceSize, mediaQueries } from '@/lib/constants/constants';
-import { showToastError } from '@/lib/helpers';
-import { ProjectMeta } from '@/lib/meta';
-import { Caption, Container, semanticColors } from '@giveth/ui-design-system';
-import { captureException } from '@sentry/nextjs';
-import dynamic from 'next/dynamic';
-import Head from 'next/head';
-import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
+import ProjectDonateCard from "./ProjectDonateCard";
+import ProjectHeader from "./ProjectHeader";
+import { client } from "@/apollo/apolloClient";
+import { FETCH_PROJECT_DONATIONS } from "@/apollo/gql/gqlDonations";
+import { FETCH_PROJECT_BY_SLUG } from "@/apollo/gql/gqlProjects";
+import { EDirection, EProjectStatus, gqlEnums } from "@/apollo/types/gqlEnums";
+import { IDonationsByProjectIdGQL } from "@/apollo/types/gqlTypes";
+import { IDonation, IProject } from "@/apollo/types/types";
+import InternalLink from "@/components/InternalLink";
+import InfoBadge from "@/components/badges/InfoBadge";
+import InlineToast from "@/components/toasts/InlineToast";
+import SuccessfulCreation from "@/components/views/create/SuccessfulCreation";
+import SimilarProjects from "@/components/views/project/SimilarProjects";
+import useUser from "@/context/UserProvider";
+import { deviceSize, mediaQueries } from "@/lib/constants/constants";
+import { showToastError } from "@/lib/helpers";
+import { ProjectMeta } from "@/lib/meta";
+import { slugToProjectDashboard } from "@/lib/routeCreators";
+import { Box } from "@chakra-ui/react";
+import { Caption, Container, semanticColors } from "@giveth/ui-design-system";
+import { captureException } from "@sentry/nextjs";
+import dynamic from "next/dynamic";
+import Head from "next/head";
+import { useRouter } from "next/router";
+import React, { useEffect, useState } from "react";
+import styled from "styled-components";
 
 
-const ProjectDonations = dynamic(() => import('./ProjectDonations'));
-const ProjectUpdates = dynamic(() => import('./ProjectUpdates'));
-const NotAvailableProject = dynamic(() => import('./NotAvailableProject'), {
-	ssr: false,
+const ProjectDonations = dynamic(() => import("./ProjectDonations"));
+const ProjectUpdates = dynamic(() => import("./ProjectUpdates"));
+const NotAvailableProject = dynamic(() => import("./NotAvailableProject"), {
+  ssr: false,
 });
-const RichTextViewer = dynamic(() => import('@/components/RichTextViewer'), {
-	ssr: false,
+const RichTextViewer = dynamic(() => import("@/components/RichTextViewer"), {
+  ssr: false,
 });
 
 const donationsPerPage = 10;
 
 const ProjectIndex = (props: { project?: IProject }) => {
-	const [activeTab, setActiveTab] = useState(0);
-	const [isActive, setIsActive] = useState<boolean>(true);
-	const [isDraft, setIsDraft] = useState<boolean>(false);
-	const [project, setProject] = useState<IProject | undefined>(props.project);
-	const [donations, setDonations] = useState<IDonation[]>([]);
-	const [totalDonations, setTotalDonations] = useState(0);
-	const [creationSuccessful, setCreationSuccessful] = useState(false);
-	const [isMobile, setIsMobile] = useState<boolean>(false);
-	const [isCancelled, setIsCancelled] = useState<boolean>(false);
+  const [activeTab, setActiveTab] = useState(0);
+  const [isActive, setIsActive] = useState<boolean>(true);
+  const [isDraft, setIsDraft] = useState<boolean>(false);
+  const [project, setProject] = useState<IProject | undefined>(props.project);
+  const [donations, setDonations] = useState<IDonation[]>([]);
+  const [totalDonations, setTotalDonations] = useState(0);
+  const [creationSuccessful, setCreationSuccessful] = useState(false);
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+  const [isCancelled, setIsCancelled] = useState<boolean>(false);
 
-	const {
-		state: { user },
-	} = useUser();
+  const {
+    state: { user },
+  } = useUser();
 
-	const { description = '', title, status, id = '', walletAddress } = project || {};
-	const router = useRouter();
-	const slug = router.query.projectIdSlug as string;
+  const {
+    description = "",
+    title,
+    status,
+    id = "",
+    walletAddress,
+  } = project || {};
+  const router = useRouter();
+  const slug = router.query.projectIdSlug as string;
 
-	const fetchProject = async () => {
-		client
-			.query({
-				query: FETCH_PROJECT_BY_SLUG,
-				variables: { slug, connectedWalletUserId: Number(user?.id) },
-				fetchPolicy: 'network-only',
-			})
-			.then((res: { data: { projectBySlug: IProject } }) => {
-				setProject(res.data.projectBySlug);
-			})
-			.catch((error: unknown) => {
-				setIsCancelled(true);
-				captureException(error, {
-					tags: {
-						section: 'fetchProject',
-					},
-				});
-			});
-	};
+  const fetchProject = async () => {
+    client
+      .query({
+        query: FETCH_PROJECT_BY_SLUG,
+        variables: { slug, connectedWalletUserId: Number(user?.id) },
+        fetchPolicy: "network-only",
+      })
+      .then((res: { data: { projectBySlug: IProject } }) => {
+        setProject(res.data.projectBySlug);
+      })
+      .catch((error: unknown) => {
+        setIsCancelled(true);
+        captureException(error, {
+          tags: {
+            section: "fetchProject",
+          },
+        });
+      });
+  };
 
-	useEffect(() => {
-		if (status) {
-			setIsActive(status.name === EProjectStatus.ACTIVE);
-			setIsDraft(status.name === EProjectStatus.DRAFT);
-			setIsCancelled(status.name === EProjectStatus.CANCEL);
-		}
-	}, [status]);
+  useEffect(() => {
+    if (status) {
+      setIsActive(status.name === EProjectStatus.ACTIVE);
+      setIsDraft(status.name === EProjectStatus.DRAFT);
+      setIsCancelled(status.name === EProjectStatus.CANCEL);
+    }
+  }, [status]);
 
-	useEffect(() => {
-		if (!id) return;
-		client
-			.query({
-				query: FETCH_PROJECT_DONATIONS,
-				variables: {
-					projectId: parseInt(id),
-					skip: 0,
-					take: donationsPerPage,
-					orderBy: {
-						field: gqlEnums.CREATIONDATE,
-						direction: EDirection.DESC,
-					},
-				},
-			})
-			.then((res: IDonationsByProjectIdGQL) => {
-				const donationsByProjectId = res.data.donationsByProjectId;
-				setDonations(donationsByProjectId.donations);
-				setTotalDonations(donationsByProjectId.totalCount);
-			})
-			.catch((error: unknown) => {
-				showToastError(error);
-				captureException(error, {
-					tags: {
-						section: 'fetchProjectDonation',
-					},
-				});
-			});
-	}, [id]);
+  useEffect(() => {
+    if (!id) return;
+    client
+      .query({
+        query: FETCH_PROJECT_DONATIONS,
+        variables: {
+          projectId: parseInt(id),
+          skip: 0,
+          take: donationsPerPage,
+          orderBy: {
+            field: gqlEnums.CREATIONDATE,
+            direction: EDirection.DESC,
+          },
+        },
+      })
+      .then((res: IDonationsByProjectIdGQL) => {
+        const donationsByProjectId = res.data.donationsByProjectId;
+        setDonations(donationsByProjectId.donations);
+        setTotalDonations(donationsByProjectId.totalCount);
+      })
+      .catch((error: unknown) => {
+        showToastError(error);
+        captureException(error, {
+          tags: {
+            section: "fetchProjectDonation",
+          },
+        });
+      });
+  }, [id]);
 
-	useEffect(() => {
-		if (slug && user?.id) {
-			fetchProject().then();
-		}
-	}, [slug, user?.id]);
+  useEffect(() => {
+    if (slug && user?.id) {
+      fetchProject().then();
+    }
+  }, [slug, user?.id]);
 
-	useEffect(() => {
-		const windowResizeHandler = () => {
-			if (window.screen.width < deviceSize.tablet) {
-				setIsMobile(true);
-			} else {
-				setIsMobile(false);
-			}
-		};
-		windowResizeHandler();
-		window.addEventListener('resize', windowResizeHandler);
-		return () => {
-			removeEventListener('resize', windowResizeHandler);
-		};
-	}, []);
+  useEffect(() => {
+    const windowResizeHandler = () => {
+      if (window.screen.width < deviceSize.tablet) {
+        setIsMobile(true);
+      } else {
+        setIsMobile(false);
+      }
+    };
+    windowResizeHandler();
+    window.addEventListener("resize", windowResizeHandler);
+    return () => {
+      removeEventListener("resize", windowResizeHandler);
+    };
+  }, []);
 
-	if (creationSuccessful) {
-		return (
-			<SuccessfulCreation
-				showSuccess={setCreationSuccessful}
-				project={project as IProject}
-			/>
-		);
-	}
+  if (creationSuccessful) {
+    return (
+      <SuccessfulCreation
+        showSuccess={setCreationSuccessful}
+        project={project as IProject}
+      />
+    );
+  }
 
-	if (isCancelled) {
-		return <NotAvailableProject />;
-	}
+  if (isCancelled) {
+    return <NotAvailableProject />;
+  }
 
-	return (
-		<>
-			<Wrapper>
-				<Head>
-					<title>{title && `${title} |`} Giftomy</title>
-					<ProjectMeta project={project} preTitle='Check out' />
-				</Head>
+  return (
+    <>
+      <Wrapper>
+        <Head>
+          <title>{title && `${title} |`} Giftomy</title>
+          <ProjectMeta project={project} preTitle="Check out" />
+        </Head>
 
-				<ProjectHeader project={project} />
-				{isDraft && (
-					<DraftIndicator>
-						<InfoBadge />
-						<Caption medium>
-							This is a preview of your project.
-						</Caption>
-					</DraftIndicator>
-				)}
-				<BodyWrapper>
-					<ContentWrapper>
-						{project && !isDraft && (
-							<ProjectTabs
-								activeTab={activeTab}
-								setActiveTab={setActiveTab}
-								project={project}
-								totalDonations={totalDonations}
-							/>
-						)}
-						{!isActive && !isDraft && (
-							<InlineToast message='This project is not active.' />
-						)}
-						{activeTab === 0 && (
+        <ProjectHeader project={project} />
+        {isDraft && (
+          <DraftIndicator>
+            <InfoBadge />
+            <Caption medium>This is a preview of your project.</Caption>
+          </DraftIndicator>
+        )}
+        <BodyWrapper>
+          <ContentWrapper>
+            {!isActive && !isDraft && (
+              <InlineToast message="This project is not active." />
+            )}
+						<Box mt={10}>
 							<RichTextViewer content={description} />
-						)}
-						{activeTab === 1 && <ProjectNFT walletAddress={walletAddress} />}
-						{activeTab === 2 && <ProjectDeploy walletAddress={walletAddress} />}
-						{/* {activeTab === 2 && (
-							<ProjectUpdates
-								project={project}
-								fetchProject={fetchProject}
-							/>
-						)} */}
-						{/* {activeTab === 3 && (
-							<ProjectDonations
-								donationsByProjectId={{
-									donations,
-									totalCount: totalDonations,
-								}}
-								project={project!}
-								isActive={isActive}
-								isDraft={isDraft}
-							/>
-						)} */}
-					</ContentWrapper>
-					{project && (
-						<ProjectDonateCard
-							isDraft={isDraft}
-							project={project!}
-							isMobile={isMobile}
-							isActive={isActive}
-							setIsActive={setIsActive}
-							setIsDraft={setIsDraft}
-							setCreationSuccessful={setCreationSuccessful}
-						/>
-					)}
-				</BodyWrapper>
-			</Wrapper>
-			<SimilarProjects slug={slug} />
-		</>
-	);
+						</Box>
+          </ContentWrapper>
+          {project && (
+            <ProjectDonateCard
+              isDraft={isDraft}
+              project={project!}
+              isMobile={isMobile}
+              isActive={isActive}
+              setIsActive={setIsActive}
+              setIsDraft={setIsDraft}
+              setCreationSuccessful={setCreationSuccessful}
+            />
+          )}
+        </BodyWrapper>
+      </Wrapper>
+      <SimilarProjects slug={slug} />
+    </>
+  );
 };
 
 const DraftIndicator = styled.div`
-	color: ${semanticColors.blueSky[600]};
-	background: ${semanticColors.blueSky[100]};
-	display: flex;
-	gap: 18px;
-	padding: 25px 150px;
-	margin-bottom: 30px;
+  color: ${semanticColors.blueSky[600]};
+  background: ${semanticColors.blueSky[100]};
+  display: flex;
+  gap: 18px;
+  padding: 25px 150px;
+  margin-bottom: 30px;
 `;
 
 const Wrapper = styled.div`
-	position: relative;
+  position: relative;
 `;
 
 const BodyWrapper = styled(Container)`
-	display: flex;
-	justify-content: space-between;
-	margin: 0 auto;
-	min-height: calc(100vh - 312px);
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  min-height: calc(100vh - 312px);
 
-	${mediaQueries.tablet} {
-		padding: 0 32px;
-	}
+  ${mediaQueries.tablet} {
+    padding: 0 32px;
+  }
 
-	${mediaQueries.laptop} {
-		padding: 0 40px;
-	}
+  ${mediaQueries.laptop} {
+    padding: 0 40px;
+  }
 
-	${mediaQueries.desktop} {
-		max-width: 1280px;
-	}
+  ${mediaQueries.desktop} {
+    max-width: 1280px;
+  }
 `;
 
 const ContentWrapper = styled.div`
-	flex-grow: 1;
-	padding: 0 16px 0 16px;
+  flex-grow: 1;
+  padding: 0 16px 0 16px;
 
-	${mediaQueries.tablet} {
-		padding: 0 24px 0 0;
-	}
+  ${mediaQueries.tablet} {
+    padding: 0 24px 0 0;
+  }
 `;
 
 export default ProjectIndex;

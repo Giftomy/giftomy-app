@@ -35,10 +35,12 @@ export default function NFTDropPage() {
   const [selectedBatch, setSelectedBatch] = useState<BatchToReveal>();
 
   const dropAddress = useSingleQueryParam("nft-drop");
+  console.log("dropAddress", dropAddress);
   const contract = useNFTDrop(dropAddress);
   const claimPhases = useClaimPhases(contract);
   const metadata = useNFTDropContractMetadata(dropAddress);
   const batchesToReveal = useBatchesToReveal(dropAddress);
+
   const { data: supplyData } = useNFTDropSupply(dropAddress);
   const { Track } = useTrack({
     page: "drop",

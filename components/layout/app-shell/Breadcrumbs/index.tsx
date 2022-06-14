@@ -8,8 +8,12 @@ import React, { useMemo } from "react";
 import { Text } from "tw-components";
 import { shortenIfAddress } from "utils/usedapp-external";
 
+
 export const Breadcrumbs: React.FC = () => {
-  const { asPath } = useRouter();
+  const {
+    asPath,
+    query: { projectIdSlug },
+  } = useRouter();
   const wallet = useSingleQueryParam("wallet") || "dashboard";
 
   const cleanAsPath = useMemo(() => {
@@ -54,7 +58,13 @@ export const Breadcrumbs: React.FC = () => {
       mb={8}
     >
       <BreadcrumbItem>
-        <NextLink href={`/${wallet}`} passHref>
+        <NextLink href={`/project/${projectIdSlug}`} passHref>
+          <BreadcrumbLink>Project</BreadcrumbLink>
+        </NextLink>
+      </BreadcrumbItem>
+
+      <BreadcrumbItem>
+        <NextLink href={`/project/${projectIdSlug}/${wallet}`} passHref>
           <BreadcrumbLink>Dashboard</BreadcrumbLink>
         </NextLink>
       </BreadcrumbItem>
