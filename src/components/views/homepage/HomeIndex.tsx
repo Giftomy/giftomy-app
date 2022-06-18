@@ -5,8 +5,8 @@ import HomeGetUpdates from './HomeGetUpdates';
 import HomeHeader from './HomeHeader';
 import HomePurpleSection from './HomePurpleSection';
 import { IProject } from '@/apollo/types/types';
-import { BigArc } from '@/components/styled-components/Arc';
-import Listings from '@/components/views/homepage/Listings';
+import NFTDrop from '@/components/views/embeds/nft-drop';
+import { Providers } from 'components/app-layouts/providers';
 
 interface IHomeView {
 	projects: IProject[];
@@ -18,10 +18,9 @@ const projectsSlice = 6;
 const HomeIndex = (props: IHomeView) => {
 	const { projects, totalCount } = props;
 	return (
-		<>
-			<BigArc />
+		<Providers>
+			<NFTDrop contractAddress='0x2732d8e5199B5AB424732c0634f8dF5562Cf37f0' expectedChainId={80001} />
 			<HomeHeader />
-			<Listings />
 			<HomeExploreProjects
 				totalCount={totalCount}
 				projects={projects.slice(0, projectsSlice)}
@@ -34,7 +33,7 @@ const HomeIndex = (props: IHomeView) => {
 			<HomeChangeMakers />
 			<HomeFromBlog />
 			<HomeGetUpdates /> */}
-		</>
+		</Providers>
 	);
 };
 
