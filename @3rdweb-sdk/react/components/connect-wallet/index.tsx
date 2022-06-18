@@ -285,7 +285,7 @@ export const ConnectWallet: React.FC<ButtonProps> = (buttonProps) => {
 
   return (
     <>
-      <MagicModal isOpen={isOpen} onClose={onClose} />
+      {/* <MagicModal isOpen={isOpen} onClose={onClose} /> */}
       <Menu matchWidth isLazy>
         <MenuButton
           isLoading={connector.loading}
