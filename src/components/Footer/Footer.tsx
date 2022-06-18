@@ -86,9 +86,9 @@ const Footer = () => {
 				</LeftContainer>
 				<RightContainer color={textColor}>
 					<SocialContainer>
-						{/* <a href={links.MEDIUM}>
+						<a href={links.MEDIUM}>
 							<IconMedium size={24} color={textColor} />
-						</a> */}
+						</a>
 						<a href={links.GITHUB}>
 							<IconGithub size={24} color={textColor} />
 						</a>
