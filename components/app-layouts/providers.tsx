@@ -101,10 +101,10 @@ export const Providers: ComponentWithChildren = ({ children }) => {
       <ThirdwebProvider
         queryClient={queryClient}
         dAppMeta={{
-          name: "thirdweb",
-          logoUrl: "https://thirdweb.com/favicon.ico",
+          name: "giftomy",
+          logoUrl: "https://giftomy.com/favicon.ico",
           isDarkMode: false,
-          url: "https://thirdweb.com",
+          url: "https://giftomy.io",
         }}
         chainRpc={alchemyUrlMap}
         desiredChainId={activeChainId}
