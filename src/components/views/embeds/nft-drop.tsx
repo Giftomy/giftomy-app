@@ -194,7 +194,6 @@ const NFTDropEmbed: React.FC<NFTDropEmbedProps> = ({
   expectedChainId,
 }) => {
   const nftDrop = useNFTDrop(contractAddress);
-  const activeClaimCondition = useActiveClaimCondition(nftDrop);
 
   return (
     <ClaimPage contract={nftDrop} expectedChainId={expectedChainId} />
