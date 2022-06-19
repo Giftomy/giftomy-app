@@ -66,7 +66,6 @@ const WelcomeModal: FC<IModal> = ({ setShowModal }) => {
 			{showLowerShields && <LowerShields onClose={onCloseLowerShields} />}
 			<Modal setShowModal={setShowModal} fullScreen hiddenHeader>
 				<ModalGrid>
-					<BGContainer />
 					<ContentContainer>
 						<H3>Sign in to Giftomy</H3>
 						<ContentSubtitle>
@@ -78,24 +77,6 @@ const WelcomeModal: FC<IModal> = ({ setShowModal }) => {
 								<Image src={ethIcon} alt='Ether icon' />
 								<B>Sign in with Ethereum</B>
 							</EthIconContainer>
-							<BreakPoint>
-								<BreakLine />
-								<P>or</P>
-								<BreakLine />
-							</BreakPoint>
-							<SocialContentContainer>
-								{socialArray.map(elem => (
-									<IconsContainer
-										key={elem.alt}
-										onClick={checkIsBrave}
-									>
-										{' '}
-										{/* best way to activate torus here? */}
-										<Image src={elem.icon} alt={elem.alt} />
-									</IconsContainer>
-								))}
-							</SocialContentContainer>
-							<Image src={torusBrand} alt='Powered by Torus' />
 						</IconContentContainer>
 					</ContentContainer>
 				</ModalGrid>

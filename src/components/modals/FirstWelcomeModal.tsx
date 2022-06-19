@@ -26,13 +26,13 @@ export const FirstWelcomeModal: FC<IModal> = ({ setShowModal }) => {
 		<Modal
 			setShowModal={setShowModal}
 			headerIcon={<img src='/images/icons/donate.svg' />}
-			headerTitle={`Let's Donate`}
+			headerTitle={`Let's Gift`}
 			headerTitlePosition='left'
 		>
 			<Container>
 				<Title isDark={theme === ETheme.Dark}>
 					{' '}
-					Welcome to the future of giving
+					Welcome to the future of gift economy
 				</Title>
 				<LeadTitle>Here is the things that you can do now!</LeadTitle>
 				<Bullets>
@@ -66,22 +66,22 @@ export const FirstWelcomeModal: FC<IModal> = ({ setShowModal }) => {
 
 					<li>
 						<Paragraph isDark={theme === ETheme.Dark}>
-							You can earn GIV token by{' '}
+							You can{' '}
 							<InlineLink
 								target='_blank'
 								rel={'noopener noreferrer'}
-								href={'/projects'}
+								href={'/'}
 							>
-								donating to projects
+								buy NFTs
 							</InlineLink>
-							.
+								{' '}to support public goods projects.
 						</Paragraph>
 					</li>
 				</Bullets>
 				<DonateButton
-					label='Donate to a project'
+					label='Browser NFTs'
 					onClick={() => {
-						router.push('/projects');
+						router.push('/');
 						setShowModal(false);
 					}}
 					buttonType={theme === ETheme.Dark ? 'secondary' : 'primary'}

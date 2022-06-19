@@ -39,8 +39,7 @@ export const SignWithWalletModal: FC<IProps> = ({ setShowModal, callback }) => {
 		>
 			<Container>
 				<Description>
-					You need to authorize your wallet to be able to use it on
-					Giftomy.
+					You need to authorize your wallet to be able to use it on Giftomy.
 				</Description>
 				<NoteDescription color='red'>
 					Note: This is necessary to be able to donate to projects or
