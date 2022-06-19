@@ -1,30 +1,30 @@
 import { DropSvg } from "./drop";
 import { parseIneligibility } from "./parseIneligibility";
+import { useActiveChainId } from "@3rdweb-sdk/react";
 import useUser from '@/context/UserProvider';
 import { Box, Button, Center, Flex, Grid, Heading, Icon, Image, NumberDecrementStepper, NumberIncrementStepper, NumberInput, NumberInputField, NumberInputStepper, Spinner, Stack, Text, useToast } from "@chakra-ui/react";
 import { ThirdwebProvider, useActiveClaimCondition, useAddress, useChainId, useClaimedNFTSupply, useClaimIneligibilityReasons, useClaimNFT, useContractMetadata, useNFTDrop, useUnclaimedNFTSupply } from "@thirdweb-dev/react";
 import { NFTDrop } from "@thirdweb-dev/sdk";
 import { formatUnits, parseUnits } from "ethers/lib/utils";
-import React, { useRef, useState } from "react";
+import React, { useRef, useState } from 'react';
 import { IoDiamondOutline } from 'react-icons/io5';
 
+
 interface ClaimPageProps {
+  contractAddress: string;
   contract?: NFTDrop;
-  expectedChainId: number;
 }
 
-const ClaimButton: React.FC<ClaimPageProps> = ({
-  contract,
-  expectedChainId,
-}) => {
+const ClaimButton: React.FC<ClaimPageProps> = ({ contractAddress }) => {
   // const address = useAddress();
-  const chainId = useChainId();
+  // const chainId = useChainId();
+  const contract = useNFTDrop(contractAddress);
   const [quantity, setQuantity] = useState(1);
   const loaded = useRef(false);
   const toast = useToast();
-	const {
-		state: { user, isEnabled },
-	} = useUser();
+  const {
+    state: { user, isEnabled },
+  } = useUser();
 
   const address = user?.walletAddress;
   const activeClaimCondition = useActiveClaimCondition(contract);
@@ -37,28 +37,29 @@ const ClaimButton: React.FC<ClaimPageProps> = ({
   const claimMutation = useClaimNFT(contract);
 
   const bnPrice = parseUnits(
-    activeClaimCondition.data?.currencyMetadata.displayValue || "0",
+    activeClaimCondition.data?.currencyMetadata.displayValue || '0',
     activeClaimCondition.data?.currencyMetadata.decimals,
   );
   const priceToMint = bnPrice.mul(quantity);
 
   const claim = async () => {
+    console.log('address', address);
     claimMutation.mutate(
       { to: address as string, quantity },
       {
         onSuccess: () => {
           toast({
-            title: "Successfully claimed.",
-            status: "success",
+            title: 'Successfully claimed.',
+            status: 'success',
             duration: 5000,
             isClosable: true,
           });
         },
-        onError: (err) => {
+        onError: err => {
           console.error(err);
           toast({
-            title: "Failed to claim drop.",
-            status: "error",
+            title: 'Failed to claim drop.',
+            status: 'error',
             duration: 9000,
             isClosable: true,
           });
@@ -68,7 +69,7 @@ const ClaimButton: React.FC<ClaimPageProps> = ({
   };
 
   // Only sold out when available data is loaded
-  const isSoldOut = unclaimedSupply.data?.eq(0);
+  const isSoldOut = unclaimedSupply?.data?.eq(0);
 
   const isLoading =
     isEnabled && claimIneligibilityReasons.isLoading && !loaded.current;
@@ -98,13 +99,13 @@ const ClaimButton: React.FC<ClaimPageProps> = ({
   }
 
   return (
-    <Stack spacing={4} align="center" w="100%">
-      <Flex direction={{ base: "column", md: "row" }} gap={2}>
+    <Stack spacing={4} align='center' w='100%'>
+      <Flex direction={{ base: 'column', md: 'row' }} gap={2}>
         <NumberInput
-          inputMode="numeric"
+          inputMode='numeric'
           value={quantity}
           onChange={(stringValue, value) => {
-            if (stringValue === "") {
+            if (stringValue === '') {
               setQuantity(1);
             } else {
               setQuantity(value);
@@ -112,7 +113,7 @@ const ClaimButton: React.FC<ClaimPageProps> = ({
           }}
           min={1}
           max={1000}
-          maxW={{ base: "100%", md: "100px" }}
+          maxW={{ base: '100%', md: '100px' }}
         >
           <NumberInputField />
           <NumberInputStepper>
@@ -121,18 +122,18 @@ const ClaimButton: React.FC<ClaimPageProps> = ({
           </NumberInputStepper>
         </NumberInput>
         <Button
-          fontSize={{ base: "label.md", md: "label.lg" }}
+          fontSize={{ base: 'label.md', md: 'label.lg' }}
           isLoading={claimMutation.isLoading || isLoading}
           isDisabled={!canClaim}
           leftIcon={<IoDiamondOutline />}
           onClick={claim}
-          colorScheme="blue"
+          colorScheme='blue'
         >
           {buttonText}
         </Button>
       </Flex>
       {claimedSupply.data && (
-        <Text size="label.md" color="white.800">
+        <Text size='label.md' color='white.800'>
           {`${claimedSupply.data?.toString()} / ${(
             claimedSupply.data?.add(unclaimedSupply.data || 0) || 0
           ).toString()} claimed`}
@@ -142,10 +143,8 @@ const ClaimButton: React.FC<ClaimPageProps> = ({
   );
 };
 
-const ClaimPage: React.FC<ClaimPageProps> = ({ contract, expectedChainId }) => {
-  const { data: metadata, isLoading } = useContractMetadata(
-    contract?.getAddress(),
-  );
+const ClaimPage: React.FC<ClaimPageProps> = ({ contractAddress }) => {
+  const { data: metadata, isLoading } = useContractMetadata(contractAddress);
 
   if (isLoading) {
     return (
@@ -179,40 +178,19 @@ const ClaimPage: React.FC<ClaimPageProps> = ({ contract, expectedChainId }) => {
           {metadata.description}
         </Heading>
       )}
-      <ClaimButton contract={contract} expectedChainId={expectedChainId} />
+      <ClaimButton contractAddress={contractAddress} />
     </Box>
   );
 };
 
-interface NFTDropEmbedProps {
-  contractAddress: string;
-  expectedChainId: number;
-}
+const App: React.FC<ClaimPageProps> = ({ contractAddress }) => {
+  const activeChainId = useActiveChainId();
+  console.log('activeChainId: ', activeChainId);
 
-const NFTDropEmbed: React.FC<NFTDropEmbedProps> = ({
-  contractAddress,
-  expectedChainId,
-}) => {
-  const nftDrop = useNFTDrop(contractAddress);
-
-  return (
-    <ClaimPage contract={nftDrop} expectedChainId={expectedChainId} />
-  );
-};
-
-const App: React.FC<NFTDropEmbedProps> = ({
-  contractAddress,
-  expectedChainId,
-}) => {
   return (
     <>
-      <ThirdwebProvider
-        desiredChainId={expectedChainId}
-      >
-        <NFTDropEmbed
-          contractAddress={contractAddress}
-          expectedChainId={expectedChainId}
-        />
+      <ThirdwebProvider desiredChainId={activeChainId || 80001}>
+        <ClaimPage contractAddress={contractAddress} />
       </ThirdwebProvider>
     </>
   );

@@ -25,7 +25,7 @@ const HomeIndex = (props: IHomeView) => {
       <Flex align="center" w="100%" py="85px" px="30px">
 				<ProjectCard key={projects[0].id} project={projects[0]} />
 				{/* TODO */}
-				<NFTDrop contractAddress='0x2732d8e5199B5AB424732c0634f8dF5562Cf37f0' expectedChainId={80001} />
+				<NFTDrop contractAddress='0x2732d8e5199B5AB424732c0634f8dF5562Cf37f0' />
 			</Flex>
 			<HomeHeader />
 			<HomeExploreProjects
