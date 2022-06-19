@@ -175,7 +175,7 @@ const ClaimPage: React.FC<ClaimPageProps> = ({ contract, expectedChainId }) => {
 
   if (isLoading) {
     return (
-      <Center w="100%">
+      <Center w="100%" h="500px">
         <Stack direction="row" align="center">
           <Spinner />
           <Heading size="label.sm">Loading...</Heading>
@@ -185,7 +185,7 @@ const ClaimPage: React.FC<ClaimPageProps> = ({ contract, expectedChainId }) => {
   }
 
   return (
-    <Center w="100%">
+    <Center w="100%" py="85px">
       <Flex direction="column" align="center" gap={4} w="100%">
         <Grid
           bg="#F2F0FF"
