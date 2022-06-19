@@ -6,6 +6,7 @@ import { Box, Center, Container, Flex, Icon, IconButton, Image, Link, LinkBox, L
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from "@chakra-ui/react";
 import { useNetwork } from "@thirdweb-dev/react";
 import { CONTRACTS_MAP, CommonContractOutputSchema, ContractType, ValidContractClass } from "@thirdweb-dev/sdk";
+import { useWeb3React } from '@web3-react/core';
 import { ChakraNextImage } from "components/Image";
 import { AppLayout } from "components/app-layouts/app";
 import { CONTRACT_TYPE_NAME_MAP, FeatureIconMap, UrlMap } from "constants/mappings";
@@ -26,8 +27,8 @@ import { VscDebugDisconnect } from "react-icons/vsc";
 import { Column, useFilters, useGlobalFilter, useTable } from "react-table";
 import { AddressCopyButton, Badge, Button, Card, Heading, LinkButton, Text } from "tw-components";
 import { ChainId, SUPPORTED_CHAIN_ID, SUPPORTED_CHAIN_IDS, SupportedChainIdToNetworkMap, getNetworkFromChainId } from "utils/network";
-import { shortenIfAddress } from "utils/usedapp-external";
-import { z } from "zod";
+import { shortenIfAddress } from 'utils/usedapp-external';
+import { z } from 'zod';
 
 export default function Dashboard() {
   const router = useRouter();
@@ -35,7 +36,8 @@ export default function Dashboard() {
     query: { projectIdSlug },
   } = router;
   const wallet = useSingleQueryParam("wallet") || "dashboard";
-  const { address } = useWeb3();
+  // const { address } = useWeb3();
+	const { account: address } = useWeb3React();
   const { data: projects } = useProjects(
     wallet === "dashboard" ? address : wallet
   );
