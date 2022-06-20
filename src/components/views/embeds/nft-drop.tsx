@@ -1,7 +1,6 @@
 import { DropSvg } from "./drop";
 import { parseIneligibility } from "./parseIneligibility";
 import { useActiveChainId } from "@3rdweb-sdk/react";
-import useUser from '@/context/UserProvider';
 import { Box, Button, Center, Flex, Grid, Heading, Icon, Image, NumberDecrementStepper, NumberIncrementStepper, NumberInput, NumberInputField, NumberInputStepper, Spinner, Stack, Text, useToast } from "@chakra-ui/react";
 import { ThirdwebProvider, useActiveClaimCondition, useAddress, useChainId, useClaimedNFTSupply, useClaimIneligibilityReasons, useClaimNFT, useContractMetadata, useNFTDrop, useUnclaimedNFTSupply } from "@thirdweb-dev/react";
 import { NFTDrop } from "@thirdweb-dev/sdk";
@@ -9,24 +8,19 @@ import { formatUnits, parseUnits } from "ethers/lib/utils";
 import React, { useRef, useState } from 'react';
 import { IoDiamondOutline } from 'react-icons/io5';
 
-
 interface ClaimPageProps {
   contractAddress: string;
   contract?: NFTDrop;
+  address?: string;
 }
 
-const ClaimButton: React.FC<ClaimPageProps> = ({ contractAddress }) => {
+const ClaimButton: React.FC<ClaimPageProps> = ({ contractAddress, address }) => {
   // const address = useAddress();
   // const chainId = useChainId();
   const contract = useNFTDrop(contractAddress);
   const [quantity, setQuantity] = useState(1);
   const loaded = useRef(false);
   const toast = useToast();
-  const {
-    state: { user, isEnabled },
-  } = useUser();
-
-  const address = user?.walletAddress;
   const activeClaimCondition = useActiveClaimCondition(contract);
   const claimIneligibilityReasons = useClaimIneligibilityReasons(contract, {
     quantity,
@@ -43,7 +37,6 @@ const ClaimButton: React.FC<ClaimPageProps> = ({ contractAddress }) => {
   const priceToMint = bnPrice.mul(quantity);
 
   const claim = async () => {
-    console.log('address', address);
     claimMutation.mutate(
       { to: address as string, quantity },
       {
@@ -71,8 +64,7 @@ const ClaimButton: React.FC<ClaimPageProps> = ({ contractAddress }) => {
   // Only sold out when available data is loaded
   const isSoldOut = unclaimedSupply?.data?.eq(0);
 
-  const isLoading =
-    isEnabled && claimIneligibilityReasons.isLoading && !loaded.current;
+  const isLoading = !!address && claimIneligibilityReasons.isLoading && !loaded.current;
 
   const canClaim =
     !isSoldOut && !!address && !claimIneligibilityReasons.data?.length;
@@ -94,7 +86,7 @@ const ClaimButton: React.FC<ClaimPageProps> = ({ contractAddress }) => {
     ? parseIneligibility(claimIneligibilityReasons.data, quantity)
     : 'Minting Unavailable';
 
-  if (!isEnabled) {
+  if (!address) {
     buttonText = 'Sign in to claim';
   }
 
@@ -143,7 +135,7 @@ const ClaimButton: React.FC<ClaimPageProps> = ({ contractAddress }) => {
   );
 };
 
-const ClaimPage: React.FC<ClaimPageProps> = ({ contractAddress }) => {
+const ClaimPage: React.FC<ClaimPageProps> = ({ contractAddress, address }) => {
   const { data: metadata, isLoading } = useContractMetadata(contractAddress);
 
   if (isLoading) {
@@ -178,19 +170,18 @@ const ClaimPage: React.FC<ClaimPageProps> = ({ contractAddress }) => {
           {metadata.description}
         </Heading>
       )}
-      <ClaimButton contractAddress={contractAddress} />
+      <ClaimButton contractAddress={contractAddress} address={address} />
     </Box>
   );
 };
 
-const App: React.FC<ClaimPageProps> = ({ contractAddress }) => {
+const App: React.FC<ClaimPageProps> = ({ contractAddress, address }) => {
   const activeChainId = useActiveChainId();
-  console.log('activeChainId: ', activeChainId);
 
   return (
     <>
       <ThirdwebProvider desiredChainId={activeChainId || 80001}>
-        <ClaimPage contractAddress={contractAddress} />
+        <ClaimPage contractAddress={contractAddress} address={address} />
       </ThirdwebProvider>
     </>
   );
