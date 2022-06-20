@@ -99,7 +99,6 @@ const Wrapper = styled(FlexCenter)`
 	background: ${brandColors.giv[500]};
 	color: white;
 	flex-direction: column;
-	z-index: 2;
 	position: relative;
 	/* background-image: url('/images/GIV_homepage.svg'); */
 `;
