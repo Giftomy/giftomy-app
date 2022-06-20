@@ -2,7 +2,6 @@ import "../styles/globals.css";
 import { ApolloProvider } from "@apollo/client";
 import { ChakraProvider } from "@chakra-ui/react";
 import { ExternalProvider, Web3Provider } from "@ethersproject/providers";
-import { ChainId, ThirdwebProvider } from "@thirdweb-dev/react";
 import { Web3ReactProvider } from "@web3-react/core";
 import { NextPage } from "next";
 import Head from 'next/head';
@@ -18,8 +17,6 @@ import { GeneralProvider } from "@/context/general.context";
 import { UserProvider } from "@/context/UserProvider";
 import { ModalProvider } from "@/context/ModalProvider";
 import SubgraphController from "@/components/controller/subgraph.ctrl";
-import { HeaderWrapper } from "@/components/Header/HeaderWrapper";
-import { FooterWrapper } from "@/components/Footer/FooterWrapper";
 import { useApollo } from "@/apollo/apolloClient";
 import chakraTheme from "../theme";
 import type { AppProps } from 'next/app';
@@ -74,20 +71,15 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
               <PriceProvider>
                 <UserProvider>
                   <ModalProvider>
-                    <ThirdwebProvider desiredChainId={ChainId.Mumbai}>
-                      <ChakraProvider theme={chakraTheme}>
-                        <MoralisProvider
-                          serverUrl={process.env.NEXT_PUBLIC_SERVER_URL}
-                          appId={process.env.NEXT_PUBLIC_APP_ID}
-                        >
-                          <SubgraphController />
-                          <HeaderWrapper />
-                          {getLayout(<Component {...pageProps} />)}
-                          <FooterWrapper />
-                          {/* <ModalHandler /> */}
-                        </MoralisProvider>
-                      </ChakraProvider>
-                    </ThirdwebProvider>
+                    <ChakraProvider theme={chakraTheme}>
+                      <MoralisProvider
+                        serverUrl={process.env.NEXT_PUBLIC_SERVER_URL}
+                        appId={process.env.NEXT_PUBLIC_APP_ID}
+                      >
+                        <SubgraphController />
+                        {getLayout(<Component {...pageProps} />)}
+                      </MoralisProvider>
+                    </ChakraProvider>
                   </ModalProvider>
                 </UserProvider>
               </PriceProvider>
