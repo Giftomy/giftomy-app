@@ -7,11 +7,9 @@ import {
 } from "@chakra-ui/react";
 import { ChainId } from "@thirdweb-dev/sdk";
 import NextLink from "next/link";
-import { AppLayout } from "components/app-layouts/app";
 import { DeployableContractTable } from "components/contract-components/contract-table";
 import { CustomSDKContext } from "contexts/custom-sdk-context";
 import { useTrack } from "hooks/analytics/useTrack";
-import { ReactElement } from "react";
 import { Heading, Text } from "tw-components";
 import { useRouter } from "next/router";
 
@@ -70,8 +68,3 @@ export default function ContractsHomepage() {
     </CustomSDKContext>
   );
 }
-
-ContractsHomepage.getLayout = (page: ReactElement) => (
-  <AppLayout>{page}</AppLayout>
-  // <Providers>{page}</Providers>
-);

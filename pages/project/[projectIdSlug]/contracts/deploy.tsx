@@ -1,9 +1,8 @@
 import { Flex, Link } from "@chakra-ui/react";
-import { AppLayout } from "components/app-layouts/app";
 import { DeployableContractTable } from "components/contract-components/contract-table";
 import { useTrack } from "hooks/analytics/useTrack";
 import { useRouter } from "next/router";
-import { ReactElement, useMemo } from "react";
+import { useMemo } from "react";
 import { Badge, Heading, Text } from "tw-components";
 
 export default function ContractsDeployPage() {
@@ -56,7 +55,3 @@ export default function ContractsDeployPage() {
     </Track>
   );
 }
-
-ContractsDeployPage.getLayout = function getLayout(page: ReactElement) {
-  return <AppLayout>{page}</AppLayout>;
-};

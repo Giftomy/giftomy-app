@@ -4,7 +4,6 @@ import { useDisclosure } from "@chakra-ui/hooks";
 import { Icon, Menu, MenuButton, MenuItemOption, MenuList, Stack, Stat, StatLabel, StatNumber } from "@chakra-ui/react";
 import { useNFTDrop } from "@thirdweb-dev/react";
 import { BatchToReveal } from "@thirdweb-dev/sdk";
-import { AppLayout } from "components/app-layouts/app";
 import { NftDropBatchUpload } from "components/batch-upload/NftDropBatchUpload";
 import { RevealNftsModal } from "components/batch-upload/RevealNfts";
 import { MismatchButton } from "components/buttons/MismatchButton";
@@ -15,7 +14,7 @@ import { ContractPageNotice } from "components/notices/ContractPageNotice";
 import { useTrack } from "hooks/analytics/useTrack";
 import { useSingleQueryParam } from "hooks/useQueryParam";
 import { useRouter } from "next/router";
-import React, { ReactElement, useState } from "react";
+import React, { useState } from "react";
 import { RiCheckboxMultipleBlankLine } from "react-icons/ri";
 import { Button, Card } from "tw-components";
 
@@ -168,5 +167,3 @@ export default function NFTDropPage() {
     </Track>
   );
 }
-
-NFTDropPage.getLayout = (page: ReactElement) => <AppLayout>{page}</AppLayout>;

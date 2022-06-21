@@ -1,6 +1,5 @@
 import { Box, Flex, Link } from "@chakra-ui/react";
 import { ChainId } from "@thirdweb-dev/sdk";
-import { AppLayout } from "components/app-layouts/app";
 import { TransactionButton } from "components/buttons/TransactionButton";
 import { DeployableContractTable } from "components/contract-components/contract-table";
 import { usePublishMutation } from "components/contract-components/hooks";
@@ -10,7 +9,7 @@ import { CustomSDKContext } from "contexts/custom-sdk-context";
 import { useTrack } from "hooks/analytics/useTrack";
 import { useTxNotifications } from "hooks/useTxNotifications";
 import { useRouter } from "next/router";
-import { ReactElement, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Badge, Heading, Text } from "tw-components";
 
 const ContractsPublishPageWrapped: React.FC = () => {
@@ -151,7 +150,3 @@ export default function ContractsPublishPage() {
     </CustomSDKContext>
   );
 }
-
-ContractsPublishPage.getLayout = (page: ReactElement) => (
-  <AppLayout>{page}</AppLayout>
-);

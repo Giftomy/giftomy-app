@@ -8,7 +8,6 @@ import { useNetwork } from "@thirdweb-dev/react";
 import { CONTRACTS_MAP, CommonContractOutputSchema, ContractType, ValidContractClass } from "@thirdweb-dev/sdk";
 import { useWeb3React } from '@web3-react/core';
 import { ChakraNextImage } from "components/Image";
-import { AppLayout } from "components/app-layouts/app";
 import { CONTRACT_TYPE_NAME_MAP, FeatureIconMap, UrlMap } from "constants/mappings";
 import { utils } from "ethers";
 import { useTrack } from "hooks/analytics/useTrack";
@@ -182,8 +181,6 @@ export default function Dashboard() {
     </Flex>
   );
 }
-
-Dashboard.getLayout = (page: ReactElement) => <AppLayout>{page}</AppLayout>;
 
 interface ContractTableProps {
   combinedList: {

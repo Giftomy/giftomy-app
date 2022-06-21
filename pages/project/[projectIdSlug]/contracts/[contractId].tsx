@@ -13,14 +13,13 @@ import {
 import { detectFeatures } from "@thirdweb-dev/sdk";
 import { FeatureWithEnabled } from "@thirdweb-dev/sdk/dist/src/constants/contract-features";
 import { ChakraNextImage } from "components/Image";
-import { AppLayout } from "components/app-layouts/app";
 import { ContractDeployForm } from "components/contract-components/contract-deploy-form";
 import { useContractPublishMetadataFromURI } from "components/contract-components/hooks";
 import { FeatureIconMap } from "constants/mappings";
 import { useTrack } from "hooks/analytics/useTrack";
 import { useSingleQueryParam } from "hooks/useQueryParam";
 import { useRouter } from "next/router";
-import { ReactElement, useMemo } from "react";
+import { useMemo } from "react";
 import { FiArrowLeft, FiCheckCircle, FiExternalLink } from "react-icons/fi";
 import { Card, Heading, LinkButton, Text, TrackedLink } from "tw-components";
 
@@ -207,10 +206,6 @@ export default function ContractDetailPage() {
     </Track>
   );
 }
-
-ContractDetailPage.getLayout = function getLayout(page: ReactElement) {
-  return <AppLayout>{page}</AppLayout>;
-};
 
 interface EnabledFeatureProps {
   feature: FeatureWithEnabled;

@@ -5,9 +5,8 @@ import { IProject } from '@/apollo/types/types';
 import HomeIndex from '@/components/views/homepage/HomeIndex';
 import useUser from '@/context/UserProvider';
 import { HomeMeta } from '@/lib/meta';
-import { AppLayout } from "components/app-layouts/app";
 import Head from 'next/head';
-import { useEffect, useState, ReactElement } from 'react';
+import { useEffect, useState } from 'react';
 
 
 const projectsToFetch = 12;
@@ -76,7 +75,5 @@ export async function getServerSideProps({ res }: any) {
 		},
 	};
 }
-
-HomeRoute.getLayout = (page: ReactElement) => <AppLayout>{page}</AppLayout>;
 
 export default HomeRoute;

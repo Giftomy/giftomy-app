@@ -1,9 +1,19 @@
 import "../styles/globals.css";
+import chakraTheme from "../theme";
+import { useApollo } from "@/apollo/apolloClient";
+import SubgraphController from "@/components/controller/subgraph.ctrl";
+import { ModalProvider } from "@/context/ModalProvider";
+import { UserProvider } from "@/context/UserProvider";
+import { GeneralProvider } from "@/context/general.context";
+import { PriceProvider } from "@/context/price.context";
+import { store } from '@/features/store';
 import { ApolloProvider } from "@apollo/client";
 import { ChakraProvider } from "@chakra-ui/react";
 import { ExternalProvider, Web3Provider } from "@ethersproject/providers";
 import { Web3ReactProvider } from "@web3-react/core";
+import { AppLayout } from "components/app-layouts/app";
 import { NextPage } from "next";
+import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import NProgress from 'nprogress';
@@ -11,15 +21,7 @@ import React, { ReactElement, ReactNode, useEffect } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { MoralisProvider } from 'react-moralis';
 import { Provider } from 'react-redux';
-import { store } from '@/features/store';
-import { PriceProvider } from "@/context/price.context";
-import { GeneralProvider } from "@/context/general.context";
-import { UserProvider } from "@/context/UserProvider";
-import { ModalProvider } from "@/context/ModalProvider";
-import SubgraphController from "@/components/controller/subgraph.ctrl";
-import { useApollo } from "@/apollo/apolloClient";
-import chakraTheme from "../theme";
-import type { AppProps } from 'next/app';
+
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -57,7 +59,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
     };
   }, [router]);
 
-  const getLayout = Component.getLayout ?? ((page) => page);
+  // const getLayout = Component.getLayout ?? ((page) => page);
 
   return (
     <>
@@ -77,7 +79,10 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
                         appId={process.env.NEXT_PUBLIC_APP_ID}
                       >
                         <SubgraphController />
-                        {getLayout(<Component {...pageProps} />)}
+                        <AppLayout>
+                          <Component {...pageProps} />
+                        </AppLayout>
+                        {/* {getLayout(<Component {...pageProps} />)} */}
                       </MoralisProvider>
                     </ChakraProvider>
                   </ModalProvider>
