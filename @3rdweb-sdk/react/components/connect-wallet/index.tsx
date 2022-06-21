@@ -117,6 +117,7 @@ export const ConnectWallet: React.FC<ButtonProps> = buttonProps => {
             variant='outline'
             colorScheme='gray'
             rightIcon={<ChevronDownIcon />}
+            h='48px'
           >
             <Flex direction='row' gap={3} align='center'>
               <Icon boxSize={6} as={SVG} />
@@ -296,6 +297,7 @@ export const ConnectWallet: React.FC<ButtonProps> = buttonProps => {
           colorScheme='primary'
           rightIcon={<ChevronDownIcon />}
           {...buttonProps}
+          h='48px'
         >
           Connect Wallet
         </MenuButton>

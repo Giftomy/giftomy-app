@@ -39,7 +39,7 @@ interface IThemed {
 
 export const HeaderButton = styled(CButton)<IThemed>`
 	display: flex;
-	height: 50px;
+	height: 48px;
 	font-weight: normal;
 	font-size: 16px;
 	line-height: 22px;
