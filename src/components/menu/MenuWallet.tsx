@@ -20,8 +20,6 @@ import styled from 'styled-components';
 
 const MenuWallet = () => {
 	const [isMounted, setIsMounted] = useState(false);
-	const [balance, setBalance] = useState<string | null>(null);
-	const { chainId, account, library } = useWeb3React();
 	const [SignWithWallet, setSignWithWallet] = useState<boolean>(false);
 	const [queueRoute, setQueueRoute] = useState<string>('');
 
@@ -56,26 +54,6 @@ const MenuWallet = () => {
 	};
 
 	useEffect(() => {
-		if (!!account && !!library) {
-			library
-				.getBalance(account)
-				.then((_balance: BigNumberish) => {
-					setBalance(parseFloat(formatEther(_balance)).toFixed(3));
-				})
-				.catch((error: unknown) => {
-					setBalance(null);
-					captureException(error, {
-						tags: {
-							section: 'getBalance',
-						},
-					});
-				});
-		}
-	}, [account, library, chainId]);
-
-	const { networkName, networkToken } = networkInfo(chainId);
-
-	useEffect(() => {
 		setIsMounted(true);
 	}, []);
 
@@ -98,32 +76,6 @@ const MenuWallet = () => {
 				theme={theme}
 				isSignedIn={isSignedIn || false}
 			>
-				<Title>WALLET</Title>
-				<Subtitle>
-					<LeftSection>
-						{balance + ' '}
-						<span>{networkToken}</span>
-					</LeftSection>
-					<StyledButton
-						onClick={() => {
-							window.localStorage.removeItem(StorageLabel.WALLET);
-							showWalletModal();
-						}}
-					>
-						Change wallet
-					</StyledButton>
-				</Subtitle>
-				<Title>NETWORK</Title>
-				<Subtitle>
-					<LeftSection>{networkName}</LeftSection>
-					{chainId && (
-						<StyledButton
-							onClick={() => switchNetworkHandler(chainId)}
-						>
-							Switch network
-						</StyledButton>
-					)}
-				</Subtitle>
 				<Menus>
 					{walletMenuArray.map(i => (
 						<MenuItem
@@ -167,7 +119,7 @@ const walletMenuArray = [
     requiresSign: true,
     requiresRegistration: true,
   },
-  // { title: 'Report a bug', url: links.REPORT_ISSUE, requiresSign: false },
+  { title: 'Report a bug', url: links.REPORT_ISSUE, requiresSign: false },
   // { title: 'Support', url: Routes.Support, requiresSign: false },
 ];
 
@@ -200,35 +152,6 @@ const Menus = styled.div`
 	margin-top: 15px;
 	padding: 0 !important;
 	/* border-bottom: 2px solid ${brandColors.giv[300]}; */
-`;
-
-const StyledButton = styled(Subline)`
-	color: ${brandColors.pinky[500]};
-	cursor: pointer;
-`;
-
-const LeftSection = styled(P)`
-  font-weight: 500;
-  /* color: #4f576a; */
-  color: ${neutralColors.gray[600]};
-
-  > span {
-    font-size: 14px;
-    font-weight: 400;
-  }
-`;
-
-const Subtitle = styled(Overline)`
-	display: flex;
-	justify-content: space-between;
-	margin-bottom: 7px;
-`;
-
-const Title = styled(Overline)`
-  color: ${neutralColors.gray[800]};
-  text-transform: uppercase;
-  /* font-weight: 500; */
-  margin-bottom: 2px;
 `;
 
 interface IWalletMenuContainer {

@@ -30,7 +30,6 @@ const Header: FC<IHeader> = () => {
 
   // const { active, account, library } = useWeb3React();
   const { address, chainId } = useWeb3();
-  console.log('address, account', address);
   const {
     state: { user, isEnabled, isSignedIn },
   } = useUser();
@@ -150,7 +149,7 @@ const Header: FC<IHeader> = () => {
       <Flex gap='8px'>
         <LargeCreateProject>
           <Button
-            label='CREATE A PROJECT'
+            label='Create A Project'
             size='small'
             buttonType={theme === ETheme.Light ? 'primary' : 'secondary'}
             onClick={handleCreateButton}
@@ -173,14 +172,35 @@ const Header: FC<IHeader> = () => {
           />
         </SmallCreateProjectParent>
         {address && chainId && (
-          <ConnectButton
-            buttonType='primary'
-            size='small'
-            label="MY ACCOUNT"
-            onClick={() => {
-              router.push("/account");
-            }}
-          />
+          <>
+            <MenuAndButtonContainer
+              onClick={() => setShowUserMenu(true)}
+              onMouseEnter={() => setShowUserMenu(true)}
+              onMouseLeave={() => setShowUserMenu(false)}
+            >
+              <WalletButton outline theme={theme}>
+                <HBContainer>
+                  <HBPic
+                    src={
+                      user?.avatar
+                        ? user.avatar
+                        : '/images/placeholders/profile.png'
+                    }
+                    alt='Profile Pic'
+                    width={'24px'}
+                    height={'24px'}
+                  />
+                  <WBInfo>
+                    <GLink size='Medium'>
+                      {user?.name || shortenAddress(address)}
+                    </GLink>
+                  </WBInfo>
+                </HBContainer>
+                <CoverLine theme={theme} />
+              </WalletButton>
+              {showUserMenu && <MenuWallet />}
+            </MenuAndButtonContainer>
+          </>
         )}
         <ConnectWallet />
       </Flex>
