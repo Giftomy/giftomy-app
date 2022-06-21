@@ -1,5 +1,20 @@
 import { menuRoutes } from '../menu/menuRoutes';
-import { ConnectButton, HBContainer, HBPic, HeaderLinks, HeaderLink, StyledHeader, WalletButton, WBInfo, WBNetwork, SmallCreateProject, Logo, MenuAndButtonContainer, CoverLine, SmallCreateProjectParent, LargeCreateProject, MainLogoBtn } from './Header.sc';
+import {
+  HBContainer,
+  HBPic,
+  HeaderLinks,
+  HeaderLink,
+  StyledHeader,
+  WalletButton,
+  WBInfo,
+  SmallCreateProject,
+  Logo,
+  MenuAndButtonContainer,
+  CoverLine,
+  SmallCreateProjectParent,
+  LargeCreateProject,
+  MainLogoBtn,
+} from './Header.sc';
 import HeaderRoutesResponsive from './HeaderResponsiveRoutes';
 import { ConnectWallet, useWeb3 } from '@3rdweb-sdk/react';
 import MenuWallet from '@/components/menu/MenuWallet';
@@ -8,11 +23,9 @@ import useModal from '@/context/ModalProvider';
 import useUser from '@/context/UserProvider';
 import { ETheme, useGeneral } from '@/context/general.context';
 import { ThemeType } from '@/context/theme.context';
-import { networksParams } from '@/helpers/blockchain';
 import Routes from '@/lib/constants/Routes';
 import { isUserRegistered, shortenAddress } from '@/lib/helpers';
 import { Button, GLink } from '@giveth/ui-design-system';
-import { useWeb3React } from '@web3-react/core';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -34,12 +47,7 @@ const Header: FC<IHeader> = () => {
     state: { user, isEnabled, isSignedIn },
   } = useUser();
   const {
-    actions: {
-      showWelcomeModal,
-      showSignWithWallet,
-      showCompleteProfile,
-      showWalletModal,
-    },
+    actions: { showWelcomeModal, showSignWithWallet, showCompleteProfile },
   } = useModal();
   const { theme } = useGeneral();
   const router = useRouter();
