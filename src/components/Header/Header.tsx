@@ -8,7 +8,6 @@ import useModal from '@/context/ModalProvider';
 import useUser from '@/context/UserProvider';
 import { ETheme, useGeneral } from '@/context/general.context';
 import { ThemeType } from '@/context/theme.context';
-import { currentValuesHelper, useAppSelector } from '@/features/hooks';
 import { networksParams } from '@/helpers/blockchain';
 import Routes from '@/lib/constants/Routes';
 import { isUserRegistered, shortenAddress } from '@/lib/helpers';
@@ -27,12 +26,11 @@ export interface IHeader {
 const Header: FC<IHeader> = () => {
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [showHeader, setShowHeader] = useState(true);
-  const [isGIVeconomyRoute, setIsGIVeconomyRoute] = useState(false);
   const [isCreateRoute, setIsCreateRoute] = useState(false);
 
-  const { chainId, active, account, library } = useWeb3React();
-  const { balance, address, getNetworkMetadata } = useWeb3();
-  console.log('balance, address', balance, address);
+  // const { active, account, library } = useWeb3React();
+  const { address, chainId } = useWeb3();
+  console.log('address, account', address);
   const {
     state: { user, isEnabled, isSignedIn },
   } = useUser();
@@ -85,14 +83,6 @@ const Header: FC<IHeader> = () => {
 
     return () => window.removeEventListener('scroll', onScroll);
   }, [showHeader]);
-
-  const handleModals = () => {
-    if (isGIVeconomyRoute) {
-      showWalletModal();
-    } else {
-      showWelcomeModal();
-    }
-  };
 
   const handleCreateButton = () => {
     if (!isEnabled) {
@@ -182,48 +172,14 @@ const Header: FC<IHeader> = () => {
             linkType={theme === ETheme.Light ? 'primary' : 'secondary'}
           />
         </SmallCreateProjectParent>
-        {active && account && chainId ? (
-          <>
-            <MenuAndButtonContainer
-              onClick={() => setShowUserMenu(true)}
-              onMouseEnter={() => setShowUserMenu(true)}
-              onMouseLeave={() => setShowUserMenu(false)}
-            >
-              <WalletButton outline theme={theme}>
-                <HBContainer>
-                  <HBPic
-                    src={
-                      user?.avatar
-                        ? user.avatar
-                        : '/images/placeholders/profile.png'
-                    }
-                    alt='Profile Pic'
-                    width={'24px'}
-                    height={'24px'}
-                  />
-                  <WBInfo>
-                    <GLink size='Medium'>
-                      {user?.name || shortenAddress(account)}
-                    </GLink>
-                    <WBNetwork size='Tiny'>
-                      Connected to{' '}
-                      {networksParams[chainId]
-                        ? networksParams[chainId].chainName
-                        : library?._network?.name}
-                    </WBNetwork>
-                  </WBInfo>
-                </HBContainer>
-                <CoverLine theme={theme} />
-              </WalletButton>
-              {showUserMenu && <MenuWallet />}
-            </MenuAndButtonContainer>
-          </>
-        ) : (
+        {address && chainId && (
           <ConnectButton
             buttonType='primary'
             size='small'
-            label={isGIVeconomyRoute ? 'CONNECT WALLET' : 'SIGN IN'}
-            onClick={handleModals}
+            label="MY ACCOUNT"
+            onClick={() => {
+              router.push("/account");
+            }}
           />
         )}
         <ConnectWallet />

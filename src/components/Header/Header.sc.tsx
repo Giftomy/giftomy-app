@@ -71,7 +71,6 @@ export const WalletButton = styled(HeaderButton)`
 	${mediaQueries.tablet} {
 		font-size: 14px;
 		width: 200px;
-		padding: 6px 16px;
 		div:nth-child(1) {
 			width: 100%;
 		}
