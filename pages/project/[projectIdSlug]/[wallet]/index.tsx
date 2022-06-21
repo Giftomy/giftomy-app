@@ -113,7 +113,7 @@ export default function Dashboard() {
   ]);
 
   return (
-    <Flex direction="column" gap={8}>
+    <Flex direction="column" gap={8} px={30}>
       <Breadcrumb
         display={{ base: "none", md: "block" }}
         separator={<ChevronRightIcon color="gray.500" />}
@@ -177,7 +177,6 @@ export default function Dashboard() {
           )}
         </>
       )}
-      {/* <LearnMoreSection /> */}
     </Flex>
   );
 }

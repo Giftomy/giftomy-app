@@ -56,6 +56,7 @@ export const Breadcrumbs: React.FC = () => {
       display={{ base: "none", md: "block" }}
       separator={<ChevronRightIcon color="gray.500" />}
       mb={8}
+      ml={30}
     >
       <BreadcrumbItem>
         <NextLink href={`/project/${projectIdSlug}`} passHref>

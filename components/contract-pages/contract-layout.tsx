@@ -89,7 +89,7 @@ export const ContractLayout = <
   }
 
   return (
-    <Stack spacing={8}>
+    <Stack spacing={8} px={30}>
       <ContractHeader
         contract={contract}
         contractMetadata={metadata.data}
