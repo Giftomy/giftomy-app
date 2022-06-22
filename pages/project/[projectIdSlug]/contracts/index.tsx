@@ -26,7 +26,7 @@ const ContractsHomepageWrapped: React.FC = () => {
 
   return (
     <Track>
-      <Flex gap={8} direction="column">
+      <Flex gap={8} direction="column" px={30}>
         <Breadcrumb
           display={{ base: "none", md: "block" }}
           separator={<ChevronRightIcon color="gray.500" />}
