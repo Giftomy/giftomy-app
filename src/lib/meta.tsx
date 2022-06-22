@@ -8,7 +8,7 @@ export const HomeMeta = () => {
 			<meta name='title' content='Giftomy' />
 			<meta
 				name='description'
-				content='Donate crypto directly to for-good projects.'
+				content='Collect NFTs from public goods projects.'
 			/>
 
 			<meta property='og:type' content='website' />
@@ -16,11 +16,11 @@ export const HomeMeta = () => {
 			<meta property='og:title' content='Giftomy' />
 			<meta
 				property='og:description'
-				content='Donate crypto directly to for-good projects.'
+				content='Collect NFTs from public goods projects.'
 			/>
 			<meta
 				property='og:image'
-				content='https://giveth.mypinata.cloud/ipfs/QmQ9sfdevs9vS7czBXBfDaRRPhU8a6T5gXxF3NDGSnQe1c'
+				content='https://giftomy.xyz/images/logo/logo.svg'
 			/>
 
 			<meta property='twitter:card' content='summary_large_image' />
@@ -28,11 +28,11 @@ export const HomeMeta = () => {
 			<meta property='twitter:title' content='Giftomy' />
 			<meta
 				property='twitter:description'
-				content='Donate crypto directly to for-good projects.'
+				content='Collect NFTs from public goods projects.'
 			/>
 			<meta
 				property='twitter:image'
-				content='https://giveth.mypinata.cloud/ipfs/QmQ9sfdevs9vS7czBXBfDaRRPhU8a6T5gXxF3NDGSnQe1c'
+				content='https://giftomy.xyz/images/logo/logo.svg'
 			/>
 			<meta name='twitter:card' content='summary_large_image' />
 		</>
@@ -45,9 +45,7 @@ export const ProjectsMeta = () => {
 			<meta name='title' content='Projects | Giftomy' />
 			<meta
 				name='description'
-				content='Support for-good projects, nonprofits & charities with
-					crypto donations. Give directly with zero added fees. Get
-					rewarded when you donate to verified projects!'
+				content='Collect NFTs from public goods projects'
 			/>
 
 			<meta property='og:type' content='website' />
@@ -55,13 +53,11 @@ export const ProjectsMeta = () => {
 			<meta property='og:title' content='Projects | Giftomy' />
 			<meta
 				property='og:description'
-				content='Support for-good projects, nonprofits & charities with
-					crypto donations. Give directly with zero added fees. Get
-					rewarded when you donate to verified projects!'
+				content='Collect NFTs from public goods projects'
 			/>
 			<meta
 				property='og:image'
-				content='https://giveth.mypinata.cloud/ipfs/QmQ9sfdevs9vS7czBXBfDaRRPhU8a6T5gXxF3NDGSnQe1c'
+				content='https://giftomy.xyz/images/logo/logo.svg'
 			/>
 
 			<meta property='twitter:card' content='summary_large_image' />
@@ -69,50 +65,11 @@ export const ProjectsMeta = () => {
 			<meta property='twitter:title' content='Projects | Giftomy' />
 			<meta
 				property='twitter:description'
-				content='Support for-good projects, nonprofits & charities with
-					crypto donations. Give directly with zero added fees. Get
-					rewarded when you donate to verified projects!'
+				content='Collect NFTs from public goods projects'
 			/>
 			<meta
 				property='twitter:image'
-				content='https://giveth.mypinata.cloud/ipfs/QmQ9sfdevs9vS7czBXBfDaRRPhU8a6T5gXxF3NDGSnQe1c'
-			/>
-			<meta name='twitter:card' content='summary_large_image' />
-		</>
-	);
-};
-
-export const GiveconomyMeta = () => {
-	return (
-		<>
-			<meta name='title' content='GIVeconomy' />
-			<meta
-				name='description'
-				content='The GIVeconomy empowers our collective to build the Future of Giving.'
-			/>
-
-			<meta property='og:type' content='website' />
-			<meta property='og:url' content='https://giftomy.xyz/' />
-			<meta property='og:title' content='GIVeconomy' />
-			<meta
-				property='og:description'
-				content='The GIVeconomy empowers our collective to build the Future of Giving.'
-			/>
-			<meta
-				property='og:image'
-				content='https://i.ibb.co/HTbdCdd/Thumbnail.png'
-			/>
-
-			<meta property='twitter:card' content='summary_large_image' />
-			<meta property='twitter:url' content='https://giftomy.xyz/' />
-			<meta property='twitter:title' content='GIVeconomy' />
-			<meta
-				property='twitter:description'
-				content='The GIVeconomy empowers our collective to build the Future of Giving.'
-			/>
-			<meta
-				property='twitter:image'
-				content='https://i.ibb.co/HTbdCdd/Thumbnail.png'
+				content='https://giftomy.xyz/images/logo/logo.svg'
 			/>
 			<meta name='twitter:card' content='summary_large_image' />
 		</>
