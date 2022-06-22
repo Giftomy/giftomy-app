@@ -547,7 +547,12 @@ const AsyncContractCell: React.FC<AsyncContractCellProps> = ({ cell }) => {
 
 const NoContracts: React.FC = () => {
   const router = useRouter();
-  const href = `${router.asPath}/contracts`
+  const {
+    query: { projectIdSlug },
+  } = router;
+
+  const href = `/project/${projectIdSlug}/contracts`;
+
   return (
     <Center w="100%">
       <Container as={Card}>
