@@ -2,7 +2,6 @@ import PublicProfileNFTsTab from './PublicProfileNFTsTab';
 import PublicProfileLikedTab from './PublicProfileLikedTab';
 import PublicProfileOverviewTab from './PublicProfileOverviewTab';
 import { IUserPublicProfileView } from './UserPublicProfile.view';
-import PublicProfileDonationsTab from './donationsTab/PublicProfileDonationsTab';
 import PublicProfileProjectsTab from './projectsTab/PublicProfileProjectsTab';
 import { Container } from '@/components/Grid';
 import { Flex } from '@/components/styled-components/Flex';
@@ -14,9 +13,8 @@ import styled from 'styled-components';
 
 
 enum EPublicProfile {
-	OVERVIEW,
+	// OVERVIEW,
 	PROJECTS,
-	DONATIONS,
 	LIKED,
 	NFTS,
 }
@@ -31,7 +29,7 @@ const PublicProfileContributes: FC<IUserPublicProfileView> = ({
 }) => {
 	const router = useRouter();
 	const [tab, setTab] = useState(
-		myAccount ? EPublicProfile.OVERVIEW : EPublicProfile.PROJECTS,
+		EPublicProfile.PROJECTS,
 	);
 
 	useEffect(() => {
@@ -39,9 +37,6 @@ const PublicProfileContributes: FC<IUserPublicProfileView> = ({
 		switch (tab) {
 			case 'projects':
 				setTab(EPublicProfile.PROJECTS);
-				break;
-			case 'donations':
-				setTab(EPublicProfile.DONATIONS);
 				break;
 			case 'liked':
 				setTab(EPublicProfile.LIKED);
@@ -51,9 +46,7 @@ const PublicProfileContributes: FC<IUserPublicProfileView> = ({
 				break;
 			default:
 				setTab(
-					myAccount
-						? EPublicProfile.OVERVIEW
-						: EPublicProfile.PROJECTS,
+					EPublicProfile.PROJECTS,
 				);
 		}
 	}, [router?.query?.tab]);
@@ -66,14 +59,14 @@ const PublicProfileContributes: FC<IUserPublicProfileView> = ({
 				<ContributeCard user={user} />
 			)}
 			<PublicProfileTabsContainer>
-				{myAccount && (
+				{/* {myAccount && (
 					<PublicProfileTab
 						active={tab === EPublicProfile.OVERVIEW}
 						onClick={() => setTab(EPublicProfile.OVERVIEW)}
 					>
 						Overview
 					</PublicProfileTab>
-				)}
+				)} */}
 				<PublicProfileTab
 					active={tab === EPublicProfile.PROJECTS}
 					onClick={() => setTab(EPublicProfile.PROJECTS)}
@@ -85,17 +78,6 @@ const PublicProfileContributes: FC<IUserPublicProfileView> = ({
 						</Count>
 					)}
 				</PublicProfileTab>
-				{/* <PublicProfileTab
-					active={tab === EPublicProfile.DONATIONS}
-					onClick={() => setTab(EPublicProfile.DONATIONS)}
-				>
-					{`${myAccount ? 'My ' : ''}Donations`}
-					{myAccount && user?.donationsCount != 0 && (
-						<Count active={tab === EPublicProfile.DONATIONS}>
-							{user?.donationsCount}
-						</Count>
-					)}
-				</PublicProfileTab> */}
 				<PublicProfileTab
 					active={tab === EPublicProfile.LIKED}
 					onClick={() => setTab(EPublicProfile.LIKED)}
@@ -119,14 +101,11 @@ const PublicProfileContributes: FC<IUserPublicProfileView> = ({
 					)} */}
 				</PublicProfileTab>
 			</PublicProfileTabsContainer>
-			{tab === EPublicProfile.OVERVIEW && (
+			{/* {tab === EPublicProfile.OVERVIEW && (
 				<PublicProfileOverviewTab user={user} />
-			)}
+			)} */}
 			{tab === EPublicProfile.PROJECTS && (
 				<PublicProfileProjectsTab user={user} myAccount={myAccount} />
-			)}
-			{tab === EPublicProfile.DONATIONS && (
-				<PublicProfileDonationsTab user={user} myAccount={myAccount} />
 			)}
 			{tab === EPublicProfile.LIKED && (
 				<PublicProfileLikedTab user={user} myAccount={myAccount} />
