@@ -1,20 +1,15 @@
-import React from 'react';
-import Image from 'next/image';
-import {
-	FacebookShareButton,
-	LinkedinShareButton,
-	TwitterShareButton,
-} from 'react-share';
 import { Lead, neutralColors } from '@giveth/ui-design-system';
+import Image from 'next/image';
+import React from 'react';
+import { FacebookShareButton, LinkedinShareButton, TwitterShareButton } from 'react-share';
 import styled from 'styled-components';
+
 
 const SocialBox = (props: any) => {
 	const { project } = props;
-	const shareTitleTwitter = `Our project is raising funds in crypto on @givethio! 🙌
-Donate directly on Ethereum Mainnet or @gnosischain w/ no fees or intermediaries.👇`;
+	const shareTitleTwitter = `Our project is raising funds in crypto on giftomy.xyz.👇`;
 
-	const shareTitleFacebookAndLinkedin = `Our project is raising funds in crypto on @givethio!
-	Donate directly on Ethereum Mainnet or Gnosis Chain with no fees or intermediaries.
+	const shareTitleFacebookAndLinkedin = `Our project is raising funds in crypto on giftomy.xyz..
 
 	Here's the link to our project:
 	`;

@@ -81,21 +81,6 @@ const DoneStep = () => {
 								/>
 							</ContributeCard>
 						</Col>
-						<Col xs={12} sm={8} md={6}>
-							<ContributeCard>
-								<div>
-									<ContributeCardTitle weight={700}>
-										Donate to projects
-									</ContributeCardTitle>
-									<ContributeCardDesc>
-										Take a look and donate to projects.
-									</ContributeCardDesc>
-								</div>
-								<Link href={Routes.Projects} passHref>
-									<ContributeCardButton label='View projects' />
-								</Link>
-							</ContributeCard>
-						</Col>
 					</ContributeCardRow>
 				</CongratsContainer>
 			</DoneStepContainer>

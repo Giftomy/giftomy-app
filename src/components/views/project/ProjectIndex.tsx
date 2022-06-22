@@ -1,20 +1,17 @@
-import ProjectDonateCard from "./ProjectDonateCard";
+import ProjectActionsCard from "./ProjectActionsCard";
 import ProjectHeader from "./ProjectHeader";
 import { client } from "@/apollo/apolloClient";
-import { FETCH_PROJECT_DONATIONS } from "@/apollo/gql/gqlDonations";
 import { FETCH_PROJECT_BY_SLUG } from "@/apollo/gql/gqlProjects";
-import { EDirection, EProjectStatus, gqlEnums } from "@/apollo/types/gqlEnums";
-import { IDonationsByProjectIdGQL } from "@/apollo/types/gqlTypes";
-import { IDonation, IProject } from "@/apollo/types/types";
+import { EProjectStatus } from "@/apollo/types/gqlEnums";
+import { IProject } from "@/apollo/types/types";
 import InfoBadge from "@/components/badges/InfoBadge";
 import InlineToast from "@/components/toasts/InlineToast";
 import SuccessfulCreation from "@/components/views/create/SuccessfulCreation";
 import SimilarProjects from "@/components/views/project/SimilarProjects";
 import useUser from "@/context/UserProvider";
 import { deviceSize, mediaQueries } from "@/lib/constants/constants";
-import { showToastError } from "@/lib/helpers";
 import { ProjectMeta } from "@/lib/meta";
-import { slugToProjectDashboard } from "@/lib/routeCreators";
+import { Box } from "@chakra-ui/react";
 import { Caption, Container, semanticColors } from "@giveth/ui-design-system";
 import { captureException } from "@sentry/nextjs";
 import dynamic from "next/dynamic";
@@ -22,11 +19,8 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { Box } from "@chakra-ui/react";
 
 
-const ProjectDonations = dynamic(() => import("./ProjectDonations"));
-const ProjectUpdates = dynamic(() => import("./ProjectUpdates"));
 const NotAvailableProject = dynamic(() => import("./NotAvailableProject"), {
   ssr: false,
 });
@@ -34,15 +28,10 @@ const RichTextViewer = dynamic(() => import("@/components/RichTextViewer"), {
   ssr: false,
 });
 
-const donationsPerPage = 10;
-
 const ProjectIndex = (props: { project?: IProject }) => {
-  const [activeTab, setActiveTab] = useState(0);
   const [isActive, setIsActive] = useState<boolean>(true);
   const [isDraft, setIsDraft] = useState<boolean>(false);
   const [project, setProject] = useState<IProject | undefined>(props.project);
-  const [donations, setDonations] = useState<IDonation[]>([]);
-  const [totalDonations, setTotalDonations] = useState(0);
   const [creationSuccessful, setCreationSuccessful] = useState(false);
   const [isMobile, setIsMobile] = useState<boolean>(false);
   const [isCancelled, setIsCancelled] = useState<boolean>(false);
@@ -88,36 +77,6 @@ const ProjectIndex = (props: { project?: IProject }) => {
       setIsCancelled(status.name === EProjectStatus.CANCEL);
     }
   }, [status]);
-
-  useEffect(() => {
-    if (!id) return;
-    client
-      .query({
-        query: FETCH_PROJECT_DONATIONS,
-        variables: {
-          projectId: parseInt(id),
-          skip: 0,
-          take: donationsPerPage,
-          orderBy: {
-            field: gqlEnums.CREATIONDATE,
-            direction: EDirection.DESC,
-          },
-        },
-      })
-      .then((res: IDonationsByProjectIdGQL) => {
-        const donationsByProjectId = res.data.donationsByProjectId;
-        setDonations(donationsByProjectId.donations);
-        setTotalDonations(donationsByProjectId.totalCount);
-      })
-      .catch((error: unknown) => {
-        showToastError(error);
-        captureException(error, {
-          tags: {
-            section: "fetchProjectDonation",
-          },
-        });
-      });
-  }, [id]);
 
   useEffect(() => {
     if (slug && user?.id) {
@@ -178,7 +137,7 @@ const ProjectIndex = (props: { project?: IProject }) => {
 						</Box>
           </ContentWrapper>
           {project && (
-            <ProjectDonateCard
+            <ProjectActionsCard
               isDraft={isDraft}
               project={project!}
               isMobile={isMobile}

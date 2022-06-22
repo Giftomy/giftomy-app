@@ -1,5 +1,5 @@
 import ConfettiAnimation from '../../animations/confetti';
-import SocialBox from '../donate/SocialBox';
+// import SocialBox from '../donate/SocialBox';
 import { IProject } from '@/apollo/types/types';
 import ProjectCard from '@/components/project-card/ProjectCardAlt';
 import { slugToProjectView } from '@/lib/routeCreators';
@@ -25,13 +25,13 @@ const SuccessfulCreation = (props: {
 				<ConfettiContainer>
 					<ConfettiAnimation size={300} />
 				</ConfettiContainer>
-				<GiverH4>High five!</GiverH4>
+				<StyledH4>High five!</StyledH4>
 				{/* <Image src='/images/motivation.svg' alt='motivation' width='121px' height='121px' /> */}
 				<SuccessMessage>
 					Your project is being reviewed by our team. You&apos;ll
 					receive an email from us once your project is listed.
 				</SuccessMessage>
-				<SocialBox project={project} isSuccess />
+				{/* <SocialBox project={project} isSuccess /> */}
 				<SuccessMessage>
 					You can still access your project from your account and
 					share it with your friends.
@@ -49,8 +49,6 @@ const SuccessfulCreation = (props: {
 	return (
 		<Container>
 			<Wrapper>
-				<BGImg src='/images/arc2.svg' />
-				<BGImg src='/images/arc3.svg' />
 				<Sections>
 					<Left>
 						<ProjectCard project={project} isNew />
@@ -68,11 +66,8 @@ const ConfettiContainer = styled.div`
 	position: absolute;
 	top: 200px;
 `;
-const GiverH4 = styled(H4)`
+const StyledH4 = styled(H4)`
 	color: ${neutralColors.gray[100]};
-`;
-const BGImg = styled.img`
-	position: absolute;
 `;
 const Container = styled.div`
 	/* background-image: url('/images/creation_success.svg'); */
