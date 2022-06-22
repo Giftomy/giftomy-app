@@ -1,32 +1,10 @@
 import { ContractIdImage } from "../contract-table/cells/image";
 import { useContractPublishMetadataFromURI } from "../hooks";
 import { useDeploy } from "@3rdweb-sdk/react";
-import {
-  Accordion,
-  AccordionButton,
-  AccordionIcon,
-  AccordionItem,
-  AccordionPanel,
-  Divider,
-  Flex,
-  FormControl,
-  Input,
-  NumberDecrementStepper,
-  NumberIncrementStepper,
-  NumberInput,
-  NumberInputField,
-  NumberInputStepper,
-  SimpleGrid,
-  Skeleton,
-  Textarea,
-} from "@chakra-ui/react";
+import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Divider, Flex, FormControl, Input, NumberDecrementStepper, NumberIncrementStepper, NumberInput, NumberInputField, NumberInputStepper, SimpleGrid, Skeleton, Textarea } from "@chakra-ui/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAddress } from "@thirdweb-dev/react";
-import {
-  ContractType,
-  KNOWN_CONTRACTS_MAP,
-  ValidContractClass,
-} from "@thirdweb-dev/sdk";
+import { ContractType, KNOWN_CONTRACTS_MAP, ValidContractClass } from "@thirdweb-dev/sdk";
 import { TransactionButton } from "components/buttons/TransactionButton";
 import { RecipientForm } from "components/deployment/splits/recipients";
 import { BasisPointsInput } from "components/inputs/BasisPointsInput";
@@ -40,27 +18,11 @@ import { useSingleQueryParam } from "hooks/useQueryParam";
 import { useTxNotifications } from "hooks/useTxNotifications";
 import { useRouter } from "next/router";
 import { useEffect, useMemo } from "react";
-import {
-  FieldPath,
-  FormProvider,
-  SubmitErrorHandler,
-  SubmitHandler,
-  useForm,
-} from "react-hook-form";
-import {
-  Badge,
-  FormErrorMessage,
-  FormHelperText,
-  FormLabel,
-  Heading,
-  Text,
-} from "tw-components";
-import {
-  NetworkToBlockTimeMap,
-  SUPPORTED_CHAIN_ID,
-  SupportedChainIdToNetworkMap,
-} from "utils/network";
+import { FieldPath, FormProvider, SubmitErrorHandler, SubmitHandler, useForm } from "react-hook-form";
+import { Badge, FormErrorMessage, FormHelperText, FormLabel, Heading, Text } from "tw-components";
+import { NetworkToBlockTimeMap, SUPPORTED_CHAIN_ID, SupportedChainIdToNetworkMap } from "utils/network";
 import { z } from "zod";
+
 
 function useDeployForm<TContract extends ValidContractClass>(
   deploySchema: TContract["schema"]["deploy"],
