@@ -9,18 +9,4 @@ export const menuRoutes = [
 		title: 'Projects',
 		href: [Routes.Projects],
 	},
-	// {
-	// 	title: 'GIVeconomy',
-	// 	href: [
-	// 		Routes.GIVECONOMY,
-	// 		Routes.GIVbacks,
-	// 		Routes.GIVfarm,
-	// 		Routes.GIVgarden,
-	// 		Routes.GIVstream,
-	// 	],
-	// },
-	// {
-	// 	title: 'Community',
-	// 	href: [Routes.Join],
-	// },
 ];

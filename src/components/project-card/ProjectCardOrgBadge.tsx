@@ -1,10 +1,10 @@
-import React from 'react';
-import styled from 'styled-components';
-import { neutralColors, Overline } from '@giveth/ui-design-system';
-
-import { ORGANIZATION } from '@/lib/constants/organizations';
 import { Flex, FlexCenter } from '@/components/styled-components/Flex';
 import { mediaQueries } from '@/lib/constants/constants';
+import { ORGANIZATION } from '@/lib/constants/organizations';
+import { neutralColors, Overline } from '@giveth/ui-design-system';
+import React from 'react';
+import styled from 'styled-components';
+
 
 interface IProjectCardOrgBadge {
 	isHover: boolean;
@@ -16,9 +16,6 @@ interface IProjectCardOrgBadge {
 const setOrgImage = (org?: string) => {
 	let img = '';
 	switch (org) {
-		case ORGANIZATION.givingBlock:
-			img = '/images/thegivingblock.svg';
-			break;
 		case ORGANIZATION.change:
 			img = '/images/change.png';
 			break;
@@ -26,6 +23,7 @@ const setOrgImage = (org?: string) => {
 	return img;
 };
 
+// TODO: Delete me
 const ProjectCardOrgBadge = ({
 	isHover,
 	organization,

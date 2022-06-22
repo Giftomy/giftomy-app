@@ -147,7 +147,7 @@ const noImgColors = [
 ];
 export const noImgColor = () => noImgColors[Math.floor(Math.random() * 3)];
 
-export const noImgIcon = '/images/GIV-icon-text.svg';
+export const noImgIcon = '/images/giftomy-icon-text.svg';
 
 export const isNoImg = (image: string | undefined) =>
 	!(image && !Number(image));

@@ -1,22 +1,17 @@
-import React from 'react';
-import {
-	Caption,
-	P,
-	neutralColors,
-	brandColors,
-	H6,
-} from '@giveth/ui-design-system';
-import styled from 'styled-components';
-
 import ProjectCardImage from './ProjectCardImage';
+// TODO: Delete me
 import ProjectCardOrgBadge from './ProjectCardOrgBadge';
 import { IProject } from '@/apollo/types/types';
-import { htmlToText } from '@/lib/helpers';
+import InternalLink from '@/components/InternalLink';
+import VerificationBadge from '@/components/badges/VerificationBadge';
 import { Shadow } from '@/components/styled-components/Shadow';
 import { mediaQueries } from '@/lib/constants/constants';
-import InternalLink from '@/components/InternalLink';
+import { htmlToText } from '@/lib/helpers';
 import { addressToUserView, slugToProjectView } from '@/lib/routeCreators';
-import VerificationBadge from '@/components/badges/VerificationBadge';
+import { Caption, P, neutralColors, brandColors, H6 } from '@giveth/ui-design-system';
+import React from 'react';
+import styled from 'styled-components';
+
 
 interface IProjectCard {
 	project: IProject;

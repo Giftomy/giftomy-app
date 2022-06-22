@@ -17,6 +17,7 @@ import Link from 'next/link';
 
 import { Shadow } from '@/components/styled-components/Shadow';
 import ProjectCardBadges from './ProjectCardLikeAndShareButtons';
+// TODO: Delete me
 import ProjectCardOrgBadge from './ProjectCardOrgBadge';
 import { IProject } from '@/apollo/types/types';
 import { calcBiggestUnitDifferenceTime, htmlToText } from '@/lib/helpers';

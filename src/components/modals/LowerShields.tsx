@@ -6,7 +6,6 @@ import { Modal } from '@/components/modals/Modal';
 import ShieldBlackIcon from '/public/images/icons/shield_black.svg';
 import ShieldWhiteIcon from '/public/images/icons/shield_white.svg';
 import { ETheme, useGeneral } from '@/context/general.context';
-import ShieldImage from '/public/images/brave-shield.png';
 
 const LowerShields = (props: { onClose: () => void }) => {
 	const { onClose } = props;
@@ -32,7 +31,6 @@ const LowerShields = (props: { onClose: () => void }) => {
 					Please lower shields on your browser in order to use Giftomy
 					with your Torus Wallet.
 				</Lead>
-				<Image src={ShieldImage} alt='shield icon' />
 				<Lead>
 					Brave Shields will prevent Torus wallet from opening the
 					window for you to complete your sign-in

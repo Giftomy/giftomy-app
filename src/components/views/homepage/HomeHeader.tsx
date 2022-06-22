@@ -100,7 +100,6 @@ const Wrapper = styled(FlexCenter)`
 	color: white;
 	flex-direction: column;
 	position: relative;
-	/* background-image: url('/images/GIV_homepage.svg'); */
 `;
 
 export default HomeHeader;

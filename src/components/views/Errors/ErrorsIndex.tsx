@@ -11,7 +11,7 @@ import error502 from '/public/images/icons/errors/502.svg';
 import error504 from '/public/images/icons/errors/504.svg';
 import twitter from '/public/images/icons/twitter.svg';
 import discord from '/public/images/icons/discord.svg';
-import givFontLogo from '/public/images/icons/giv_font_logo.svg';
+import giftomyFontLogo from '/public/images/icons/giftomy_font_logo.svg';
 import { useGeneral } from '@/context/general.context';
 import links from '@/lib/constants/links';
 import {
@@ -74,7 +74,7 @@ const ErrorsIndex = ({ statusCode }: IErrorProps) => {
 				<LogoContainer>
 					<Link href='/' passHref>
 						<StyledImage
-							src={givFontLogo}
+							src={giftomyFontLogo}
 							width='150'
 							height='50'
 							alt='Giftomy logo'

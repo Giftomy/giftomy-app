@@ -70,7 +70,6 @@ const StyledH4 = styled(H4)`
 	color: ${neutralColors.gray[100]};
 `;
 const Container = styled.div`
-	/* background-image: url('/images/creation_success.svg'); */
 `;
 const Wrapper = styled.div`
 	text-align: center;

@@ -62,11 +62,6 @@ const Footer = () => {
 								</LinkItem>
 							</a>
 						</Link>
-						<a href={links.GIVETH_DOCS}>
-							<LinkItem color={textColor}>
-								What is Giftomy?
-							</LinkItem>
-						</a>
 						<a href={links.USER_DOCS}>
 							<LinkItem color={textColor}>User Guides</LinkItem>
 						</a>
@@ -105,16 +100,6 @@ const Footer = () => {
 							<IconDocs size={24} color={textColor} />
 						</a> */}
 					</SocialContainer>
-					{/* <SupportUs>
-						<Caption medium>Support us</Caption>
-						<Link href={links.SUPPORT_US}>
-							<a>
-								<CaptionRed medium>
-									&nbsp;with your Donation
-								</CaptionRed>
-							</a>
-						</Link>
-					</SupportUs> */}
 				</RightContainer>
 			</ContainerStyled>
 		</FooterContainer>

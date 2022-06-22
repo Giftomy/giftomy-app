@@ -1,26 +1,16 @@
+import { ErrorContainer, ArcMustardBottom, ArcMustardTop, SocialContainer, TextContainer, CustomGearImage, CustomGearsImage, MustardSpan, LogoContainer, StyledImage } from './ErrorsIndex.sc';
+import discord from '/public/images/icons/discord.svg';
+import giftomyFontLogo from '/public/images/icons/giftomy_font_logo.svg';
+import medium from '/public/images/icons/medium.svg';
+import twitter from '/public/images/icons/twitter.svg';
+import { useGeneral } from '@/context/general.context';
+import links from '@/lib/constants/links';
 import { H1, H4 } from '@giveth/ui-design-system';
 import Image from 'next/image';
-import { useEffect } from 'react';
 import Link from 'next/link';
-import links from '@/lib/constants/links';
-import { useGeneral } from '@/context/general.context';
-import givFontLogo from '/public/images/icons/giv_font_logo.svg';
-import twitter from '/public/images/icons/twitter.svg';
-import discord from '/public/images/icons/discord.svg';
-import medium from '/public/images/icons/medium.svg';
+import { useEffect } from 'react';
 
-import {
-	ErrorContainer,
-	ArcMustardBottom,
-	ArcMustardTop,
-	SocialContainer,
-	TextContainer,
-	CustomGearImage,
-	CustomGearsImage,
-	MustardSpan,
-	LogoContainer,
-	StyledImage,
-} from './ErrorsIndex.sc';
+
 const MaintenanceIndex = () => {
 	const { setShowFooter, setShowHeader } = useGeneral();
 	const {
@@ -66,7 +56,7 @@ const MaintenanceIndex = () => {
 				<LogoContainer>
 					<Link href='/' passHref>
 						<StyledImage
-							src={givFontLogo}
+							src={giftomyFontLogo}
 							width='150'
 							height='50'
 							alt='Giftomy logo'
