@@ -257,7 +257,7 @@ const ProjectDonateCard = ({
           <></>
           // <FullButton
           // 	onClick={() =>
-          // 		router.push(slugToProjectDonate(slug || ''))
+          // 		router.push(slugToProjectNFT(slug || ''))
           // 	}
           // 	label='Collect NFT'
           // 	disabled={!isActive}

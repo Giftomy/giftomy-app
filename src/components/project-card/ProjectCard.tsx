@@ -23,7 +23,6 @@ import { calcBiggestUnitDifferenceTime, htmlToText } from '@/lib/helpers';
 import ProjectCardImage from './ProjectCardImage';
 import {
 	addressToUserView,
-	slugToProjectDonate,
 	slugToProjectView,
 } from '@/lib/routeCreators';
 import { Row } from '@/components/Grid';

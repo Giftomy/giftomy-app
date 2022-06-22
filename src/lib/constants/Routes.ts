@@ -1,12 +1,10 @@
 const MyAccount = '/account';
-const GIVstream = '/givstream';
 
 const Routes = {
 	Home: '/',
 	CreateProject: '/create',
 	Projects: '/projects',
 	Project: '/project',
-	Donate: `/collect`,
 	Collect: `/collect`,
 	User: `/user`,
 	AboutUs: '/about',
@@ -17,14 +15,7 @@ const Routes = {
 	Partnerships: '/partnerships',
 	MyAccount,
 	MyProjects: MyAccount + '?tab=projects',
-	MyDonations: MyAccount + '?tab=donations',
 	Onboard: '/onboard',
-	GIVECONOMY: '/giveconomy',
-	GIVgarden: '/givgarden',
-	GIVfarm: '/givfarm',
-	GIVstream,
-	GIVstream_FlowRate: GIVstream + '#flowRate',
-	GIVbacks: '/givbacks',
 	Claim: '/claim',
 };
 

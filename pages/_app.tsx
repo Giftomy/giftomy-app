@@ -5,7 +5,6 @@ import SubgraphController from "@/components/controller/subgraph.ctrl";
 import { ModalProvider } from "@/context/ModalProvider";
 import { UserProvider } from "@/context/UserProvider";
 import { GeneralProvider } from "@/context/general.context";
-import { PriceProvider } from "@/context/price.context";
 import { store } from '@/features/store';
 import { ApolloProvider } from "@apollo/client";
 import { ChakraProvider } from "@chakra-ui/react";
@@ -70,24 +69,22 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
         <GeneralProvider>
           <ApolloProvider client={apolloClient}>
             <Web3ReactProvider getLibrary={getLibrary}>
-              <PriceProvider>
-                <UserProvider>
-                  <ModalProvider>
-                    <ChakraProvider theme={chakraTheme}>
-                      <MoralisProvider
-                        serverUrl={process.env.NEXT_PUBLIC_SERVER_URL}
-                        appId={process.env.NEXT_PUBLIC_APP_ID}
-                      >
-                        <SubgraphController />
-                        <AppLayout>
-                          <Component {...pageProps} />
-                        </AppLayout>
-                        {/* {getLayout(<Component {...pageProps} />)} */}
-                      </MoralisProvider>
-                    </ChakraProvider>
-                  </ModalProvider>
-                </UserProvider>
-              </PriceProvider>
+              <UserProvider>
+                <ModalProvider>
+                  <ChakraProvider theme={chakraTheme}>
+                    <MoralisProvider
+                      serverUrl={process.env.NEXT_PUBLIC_SERVER_URL}
+                      appId={process.env.NEXT_PUBLIC_APP_ID}
+                    >
+                      <SubgraphController />
+                      <AppLayout>
+                        <Component {...pageProps} />
+                      </AppLayout>
+                      {/* {getLayout(<Component {...pageProps} />)} */}
+                    </MoralisProvider>
+                  </ChakraProvider>
+                </ModalProvider>
+              </UserProvider>
             </Web3ReactProvider>
           </ApolloProvider>
         </GeneralProvider>

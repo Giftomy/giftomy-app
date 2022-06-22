@@ -8,10 +8,6 @@ export const slugToProjectDashboard = (slug: string) => {
 	return `${Routes.Project}/${slug}/dashboard`;
 };
 
-export const slugToProjectDonate = (slug: string) => {
-	return Routes.Collect + '/' + slug;
-};
-
 export const idToProjectEdit = (id?: string) => {
 	return Routes.Project + '/' + id + '/edit';
 };
