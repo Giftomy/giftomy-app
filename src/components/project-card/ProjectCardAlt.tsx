@@ -1,6 +1,4 @@
 import ProjectCardImage from './ProjectCardImage';
-// TODO: Delete me
-import ProjectCardOrgBadge from './ProjectCardOrgBadge';
 import { IProject } from '@/apollo/types/types';
 import InternalLink from '@/components/InternalLink';
 import VerificationBadge from '@/components/badges/VerificationBadge';
@@ -29,11 +27,9 @@ const ProjectCard = (props: IProjectCard) => {
 		adminUser,
 		slug,
 		totalDonations,
-		organization,
 	} = project;
 
 	const { name, walletAddress } = adminUser || {};
-	const orgLabel = organization?.label;
 
 	return (
 		<Wrapper isNew={isNew}>
@@ -42,11 +38,6 @@ const ProjectCard = (props: IProjectCard) => {
 					<ProjectCardImage image={image} />
 				</InternalLink>
 			</ImagePlaceholder>
-			<ProjectCardOrgBadge
-				organization={orgLabel}
-				isHover={false}
-				isAbsolute={true}
-			/>
 			{!isNew && (
 				<BadgeContainer>
 					{verified && <VerificationBadge verified />}

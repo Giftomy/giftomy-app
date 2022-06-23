@@ -11,14 +11,11 @@ import {
 	Subline,
 	IconVerified,
 	semanticColors,
-	IconGIVBack,
 } from '@giveth/ui-design-system';
 import Link from 'next/link';
 
 import { Shadow } from '@/components/styled-components/Shadow';
 import ProjectCardBadges from './ProjectCardLikeAndShareButtons';
-// TODO: Delete me
-import ProjectCardOrgBadge from './ProjectCardOrgBadge';
 import { IProject } from '@/apollo/types/types';
 import { calcBiggestUnitDifferenceTime, htmlToText } from '@/lib/helpers';
 import ProjectCardImage from './ProjectCardImage';
@@ -27,7 +24,6 @@ import {
 	slugToProjectView,
 } from '@/lib/routeCreators';
 import { Row } from '@/components/Grid';
-import { ORGANIZATION } from '@/lib/constants/organizations';
 import { mediaQueries } from '@/lib/constants/constants';
 import { Flex } from '../styled-components/Flex';
 
@@ -54,11 +50,7 @@ const ProjectCard = (props: IProjectCard) => {
 
 	const [isHover, setIsHover] = useState(false);
 
-	const isForeignOrg =
-		organization?.label !== ORGANIZATION.trace &&
-		organization?.label !== ORGANIZATION.giveth;
 	const name = adminUser?.name;
-
 	return (
 		<Link href={slugToProjectView(slug)} passHref>
 			<Wrapper
@@ -67,17 +59,10 @@ const ProjectCard = (props: IProjectCard) => {
 			>
 				<ImagePlaceholder>
 					<ProjectCardBadges project={project} />
-					<ProjectCardOrgBadge
-						organization={organization?.label}
-						isHover={isHover}
-					/>
 					<ProjectCardImage image={image} />
 				</ImagePlaceholder>
 				<CardBody
 					isHover={isHover}
-					isOtherOrganization={
-						organization?.label !== ORGANIZATION.giveth
-					}
 				>
 					<div style={{ position: 'relative' }}>
 						<LastUpdatedContainer isHover={isHover}>
@@ -91,7 +76,7 @@ const ProjectCard = (props: IProjectCard) => {
 							</Title>
 						</a>
 					</div>
-					{adminUser && !isForeignOrg ? (
+					{adminUser ? (
 						<Link
 							href={addressToUserView(adminUser?.walletAddress)}
 							passHref
@@ -218,7 +203,6 @@ const Description = styled(P)`
 `;
 
 const CardBody = styled.div<{
-	isOtherOrganization?: boolean;
 	isHover?: boolean;
 }>`
 	padding: 26px;
@@ -229,8 +213,7 @@ const CardBody = styled.div<{
 	top: 200px;
 	background-color: ${neutralColors.gray[100]};
 	transition: top 0.3s ease;
-	border-radius: ${props =>
-		props.isOtherOrganization ? '0 12px 12px 12px' : '12px'};
+	border-radius: 12px;
 	${mediaQueries.desktop} {
 		top: ${props => (props.isHover ? '130px' : '200px')};
 	}
