@@ -18,10 +18,10 @@ const PublicProfileContributeCard: FC<IUserPublicProfileView> = ({
 			{!myAccount && (
 				<UserContributeTitle
 					weight={700}
-				>{`${userName}’s nfts & projects`}</UserContributeTitle>
+				>{`${userName}’s NFTs & Projects`}</UserContributeTitle>
 			)}
 
-			<ContributeCardContainer>
+			{/* <ContributeCardContainer>
 				<ContributeCard>
 					<ContributeCardTitles>Projects</ContributeCardTitles>
 					<ContributeCardTitles>
@@ -30,7 +30,7 @@ const PublicProfileContributeCard: FC<IUserPublicProfileView> = ({
 					<H2>{user.projectsCount || 0}</H2>
 					<H5>${formatUSD(user.totalReceived)}</H5>
 				</ContributeCard>
-			</ContributeCardContainer>
+			</ContributeCardContainer> */}
 		</>
 	);
 };
