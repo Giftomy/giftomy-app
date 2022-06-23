@@ -1,11 +1,9 @@
 import "../styles/globals.css";
 import chakraTheme from "../theme";
 import { useApollo } from "@/apollo/apolloClient";
-import SubgraphController from "@/components/controller/subgraph.ctrl";
 import { ModalProvider } from "@/context/ModalProvider";
 import { UserProvider } from "@/context/UserProvider";
 import { GeneralProvider } from "@/context/general.context";
-import { store } from '@/features/store';
 import { ApolloProvider } from "@apollo/client";
 import { ChakraProvider } from "@chakra-ui/react";
 import { ExternalProvider, Web3Provider } from "@ethersproject/providers";
@@ -19,8 +17,6 @@ import NProgress from 'nprogress';
 import React, { ReactElement, ReactNode, useEffect } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { MoralisProvider } from 'react-moralis';
-import { Provider } from 'react-redux';
-
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -65,30 +61,27 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
-      <Provider store={store}>
-        <GeneralProvider>
-          <ApolloProvider client={apolloClient}>
-            <Web3ReactProvider getLibrary={getLibrary}>
-              <UserProvider>
-                <ModalProvider>
-                  <ChakraProvider theme={chakraTheme}>
-                    <MoralisProvider
-                      serverUrl={process.env.NEXT_PUBLIC_SERVER_URL}
-                      appId={process.env.NEXT_PUBLIC_APP_ID}
-                    >
-                      <SubgraphController />
-                      <AppLayout>
-                        <Component {...pageProps} />
-                      </AppLayout>
-                      {/* {getLayout(<Component {...pageProps} />)} */}
-                    </MoralisProvider>
-                  </ChakraProvider>
-                </ModalProvider>
-              </UserProvider>
-            </Web3ReactProvider>
-          </ApolloProvider>
-        </GeneralProvider>
-      </Provider>
+      <GeneralProvider>
+        <ApolloProvider client={apolloClient}>
+          <Web3ReactProvider getLibrary={getLibrary}>
+            <UserProvider>
+              <ModalProvider>
+                <ChakraProvider theme={chakraTheme}>
+                  <MoralisProvider
+                    serverUrl={process.env.NEXT_PUBLIC_SERVER_URL}
+                    appId={process.env.NEXT_PUBLIC_APP_ID}
+                  >
+                    <AppLayout>
+                      <Component {...pageProps} />
+                    </AppLayout>
+                    {/* {getLayout(<Component {...pageProps} />)} */}
+                  </MoralisProvider>
+                </ChakraProvider>
+              </ModalProvider>
+            </UserProvider>
+          </Web3ReactProvider>
+        </ApolloProvider>
+      </GeneralProvider>
       <Toaster containerStyle={{ top: "80px" }} />
     </>
   );

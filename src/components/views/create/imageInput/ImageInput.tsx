@@ -22,7 +22,7 @@ const ImageSearch = dynamic(() => import('./ImageSearch'), {
 });
 
 const unsplashOrgUrl = 'https://unsplash.com/';
-const unsplashReferral = '?utm_source=giveth.io&utm_medium=referral';
+const unsplashReferral = '?utm_source=giftomy.xyz&utm_medium=referral';
 export const unsplashUrl = `${unsplashOrgUrl}${unsplashReferral}`;
 
 const unsplashPhoto = (i: string) =>
