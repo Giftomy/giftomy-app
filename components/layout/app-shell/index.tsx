@@ -1,4 +1,3 @@
-import { Breadcrumbs } from "./Breadcrumbs";
 import { FooterWrapper } from "@/components/Footer/FooterWrapper";
 import { HeaderWrapper } from "@/components/Header/HeaderWrapper";
 import { Container, Flex } from "@chakra-ui/react";
@@ -29,7 +28,6 @@ export const AppShell: ComponentWithChildren = ({ children }) => {
       >
         <HeaderWrapper />
         <Container flexGrow={1} as='main' maxW='100%' p='0' m='0'>
-          <Breadcrumbs />
           {children}
         </Container>
         <InsufficientFunds />

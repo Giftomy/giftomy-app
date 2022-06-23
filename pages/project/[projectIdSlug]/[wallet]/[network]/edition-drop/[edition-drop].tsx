@@ -7,11 +7,13 @@ import { EditionDropBatchUpload } from "components/batch-upload/EditionDropBatch
 import { MintButton } from "components/contract-pages/action-buttons/MintButton";
 import { ContractLayout } from "components/contract-pages/contract-layout";
 import { ContractItemsTable } from "components/contract-pages/table";
+import { Breadcrumbs } from "components/layout/app-shell/Breadcrumbs";
 import { useTrack } from "hooks/analytics/useTrack";
 import { useSingleQueryParam } from "hooks/useQueryParam";
 import React, { ReactElement } from "react";
-import { RiCheckboxMultipleBlankLine } from "react-icons/ri";
-import { Button } from "tw-components";
+import { RiCheckboxMultipleBlankLine } from 'react-icons/ri';
+import { Button } from 'tw-components';
+
 
 export default function EditionDropPage() {
   const {
@@ -35,7 +37,7 @@ export default function EditionDropPage() {
         onClose={onBatchClose}
         contract={contract}
       />
-
+      <Breadcrumbs />
       <ContractLayout
         contract={contract}
         metadata={metadata}

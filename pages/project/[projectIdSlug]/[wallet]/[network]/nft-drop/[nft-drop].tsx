@@ -10,14 +10,14 @@ import { MismatchButton } from "components/buttons/MismatchButton";
 import { MintButton } from "components/contract-pages/action-buttons/MintButton";
 import { ContractLayout } from "components/contract-pages/contract-layout";
 import { ContractItemsTable } from "components/contract-pages/table";
+import { Breadcrumbs } from "components/layout/app-shell/Breadcrumbs";
 import { ContractPageNotice } from "components/notices/ContractPageNotice";
 import { useTrack } from "hooks/analytics/useTrack";
 import { useSingleQueryParam } from "hooks/useQueryParam";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { RiCheckboxMultipleBlankLine } from "react-icons/ri";
-import { Button, Card } from "tw-components";
-
+import { Button, Card } from 'tw-components';
 
 export default function NFTDropPage() {
   const {
@@ -58,7 +58,7 @@ export default function NFTDropPage() {
         contract={contract}
         batch={selectedBatch as BatchToReveal}
       />
-
+      <Breadcrumbs />
       <ContractLayout
         contract={contract}
         metadata={metadata}
