@@ -18,8 +18,6 @@ export const FETCH_HOME_PROJECTS = gql`
 				slug
 				description
 				verified
-				totalDonations
-				traceCampaignId
 				reaction {
 					id
 					userId
@@ -67,8 +65,6 @@ export const FETCH_ALL_PROJECTS = gql`
 				slug
 				description
 				verified
-				totalDonations
-				traceCampaignId
 				reaction {
 					id
 					userId
@@ -105,18 +101,14 @@ export const FETCH_PROJECT_BY_WALLET = gql`
 			slug
 			description
 			verified
-			traceCampaignId
 			walletAddress
 			totalProjectUpdates
-			totalDonations
-			totalTraceDonations
 			creationDate
 			reaction {
 				id
 				userId
 			}
 			totalReactions
-			traceCampaignId
 			categories {
 				name
 			}
@@ -150,18 +142,14 @@ export const FETCH_PROJECT_BY_SLUG = gql`
 			slug
 			description
 			verified
-			traceCampaignId
 			walletAddress
 			totalProjectUpdates
-			totalDonations
-			totalTraceDonations
 			creationDate
 			reaction {
 				id
 				userId
 			}
 			totalReactions
-			traceCampaignId
 			categories {
 				name
 			}
@@ -308,7 +296,6 @@ export const FETCH_USER_LIKED_PROJECTS = gql`
 				walletAddress
 				impactLocation
 				listed
-				totalDonations
 				categories {
 					name
 				}
@@ -461,7 +448,6 @@ export const SIMILAR_PROJECTS = gql`
 					name
 					walletAddress
 				}
-				totalDonations
 				updatedAt
 				organization {
 					name

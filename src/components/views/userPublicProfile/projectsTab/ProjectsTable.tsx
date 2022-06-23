@@ -44,12 +44,8 @@ const ProjectsTable: FC<IProjectsTable> = ({
 				Likes{' '}
 				<img src='/images/heart-black.svg' width='24px' height='24px' />
 			</TableHeader>
-			<TableHeader onClick={() => changeOrder(EOrderBy.Donations)}>
-				Total Sold
-				<SortIcon order={order} title={EOrderBy.Donations} />
-			</TableHeader>
 			<TableHeader>Actions</TableHeader>
-			<TableHeader></TableHeader>
+			{/* <TableHeader>Listing</TableHeader> */}
 			{projects?.map(project => {
 				const status = project.status.name;
 				const isCancelled = status === EProjectStatus.CANCEL;
@@ -72,9 +68,6 @@ const ProjectsTable: FC<IProjectsTable> = ({
 							</ProjectTitle>
 						</TableCell>
 						<TableCell>{project.totalReactions}</TableCell>
-						<TableCell bold>
-							{formatUSD(project.totalDonations)} USD
-						</TableCell>
 						<TableCell>
 							<Actions isCancelled={isCancelled}>
 								<InternalLink
@@ -89,9 +82,9 @@ const ProjectsTable: FC<IProjectsTable> = ({
 								/>
 							</Actions>
 						</TableCell>
-						<TableCell>
-							{/* <ListingBadge listed={project.listed!} /> */}
-						</TableCell>
+						{/* <TableCell>
+							<ListingBadge listed={project.listed!} />
+						</TableCell> */}
 					</RowWrapper>
 				);
 			})}
@@ -101,7 +94,7 @@ const ProjectsTable: FC<IProjectsTable> = ({
 
 const Container = styled.div`
 	display: grid;
-	grid-template-columns: 1.5fr 1fr 3fr 1.1fr 1.5fr 1.75fr 1fr;
+	grid-template-columns: 1.5fr 1fr 1.5fr 1.75fr 1fr;
 	overflow: auto;
 	min-width: 900px;
 

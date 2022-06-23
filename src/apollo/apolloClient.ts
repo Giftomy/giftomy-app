@@ -62,7 +62,6 @@ function createApolloClient() {
 				QualityScore
 				Verified
 				Hearts
-				Donations
 				RecentlyAdded
 				OldProjects
 			}

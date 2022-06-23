@@ -25,7 +25,6 @@ export const FirstWelcomeModal: FC<IModal> = ({ setShowModal }) => {
 	return (
 		<Modal
 			setShowModal={setShowModal}
-			headerIcon={<img src='/images/icons/donate.svg' />}
 			headerTitle={`Let's Gift`}
 			headerTitlePosition='left'
 		>
@@ -60,7 +59,7 @@ export const FirstWelcomeModal: FC<IModal> = ({ setShowModal }) => {
 							>
 								new project
 							</InlineLink>{' '}
-							and receive donations.
+							and sell NFTs.
 						</Paragraph>
 					</li>
 
@@ -78,7 +77,7 @@ export const FirstWelcomeModal: FC<IModal> = ({ setShowModal }) => {
 						</Paragraph>
 					</li>
 				</Bullets>
-				<DonateButton
+				<BrowserNFTButton
 					label='Browser NFTs'
 					onClick={() => {
 						router.push('/');
@@ -106,7 +105,7 @@ const LeadTitle = styled(Lead)`
 	margin-bottom: 24px;
 `;
 
-const DonateButton = styled(Button)`
+const BrowserNFTButton = styled(Button)`
 	width: 300px;
 	height: 48px;
 	margin: 48px auto 0;

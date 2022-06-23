@@ -3,8 +3,8 @@ import { IconVerified, Overline } from '@giveth/ui-design-system';
 import styled from 'styled-components';
 import { FlexCenter } from '../styled-components/Flex';
 
-const VerificationBadge = (props: { verified?: boolean; trace?: boolean }) => {
-	const { verified, trace } = props;
+const VerificationBadge = (props: { verified?: boolean }) => {
+	const { verified } = props;
 	const text = verified ? 'VERIFIED' : '';
 
 	return (

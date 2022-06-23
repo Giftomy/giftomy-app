@@ -42,9 +42,7 @@ const ProjectCard = (props: IProjectCard) => {
 		image,
 		slug,
 		adminUser,
-		totalDonations,
 		updatedAt,
-		organization,
 		verified,
 	} = project;
 
@@ -89,13 +87,6 @@ const ProjectCard = (props: IProjectCard) => {
 						</Author>
 					)}
 					<Description>{htmlToText(description)}</Description>
-					<Flex alignItems='center' gap='4px'>
-						<PriceText>
-							${Math.ceil(totalDonations as number)}
-						</PriceText>
-						<RaisedText> Sold</RaisedText>
-					</Flex>
-					<Hr />
 					<BadgesContainer gap='16px'>
 						{verified && (
 							<>
@@ -106,21 +97,12 @@ const ProjectCard = (props: IProjectCard) => {
 									/>
 									<VerifiedText>VERIFIED</VerifiedText>
 								</Flex>
-								{/* <Flex alignItems='center' gap='2px'>
-									<GivBackIconContainer>
-										<IconGIVBack
-											size={24}
-											color={brandColors.giv[500]}
-										/>
-									</GivBackIconContainer>
-									<GivBackText>GIVBACK ELIGIBLE</GivBackText>
-								</Flex> */}
 							</>
 						)}
 					</BadgesContainer>
 					<ActionButtons>
 						<Link href={slugToProjectView(slug)} passHref>
-							<CustomizedDonateButton
+							<CustomizedStyledButton
 								linkType='primary'
 								size='small'
 								label='View'
@@ -133,39 +115,19 @@ const ProjectCard = (props: IProjectCard) => {
 	);
 };
 
-const DonateButton = styled(ButtonLink)`
+const StyledButton = styled(ButtonLink)`
 	flex: 1;
 `;
 
-const CustomizedDonateButton = styled(DonateButton)`
+const CustomizedStyledButton = styled(StyledButton)`
 	margin: 25px 0;
 	${mediaQueries.desktop} {
 		margin: 25px 12px;
 	}
 `;
 
-const PriceText = styled(B)`
-	display: inline;
-	color: ${neutralColors.gray[800]};
-`;
-
-const RaisedText = styled(Subline)`
-	display: inline;
-	color: ${neutralColors.gray[700]};
-`;
-
 const VerifiedText = styled(Subline)`
 	color: ${semanticColors.jade[500]};
-`;
-
-const GivBackText = styled(Subline)`
-	color: ${brandColors.giv[500]};
-`;
-
-const GivBackIconContainer = styled.div`
-	display: flex;
-	align-items: center;
-	transform: scale(0.8);
 `;
 
 const BadgesContainer = styled(Flex)`

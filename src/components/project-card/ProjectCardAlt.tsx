@@ -23,10 +23,8 @@ const ProjectCard = (props: IProjectCard) => {
 		description,
 		image,
 		verified,
-		traceCampaignId,
 		adminUser,
 		slug,
-		totalDonations,
 	} = project;
 
 	const { name, walletAddress } = adminUser || {};
@@ -41,7 +39,6 @@ const ProjectCard = (props: IProjectCard) => {
 			{!isNew && (
 				<BadgeContainer>
 					{verified && <VerificationBadge verified />}
-					{traceCampaignId && <VerificationBadge trace />}
 				</BadgeContainer>
 			)}
 			<CardBody>
@@ -54,11 +51,6 @@ const ProjectCard = (props: IProjectCard) => {
 					</InternalLink>
 				)}
 				<Description>{htmlToText(description)}</Description>
-				{!isNew && (
-					<BodyCaption>
-						Raised: ${totalDonations?.toLocaleString()}
-					</BodyCaption>
-				)}
 			</CardBody>
 		</Wrapper>
 	);

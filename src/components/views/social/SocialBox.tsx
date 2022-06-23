@@ -23,7 +23,7 @@ const SocialBox = (props: any) => {
 			<BLead>
 				{props?.isSuccess
 					? 'Share this with your friends'
-					: `Can't donate? Share this page instead.`}
+					: `Can't proceed? Share this page instead.`}
 			</BLead>
 			<SocialItems>
 				<SocialItem isSuccess={props.isSuccess}>

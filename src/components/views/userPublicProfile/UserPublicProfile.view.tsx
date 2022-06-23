@@ -31,7 +31,6 @@ export enum EOrderBy {
 	TokenAmount = 'TokenAmount',
 	UsdAmount = 'UsdAmount',
 	CreationDate = 'CreationDate',
-	Donations = 'Donations',
 }
 
 export interface IOrder {

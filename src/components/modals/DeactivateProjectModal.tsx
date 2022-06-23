@@ -225,8 +225,7 @@ const DeactivatingContent = ({ show }: IDeactivatingContent) => (
 
 const bulletPointsText = [
 	'Your project will be unlisted from Giftomy',
-	'All donors will be notified about this action',
-	'Your project will be accessible only via direct link and donations will be disabled',
+	'Your project will be accessible only via direct link',
 	'If you decide to activate it later, your project will have to be reviewed again',
 ];
 

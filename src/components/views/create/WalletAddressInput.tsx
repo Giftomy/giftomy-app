@@ -27,11 +27,11 @@ const WalletAddressInput = (props: {
 
 	return (
 		<>
-			<H5 id={ECreateErrFields.WALLET_ADDRESS}>Receiving funds</H5>
+			<H5 id={ECreateErrFields.WALLET_ADDRESS}>Receiving tokens</H5>
 			<div>
 				<CaptionContainer>
 					You can set a custom Ethereum address or ENS to receive
-					donations.{' '}
+					tokens.{' '}
 				</CaptionContainer>
 			</div>
 

@@ -1,9 +1,7 @@
 import {
-	EDonationStatus,
-	EDonationType,
 	EProjectStatus,
 } from '@/apollo/types/gqlEnums';
-
+// todo
 export interface IProject {
 	id?: string;
 	title?: string;
@@ -27,14 +25,8 @@ export interface IProject {
 		name?: string;
 		walletAddress?: string;
 	};
-	donations: {
-		id?: string;
-	}[];
 	users: IUser[];
-	totalDonations?: number;
-	totalTraceDonations?: number;
 	totalProjectUpdates?: number;
-	traceCampaignId: string | null;
 	status: {
 		id?: string;
 		name?: EProjectStatus;
@@ -87,46 +79,14 @@ export interface IUser {
 	location?: string;
 	token?: string;
 	userId?: string;
-	totalDonated?: number;
 	totalReceived?: number;
 	projectsCount?: number;
-	donationsCount?: number;
 	likedProjectsCount?: number;
 }
 
 export interface IReaction {
 	id: string;
 	userId: string;
-}
-
-export interface IDonation {
-	id: string;
-	user: {
-		id?: string;
-		email?: string;
-		name?: string;
-		firstName?: string;
-	};
-	fromWalletAddress: string;
-	amount: number;
-	currency: string;
-	valueUsd?: number;
-	transactionId: string;
-	transactionNetworkId: number;
-	createdAt: string;
-	donationType?: EDonationType;
-	anonymous?: boolean;
-	status: EDonationStatus;
-}
-
-export interface IWalletDonation extends IDonation {
-	anonymous: boolean;
-	priceEth: number;
-	priceUsd: number;
-	project: IProject;
-	toWalletAddress: string;
-	valueEth: number;
-	valueUsd: number;
 }
 
 export interface IMediumBlogPost {

@@ -22,14 +22,6 @@ const PublicProfileContributeCard: FC<IUserPublicProfileView> = ({
 			)}
 
 			<ContributeCardContainer>
-				{/* <ContributeCard>
-					<ContributeCardTitles>donations</ContributeCardTitles>
-					<ContributeCardTitles>
-						Total amount donated
-					</ContributeCardTitles>
-					<H2>{user.donationsCount || 0}</H2>
-					<H5>${formatUSD(user.totalDonated)}</H5>
-				</ContributeCard> */}
 				<ContributeCard>
 					<ContributeCardTitles>Projects</ContributeCardTitles>
 					<ContributeCardTitles>

@@ -1,9 +1,7 @@
 import {
 	ICategory,
-	IDonation,
 	IProject,
 	IProjectUpdate,
-	IWalletDonation,
 } from './types';
 
 export interface IFetchAllProjects {
@@ -20,24 +18,8 @@ export interface IFetchProjectUpdates {
 	projectUpdate: IProjectUpdate;
 }
 
-export interface IDonationsByProjectIdGQL {
-	data: {
-		donationsByProjectId: IDonationsByProjectId;
-	};
-}
-
-export interface IDonationsByProjectId {
-	donations: IDonation[];
-	totalCount: number;
-}
-
 export interface IUserProjects {
 	projects: IProject[];
-	totalCount: number;
-}
-
-export interface IUserDonations {
-	donations: IWalletDonation[];
 	totalCount: number;
 }
 

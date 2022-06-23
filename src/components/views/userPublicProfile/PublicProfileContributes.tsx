@@ -1,6 +1,5 @@
 import PublicProfileNFTsTab from './PublicProfileNFTsTab';
 import PublicProfileLikedTab from './PublicProfileLikedTab';
-import PublicProfileOverviewTab from './PublicProfileOverviewTab';
 import { IUserPublicProfileView } from './UserPublicProfile.view';
 import PublicProfileProjectsTab from './projectsTab/PublicProfileProjectsTab';
 import { Container } from '@/components/Grid';
@@ -13,7 +12,6 @@ import styled from 'styled-components';
 
 
 enum EPublicProfile {
-	// OVERVIEW,
 	PROJECTS,
 	LIKED,
 	NFTS,
@@ -59,14 +57,6 @@ const PublicProfileContributes: FC<IUserPublicProfileView> = ({
 				<ContributeCard user={user} />
 			)}
 			<PublicProfileTabsContainer>
-				{/* {myAccount && (
-					<PublicProfileTab
-						active={tab === EPublicProfile.OVERVIEW}
-						onClick={() => setTab(EPublicProfile.OVERVIEW)}
-					>
-						Overview
-					</PublicProfileTab>
-				)} */}
 				<PublicProfileTab
 					active={tab === EPublicProfile.PROJECTS}
 					onClick={() => setTab(EPublicProfile.PROJECTS)}
@@ -101,9 +91,6 @@ const PublicProfileContributes: FC<IUserPublicProfileView> = ({
 					)} */}
 				</PublicProfileTab>
 			</PublicProfileTabsContainer>
-			{/* {tab === EPublicProfile.OVERVIEW && (
-				<PublicProfileOverviewTab user={user} />
-			)} */}
 			{tab === EPublicProfile.PROJECTS && (
 				<PublicProfileProjectsTab user={user} myAccount={myAccount} />
 			)}

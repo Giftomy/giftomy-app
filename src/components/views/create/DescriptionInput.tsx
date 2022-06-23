@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
 	H5,
 	Caption,
@@ -9,7 +9,6 @@ import dynamic from 'next/dynamic';
 import styled from 'styled-components';
 
 import { InputContainer, InputErrorMessage, Label } from './Create.sc';
-import { GoodProjectDescription } from '@/components/modals/GoodProjectDescription';
 import { ECreateErrFields } from '@/components/views/create/CreateProject';
 
 const RichTextInput = dynamic(() => import('@/components/RichTextInput'), {
@@ -21,24 +20,14 @@ const DescriptionInput = (props: {
 	error: string;
 	value: string;
 }) => {
-	const [showModal, setShowModal] = useState(false);
 	const { value, setValue, error } = props;
 	return (
 		<>
-			{showModal && (
-				<GoodProjectDescription
-					setShowModal={val => setShowModal(val)}
-				/>
-			)}
-
 			<H5 id={ECreateErrFields.DESCRIPTION}>
 				Tell us about your project...
 			</H5>
 			<CaptionContainer>
-				Aim for 200-500 words.{' '}
-				{/* <span onClick={() => setShowModal(true)}>
-					How to write a good project description.
-				</span> */}
+				Aim for 200-500 words.
 			</CaptionContainer>
 			<InputContainerStyled error={error}>
 				<Label>Project story</Label>

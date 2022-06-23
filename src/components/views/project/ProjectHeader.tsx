@@ -11,13 +11,12 @@ import { addressToUserView } from '@/lib/routeCreators';
 
 const ProjectHeader = (props: { project?: IProject }) => {
 	const { project } = props;
-	const { title, verified, image, adminUser, traceCampaignId } =
+	const { title, verified, image, adminUser } =
 		project || {};
 	const [adjustTitle, setAdjustTitle] = useState<boolean>(false);
 	const containerRef = useRef(null);
 
 	const name = adminUser?.name;
-	const traceable = !!traceCampaignId;
 
 	useEffect(() => {
 		const observerHandler = (entries: IntersectionObserverEntry[]) => {
@@ -43,7 +42,6 @@ const ProjectHeader = (props: { project?: IProject }) => {
 				<TitleContainer>
 					<BadgeSection>
 						{verified && <VerificationBadge verified />}
-						{traceable && <VerificationBadge trace />}
 					</BadgeSection>
 					<Title fixSize={adjustTitle} weight={700}>
 						{title}
