@@ -1,5 +1,4 @@
 import { ConnectWallet, useContractList, useContractMetadataWithAddress, useWeb3 } from "@3rdweb-sdk/react";
-import { useProjects } from "@3rdweb-sdk/react/hooks/useProjects";
 import { useRemoveContractMutation } from "@3rdweb-sdk/react/hooks/useRegistry";
 import { ChevronRightIcon } from "@chakra-ui/icons";
 import { Box, Center, Container, Flex, Icon, IconButton, Image, Link, LinkBox, LinkOverlay, Menu, MenuButton, MenuItemOption, MenuList, MenuOptionGroup, Popover, PopoverAnchor, PopoverArrow, PopoverBody, PopoverContent, SimpleGrid, Skeleton, Stack, Tab, TabList, TabPanel, TabPanels, Table, Tabs, Tbody, Td, Th, Thead, Tr, useDisclosure } from "@chakra-ui/react";
@@ -34,28 +33,9 @@ export default function Dashboard() {
   const {
     query: { projectIdSlug },
   } = router;
-  const wallet = useSingleQueryParam("wallet") || "dashboard";
   const { address } = useWeb3();
 	// const { account: address } = useWeb3React();
-  const { data: projects } = useProjects(
-    wallet === "dashboard" ? address : wallet
-  );
-
-  // redirect anything that is not a valid address or `/dashboard` to `/dashboard`
-  useEffect(() => {
-    if (!utils.isAddress(wallet) && wallet !== "dashboard") {
-      router.replace("/dashboard");
-    }
-  }, [router, wallet]);
-
-  const dashboardAddress = useMemo(() => {
-    return wallet === "dashboard"
-      ? address
-      : utils.isAddress(wallet)
-      ? wallet
-      : address;
-  }, [address, wallet]);
-
+  const dashboardAddress = address;
   const mainnetQuery = useContractList(ChainId.Mainnet, dashboardAddress);
   const polygonQuery = useContractList(ChainId.Polygon, dashboardAddress);
   const avalancheQuery = useContractList(ChainId.Avalanche, dashboardAddress);
@@ -131,7 +111,7 @@ export default function Dashboard() {
         </BreadcrumbItem>
       </Breadcrumb>
 
-      {wallet === "dashboard" && !address ? (
+      {!address ? (
         <NoWallet />
       ) : (
         <>
@@ -157,24 +137,7 @@ export default function Dashboard() {
               </LinkButton>
             </Flex>
           )}
-          {projects && projects.length ? (
-            <Tabs>
-              <TabList>
-                <Tab>V2 Contracts</Tab>
-                <Tab>V1 Projects</Tab>
-              </TabList>
-              <TabPanels>
-                <TabPanel px={0} pt={8}>
-                  <ContractTable combinedList={combinedList} />
-                </TabPanel>
-                <TabPanel px={0} pt={8}>
-                  <OldProjects projects={projects} />
-                </TabPanel>
-              </TabPanels>
-            </Tabs>
-          ) : (
-            <ContractTable combinedList={combinedList} />
-          )}
+          <ContractTable combinedList={combinedList} />
         </>
       )}
     </Flex>
@@ -419,8 +382,6 @@ export const ContractTable: React.FC<ContractTableProps> = ({
 
   const router = useRouter();
 
-  const wallet = useSingleQueryParam("wallet") || "dashboard";
-
   if (!combinedList.length) {
     return <NoContracts />;
   }
@@ -513,7 +474,6 @@ interface AsyncContractCellProps {
 
 const AsyncContractCell: React.FC<AsyncContractCellProps> = ({ cell }) => {
   const router = useRouter();
-  const wallet = useSingleQueryParam("wallet") || "dashboard";
   const metadataQuery = useContractMetadataWithAddress(
     cell.address,
     cell.metadata,
