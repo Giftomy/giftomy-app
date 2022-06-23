@@ -1,6 +1,5 @@
 export enum gqlEnums {
 	// todo
-	ACCEPTGIV = 'AcceptGiv',
 	QUALITYSCORE = 'QualityScore',
 	CREATIONDATE = 'CreationDate',
 	BALANCE = 'Balance',

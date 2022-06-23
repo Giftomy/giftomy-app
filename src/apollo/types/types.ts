@@ -1,7 +1,7 @@
 import {
 	EProjectStatus,
 } from '@/apollo/types/gqlEnums';
-// todo
+
 export interface IProject {
 	id?: string;
 	title?: string;
