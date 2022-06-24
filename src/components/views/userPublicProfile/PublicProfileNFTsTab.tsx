@@ -9,7 +9,7 @@ import { Box, Button, Center, Flex, Grid, Heading, Icon, Image, NumberDecrementS
 import { useNFTDrop } from '@thirdweb-dev/react';
 import { NFTDrop } from '@thirdweb-dev/sdk';
 import { useState, useEffect } from 'react';
-import { useMoralisQuery } from 'react-moralis';
+// import { useMoralisQuery } from 'react-moralis';
 import styled from 'styled-components';
 
 
@@ -54,12 +54,12 @@ const PublicProfileNFTsTab: FC<IUserPublicProfileView> = ({
   const contractAddress = '0x2732d8e5199B5AB424732c0634f8dF5562Cf37f0';
   const nftDrop = useNFTDrop(contractAddress);
 
-  const { fetch } = useMoralisQuery(
-    "collectednfts",
-    (query) => query.equalTo("buyer", user.walletAddress),
-    [],
-    { autoFetch: false }
-  );
+  // const { fetch } = useMoralisQuery(
+  //   "collectednfts",
+  //   (query) => query.equalTo("buyer", user.walletAddress),
+  //   [],
+  //   { autoFetch: false }
+  // );
   console.log("myAccount, user", myAccount, user);
   useEffect(() => {
     if (!user) return;
