@@ -1,43 +1,19 @@
-import { ConnectWallet, useContractList, useContractMetadataWithAddress, useWeb3 } from '@3rdweb-sdk/react';
-import { useRemoveContractMutation } from '@3rdweb-sdk/react/hooks/useRegistry';
+import { useContractList, useWeb3 } from '@3rdweb-sdk/react';
 import EditionDrop from '@/components/views/embeds/edition-drop';
 import NFTDrop from '@/components/views/embeds/nft-drop';
 import { ChevronRightIcon } from '@chakra-ui/icons';
-import { Box, Center, Container, Flex, Icon, IconButton, Image, Link, LinkBox, LinkOverlay, Menu, MenuButton, MenuItemOption, MenuList, MenuOptionGroup, Popover, PopoverAnchor, PopoverArrow, PopoverBody, PopoverContent, SimpleGrid, Skeleton, Stack, Tab, TabList, TabPanel, TabPanels, Table, Tabs, Tbody, Td, Th, Thead, Tr, useDisclosure } from '@chakra-ui/react';
+import { Flex } from '@chakra-ui/react';
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from '@chakra-ui/react';
-import { useNetwork } from '@thirdweb-dev/react';
-import { CONTRACTS_MAP, CommonContractOutputSchema, ContractType, ValidContractClass } from '@thirdweb-dev/sdk';
-import { useWeb3React } from '@web3-react/core';
-import { ChakraNextImage } from 'components/Image';
-import { CONTRACT_TYPE_NAME_MAP, FeatureIconMap, UrlMap } from 'constants/mappings';
 import { utils } from 'ethers';
-import { useTrack } from 'hooks/analytics/useTrack';
 import { useSingleQueryParam } from 'hooks/useQueryParam';
-import OriginalNextLink from 'next/link';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import * as React from 'react';
-import { ReactElement, useEffect, useMemo } from 'react';
-import { AiFillCode, AiFillLayout, AiOutlineWarning } from 'react-icons/ai';
-import { FaTrash } from 'react-icons/fa';
-import { FiPlus } from 'react-icons/fi';
-import { IoFilterSharp } from 'react-icons/io5';
-import { SiGo, SiJavascript, SiPython, SiReact, SiSolidity } from 'react-icons/si';
-import { VscDebugDisconnect } from 'react-icons/vsc';
-import { Column, useFilters, useGlobalFilter, useTable } from 'react-table';
-import { AddressCopyButton, Badge, Button, Card, Heading, LinkButton, Text } from 'tw-components';
-import {
-  ChainId,
-  SUPPORTED_CHAIN_ID,
-  SUPPORTED_CHAIN_IDS,
-  SupportedChainIdToNetworkMap,
-  getNetworkFromChainId,
-} from 'utils/network';
-import { shortenIfAddress } from 'utils/usedapp-external';
-import { z } from 'zod';
+import { useMemo } from 'react';
+import { Heading, Text } from 'tw-components';
+import { ChainId } from 'utils/network';
 
-
-export default function Dashboard() {
+export default function NFTS() {
   const router = useRouter();
   const {
     query: { projectIdSlug },
@@ -109,33 +85,27 @@ export default function Dashboard() {
     goerliQuery.data,
     mumbaiQuery.data,
   ]);
-  console.log('combinedList: ', combinedList)
-
+  console.log('combinedList: ', combinedList);
 
   const NFTList = (props: { nfts?: any }) => {
     return props.nfts.map(nft => {
-      console.log('nft: ', nft)
-      if (nft.contractType === "nft-drop") {
-        return (
-          <NFTDrop
-            contractAddress={nft.address}
-            address={address}
-          />
-        )
+      console.log('nft: ', nft);
+      if (nft.contractType === 'nft-drop') {
+        return <NFTDrop contractAddress={nft.address} address={address} />;
       }
-      if (nft.contractType === "edition-drop") {
+      if (nft.contractType === 'edition-drop') {
         return (
           <EditionDrop
             contractAddress={nft.address}
             address={address}
             tokenId='0'
           />
-        )
+        );
       }
 
-      return <div>{nft.contractType} is not supported</div>
-    })
-  }
+      return <div>{nft.contractType} is not supported for now</div>;
+    });
+  };
   return (
     <Flex direction='column' gap={8} px={30}>
       <Breadcrumb
@@ -144,13 +114,13 @@ export default function Dashboard() {
         mb={8}
       >
         <BreadcrumbItem>
-          <NextLink href={`/project/${projectIdSlug}`} passHref>
-            <BreadcrumbLink>Project</BreadcrumbLink>
+          <NextLink href={`/`} passHref>
+            <BreadcrumbLink>Home</BreadcrumbLink>
           </NextLink>
         </BreadcrumbItem>
         <BreadcrumbItem>
-          <NextLink href={`/project/${projectIdSlug}/dashboard`} passHref>
-            <BreadcrumbLink>Contracts</BreadcrumbLink>
+          <NextLink href={`/project/${projectIdSlug}`} passHref>
+            <BreadcrumbLink>Project</BreadcrumbLink>
           </NextLink>
         </BreadcrumbItem>
       </Breadcrumb>
@@ -165,9 +135,9 @@ export default function Dashboard() {
               direction={{ base: 'column', md: 'row' }}
             >
               <Flex gap={2} direction='column'>
-                <Heading size='title.md'>Deployed contracts</Heading>
+                <Heading size='title.md'>NFTs</Heading>
                 <Text fontStyle='italic' maxW='container.md'>
-                  The list of contract instances that have deployed.
+                  The list of NFTs.
                 </Text>
               </Flex>
             </Flex>
