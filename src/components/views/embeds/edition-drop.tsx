@@ -17,12 +17,15 @@ interface ClaimPageProps {
 }
 
 const ClaimButton: React.FC<ClaimPageProps> = ({
+  contractAddress,
   contract,
   expectedChainId,
   tokenId,
+  address,
 }) => {
-  const address = useAddress();
-  const chainId = useChainId();
+  // const contract = useEditionDrop(contractAddress);
+  // const address = useAddress();
+  // const chainId = useChainId();
   const [quantity, setQuantity] = useState(1);
   const loaded = useRef(false);
   const { data: totalSupply } = useTotalCirculatingSupply(contract, tokenId);
@@ -35,7 +38,7 @@ const ClaimButton: React.FC<ClaimPageProps> = ({
   );
   const claimMutation = useClaimNFT(contract);
 
-  const isEnabled = !!contract && !!address && chainId === expectedChainId;
+  const isEnabled = !!contract && !!address;
 
   const bnPrice = parseUnits(
     activeClaimCondition.data?.currencyMetadata.displayValue || '0',
@@ -78,15 +81,31 @@ const ClaimButton: React.FC<ClaimPageProps> = ({
   };
 
   const isLoading = claimIneligibilityReasons.isLoading && !loaded.current;
-
   const canClaim =
     !isSoldOut && !!address && !claimIneligibilityReasons.data?.length;
 
-  // if (!isEnabled) {
-  //   return <ConnectWalletButton expectedChainId={expectedChainId} />;
-  // }
-
   const maxQuantity = activeClaimCondition.data?.maxQuantity;
+
+  let buttonText = isSoldOut
+    ? 'Sold out'
+    : canClaim
+    ? `Mint${quantity > 1 ? ` ${quantity}` : ''}${
+        activeClaimCondition.data?.price.eq(0)
+          ? ' (Free)'
+          : activeClaimCondition.data?.currencyMetadata.displayValue
+          ? ` (${formatUnits(
+              priceToMint,
+              activeClaimCondition.data.currencyMetadata.decimals,
+            )} ${activeClaimCondition.data?.currencyMetadata.symbol})`
+          : ''
+      }`
+    : claimIneligibilityReasons.data?.length
+    ? parseIneligibility(claimIneligibilityReasons.data, quantity)
+    : 'Minting Unavailable';
+
+  if (!isEnabled) {
+    buttonText = 'Sign in to claim';
+  }
 
   return (
     <Stack spacing={4} align='center' w='100%'>
@@ -120,22 +139,7 @@ const ClaimButton: React.FC<ClaimPageProps> = ({
           colorScheme='blue'
           fontSize={{ base: 'label.md', md: 'label.lg' }}
         >
-          {isSoldOut
-            ? 'Sold out'
-            : canClaim
-            ? `Mint${quantity > 1 ? ` ${quantity}` : ''}${
-                activeClaimCondition.data?.price.eq(0)
-                  ? ' (Free)'
-                  : activeClaimCondition.data?.currencyMetadata.displayValue
-                  ? ` (${formatUnits(
-                      priceToMint,
-                      activeClaimCondition.data.currencyMetadata.decimals,
-                    )} ${activeClaimCondition.data?.currencyMetadata.symbol})`
-                  : ''
-              }`
-            : claimIneligibilityReasons.data?.length
-            ? parseIneligibility(claimIneligibilityReasons.data, quantity)
-            : 'Minting Unavailable'}
+          {buttonText}
         </Button>
       </Flex>
       {activeClaimCondition.data && (
@@ -154,12 +158,13 @@ const ClaimButton: React.FC<ClaimPageProps> = ({
 };
 
 const ClaimPage: React.FC<ClaimPageProps> = ({
-  contract,
-  expectedChainId,
+  contractAddress,
+  address,
   tokenId,
+  expectedChainId,
 }) => {
+  const contract = useEditionDrop(contractAddress);
   const tokenMetadata = useNFT(contract, tokenId);
-
   if (tokenMetadata.isLoading) {
     return (
       <Center w='100%' h='100%'>
@@ -209,6 +214,7 @@ const ClaimPage: React.FC<ClaimPageProps> = ({
           contract={contract}
           tokenId={tokenId}
           expectedChainId={expectedChainId}
+          address={address}
         />
       </Flex>
     </Center>
@@ -221,13 +227,12 @@ const App: React.FC<ClaimPageProps> = ({
   tokenId,
 }) => {
   const activeChainId = useActiveChainId();
-  const editionDrop = useEditionDrop(contractAddress);
 
   return (
     <>
       <ThirdwebProvider desiredChainId={activeChainId || 80001}>
         <ClaimPage
-          contract={editionDrop}
+          contractAddress={contractAddress}
           address={address}
           tokenId={tokenId}
           expectedChainId={activeChainId}
