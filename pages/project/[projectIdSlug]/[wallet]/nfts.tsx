@@ -94,16 +94,10 @@ export default function NFTS() {
         return <NFTDrop contractAddress={nft.address} address={address} />;
       }
       if (nft.contractType === 'edition-drop') {
-        return (
-          <EditionDrop
-            contractAddress={nft.address}
-            address={address}
-            tokenId='0'
-          />
-        );
+        return <EditionDrop contractAddress={nft.address} address={address} />;
       }
 
-      return <div>{nft.contractType} is not supported for now</div>;
+      return <div>{nft.contractType} contract is not supported for now</div>;
     });
   };
   return (

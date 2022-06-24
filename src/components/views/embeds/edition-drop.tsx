@@ -1,3 +1,4 @@
+import { DropSvg } from "./drop";
 import { parseIneligibility } from "./parseIneligibility";
 import { useActiveChainId } from '@3rdweb-sdk/react';
 import { Button, Center, Flex, Grid, Heading, Icon, Image, NumberDecrementStepper, NumberIncrementStepper, NumberInput, NumberInputField, NumberInputStepper, Spinner, Stack, Text, useToast } from '@chakra-ui/react';
@@ -12,7 +13,7 @@ interface ClaimPageProps {
   contract?: EditionDrop;
   contractAddress?: string;
   expectedChainId?: number;
-  tokenId: string;
+  tokenId?: number;
   address?: string;
 }
 
@@ -81,6 +82,12 @@ const ClaimButton: React.FC<ClaimPageProps> = ({
   };
 
   const isLoading = claimIneligibilityReasons.isLoading && !loaded.current;
+  console.log(
+    'claimIneligibilityReasons.isLoading, !loaded.current: ',
+    claimIneligibilityReasons.isLoading,
+    !loaded.current
+  );
+  console.log('claimMutation.isLoading', claimMutation.isLoading);
   const canClaim =
     !isSoldOut && !!address && !claimIneligibilityReasons.data?.length;
 
@@ -160,13 +167,16 @@ const ClaimButton: React.FC<ClaimPageProps> = ({
 const ClaimPage: React.FC<ClaimPageProps> = ({
   contractAddress,
   address,
-  tokenId,
   expectedChainId,
 }) => {
+  const [tokenId, setTokenId] = useState(0);
   const contract = useEditionDrop(contractAddress);
   const tokenMetadata = useNFT(contract, tokenId);
+  console.log('contract', contract);
+  console.log('tokenMetadata.isLoading', tokenMetadata.isLoading);
+  let metadataElem
   if (tokenMetadata.isLoading) {
-    return (
+    metadataElem = (
       <Center w='100%' h='100%'>
         <Stack direction='row' align='center'>
           <Spinner />
@@ -174,13 +184,10 @@ const ClaimPage: React.FC<ClaimPageProps> = ({
         </Stack>
       </Center>
     );
-  }
-
-  const metadata = tokenMetadata.data?.metadata;
-
-  return (
-    <Center w='100%' h='100%'>
-      <Flex direction='column' align='center' gap={4} w='100%'>
+  } else {
+    const metadata = tokenMetadata.data?.metadata;
+    metadataElem = (
+      <>
         <Grid
           bg='#F2F0FF'
           border='1px solid rgba(0,0,0,.1)'
@@ -210,6 +217,35 @@ const ClaimPage: React.FC<ClaimPageProps> = ({
             {metadata.description}
           </Heading>
         )}
+      </>
+    );
+  }
+
+
+  return (
+    <Center w='100%' h='100%'>
+      <Flex direction='column' align='center' gap={4} w='100%'>
+        {metadataElem}
+        <NumberInput
+          inputMode='numeric'
+          value={tokenId}
+          onChange={(stringValue, value) => {
+            if (stringValue === '') {
+              setTokenId(0);
+            } else {
+              setTokenId(value);
+            }
+          }}
+          min={0}
+          maxW={{ base: '100%', md: '100px' }}
+        >
+          <NumberInputField />
+          <NumberInputStepper>
+            <NumberIncrementStepper />
+            <NumberDecrementStepper />
+          </NumberInputStepper>
+        </NumberInput>
+
         <ClaimButton
           contract={contract}
           tokenId={tokenId}
@@ -221,20 +257,15 @@ const ClaimPage: React.FC<ClaimPageProps> = ({
   );
 };
 
-const App: React.FC<ClaimPageProps> = ({
-  contractAddress,
-  address,
-  tokenId,
-}) => {
+const App: React.FC<ClaimPageProps> = ({ contractAddress, address }) => {
   const activeChainId = useActiveChainId();
-
+  console.log('activeChainId: ', activeChainId);
   return (
     <>
       <ThirdwebProvider desiredChainId={activeChainId || 80001}>
         <ClaimPage
           contractAddress={contractAddress}
           address={address}
-          tokenId={tokenId}
           expectedChainId={activeChainId}
         />
       </ThirdwebProvider>
