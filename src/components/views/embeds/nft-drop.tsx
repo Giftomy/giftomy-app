@@ -66,8 +66,9 @@ const ClaimButton: React.FC<ClaimPageProps> = ({ contractAddress, address }) => 
 
   const isLoading = !!address && claimIneligibilityReasons.isLoading && !loaded.current;
 
-  const canClaim =
-    !isSoldOut && !!address && !claimIneligibilityReasons.data?.length;
+  const canClaim = !isSoldOut && !!address && !claimIneligibilityReasons.data?.length;
+
+  const isEnabled = !!contract && !!address;
 
   let buttonText = isSoldOut
     ? 'Sold out'
@@ -86,7 +87,7 @@ const ClaimButton: React.FC<ClaimPageProps> = ({ contractAddress, address }) => 
     ? parseIneligibility(claimIneligibilityReasons.data, quantity)
     : 'Minting Unavailable';
 
-  if (!address) {
+  if (!isEnabled) {
     buttonText = 'Sign in to claim';
   }
 
