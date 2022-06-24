@@ -53,7 +53,8 @@ export default function Dashboard() {
   const goerliQuery = useContractList(ChainId.Goerli, dashboardAddress);
   const mumbaiQuery = useContractList(ChainId.Mumbai, dashboardAddress);
 
-  const TYPES = ["nft-drop", "edition-drop"];
+  // const TYPES = ["nft-drop", "edition-drop"];
+  const TYPES = ["nft-drop"];
   const filterFunc = (item) => TYPES.indexOf(item.contractType) !== -1;
   const combinedList = useMemo(() => {
     return (

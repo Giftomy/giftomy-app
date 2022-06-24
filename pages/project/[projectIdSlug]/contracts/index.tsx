@@ -1,35 +1,36 @@
-import { ChevronRightIcon } from "@chakra-ui/icons";
+import { ChevronRightIcon } from '@chakra-ui/icons';
 import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
   Flex,
-} from "@chakra-ui/react";
-import { ChainId } from "@thirdweb-dev/sdk";
-import NextLink from "next/link";
-import { DeployableContractTable } from "components/contract-components/contract-table";
-import { CustomSDKContext } from "contexts/custom-sdk-context";
-import { useTrack } from "hooks/analytics/useTrack";
-import { Heading, Text } from "tw-components";
-import { useRouter } from "next/router";
+} from '@chakra-ui/react';
+import { ChainId } from '@thirdweb-dev/sdk';
+import { DeployableContractTable } from 'components/contract-components/contract-table';
+import { CustomSDKContext } from 'contexts/custom-sdk-context';
+import { useTrack } from 'hooks/analytics/useTrack';
+import NextLink from 'next/link';
+import { useRouter } from 'next/router';
+import { Heading, Text } from 'tw-components';
 
 const ContractsHomepageWrapped: React.FC = () => {
   const { Track } = useTrack({
-    page: "contracts",
+    page: 'contracts',
   });
   const router = useRouter();
   const {
     query: { projectIdSlug },
   } = router;
 
-  const TYPES = ["nft-drop", "edition-drop"];
+  // const TYPES = ["nft-drop", "edition-drop"];
+  const TYPES = ['nft-drop'];
 
   return (
     <Track>
-      <Flex gap={8} direction="column" px={30}>
+      <Flex gap={8} direction='column' px={30}>
         <Breadcrumb
-          display={{ base: "none", md: "block" }}
-          separator={<ChevronRightIcon color="gray.500" />}
+          display={{ base: 'none', md: 'block' }}
+          separator={<ChevronRightIcon color='gray.500' />}
           mb={8}
         >
           <BreadcrumbItem>
@@ -49,9 +50,9 @@ const ContractsHomepageWrapped: React.FC = () => {
           </BreadcrumbItem>
         </Breadcrumb>
 
-        <Flex gap={2} direction="column">
-          <Heading size="title.md">Pre-built contracts</Heading>
-          <Text fontStyle="italic">
+        <Flex gap={2} direction='column'>
+          <Heading size='title.md'>Pre-built contracts</Heading>
+          <Text fontStyle='italic'>
             Contracts templates that you can deploy
           </Text>
         </Flex>

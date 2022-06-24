@@ -27,11 +27,11 @@ const HomeIndex = (props: IHomeView) => {
           contractAddress='0x2732d8e5199B5AB424732c0634f8dF5562Cf37f0'
           address={address}
         />
-        <EditionDrop
+        {/* <EditionDrop
           contractAddress='0xB85485e8367b7F99927159f4337b660d60f862EB'
           address={address}
           tokenId='0'
-        />
+        /> */}
       </Flex>
       <HomeHeader />
       <HomeExploreProjects

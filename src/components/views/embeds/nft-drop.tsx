@@ -1,10 +1,39 @@
-import { DropSvg } from "./drop";
-import { parseIneligibility } from "./parseIneligibility";
-import { useActiveChainId } from "@3rdweb-sdk/react";
-import { Box, Button, Center, Flex, Grid, Heading, Icon, Image, NumberDecrementStepper, NumberIncrementStepper, NumberInput, NumberInputField, NumberInputStepper, Spinner, Stack, Text, useToast } from "@chakra-ui/react";
-import { ThirdwebProvider, useActiveClaimCondition, useAddress, useChainId, useClaimedNFTSupply, useClaimIneligibilityReasons, useClaimNFT, useContractMetadata, useNFTDrop, useUnclaimedNFTSupply } from "@thirdweb-dev/react";
-import { NFTDrop } from "@thirdweb-dev/sdk";
-import { formatUnits, parseUnits } from "ethers/lib/utils";
+import { DropSvg } from './drop';
+import { parseIneligibility } from './parseIneligibility';
+import { useActiveChainId } from '@3rdweb-sdk/react';
+import {
+  Box,
+  Button,
+  Center,
+  Flex,
+  Grid,
+  Heading,
+  Icon,
+  Image,
+  NumberDecrementStepper,
+  NumberIncrementStepper,
+  NumberInput,
+  NumberInputField,
+  NumberInputStepper,
+  Spinner,
+  Stack,
+  Text,
+  useToast,
+} from '@chakra-ui/react';
+import {
+  ThirdwebProvider,
+  useActiveClaimCondition,
+  useAddress,
+  useChainId,
+  useClaimedNFTSupply,
+  useClaimIneligibilityReasons,
+  useClaimNFT,
+  useContractMetadata,
+  useNFTDrop,
+  useUnclaimedNFTSupply,
+} from '@thirdweb-dev/react';
+import { NFTDrop } from '@thirdweb-dev/sdk';
+import { formatUnits, parseUnits } from 'ethers/lib/utils';
 import React, { useRef, useState } from 'react';
 import { IoDiamondOutline } from 'react-icons/io5';
 
@@ -14,7 +43,10 @@ interface ClaimPageProps {
   address?: string;
 }
 
-const ClaimButton: React.FC<ClaimPageProps> = ({ contractAddress, address }) => {
+const ClaimButton: React.FC<ClaimPageProps> = ({
+  contractAddress,
+  address,
+}) => {
   // const address = useAddress();
   // const chainId = useChainId();
   const contract = useNFTDrop(contractAddress);
@@ -64,9 +96,11 @@ const ClaimButton: React.FC<ClaimPageProps> = ({ contractAddress, address }) => 
   // Only sold out when available data is loaded
   const isSoldOut = unclaimedSupply?.data?.eq(0);
 
-  const isLoading = !!address && claimIneligibilityReasons.isLoading && !loaded.current;
+  const isLoading =
+    !!address && claimIneligibilityReasons.isLoading && !loaded.current;
 
-  const canClaim = !isSoldOut && !!address && !claimIneligibilityReasons.data?.length;
+  const canClaim =
+    !isSoldOut && !!address && !claimIneligibilityReasons.data?.length;
 
   const isEnabled = !!contract && !!address;
 
@@ -141,33 +175,33 @@ const ClaimPage: React.FC<ClaimPageProps> = ({ contractAddress, address }) => {
 
   if (isLoading) {
     return (
-      <Center w="100%" h="500px">
-        <Stack direction="row" align="center">
+      <Center w='100%' h='500px'>
+        <Stack direction='row' align='center'>
           <Spinner />
-          <Heading size="label.sm">Loading...</Heading>
+          <Heading size='label.sm'>Loading...</Heading>
         </Stack>
       </Center>
     );
   }
 
   return (
-    <Box w="100%" textAlign="center">
+    <Box w='100%' textAlign='center'>
       {metadata?.image ? (
         <Image
-          objectFit="contain"
-          maxW="300px"
-          margin="auto"
+          objectFit='contain'
+          maxW='300px'
+          margin='auto'
           src={metadata?.image}
           alt={metadata?.name}
         />
       ) : (
-        <Icon maxW="100%" maxH="100%" as={DropSvg} />
+        <Icon maxW='100%' maxH='100%' as={DropSvg} />
       )}
-      <Heading size="display.md" fontWeight="title" as="h1" mt="20px">
+      <Heading size='display.md' fontWeight='title' as='h1' mt='20px'>
         {metadata?.name}
       </Heading>
       {metadata?.description && (
-        <Heading noOfLines={2} as="h2" size="subtitle.md" mb="20px">
+        <Heading noOfLines={2} as='h2' size='subtitle.md' mb='20px'>
           {metadata.description}
         </Heading>
       )}

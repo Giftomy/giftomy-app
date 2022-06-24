@@ -38,7 +38,8 @@ export default function NFTS() {
   const goerliQuery = useContractList(ChainId.Goerli, dashboardAddress);
   const mumbaiQuery = useContractList(ChainId.Mumbai, dashboardAddress);
 
-  const TYPES = ['nft-drop', 'edition-drop'];
+  // const TYPES = ["nft-drop", "edition-drop"];
+  const TYPES = ['nft-drop'];
   const filterFunc = item => TYPES.indexOf(item.contractType) !== -1;
   const combinedList = useMemo(() => {
     return (
@@ -88,16 +89,18 @@ export default function NFTS() {
   console.log('combinedList: ', combinedList);
 
   const NFTList = (props: { nfts?: any }) => {
-    return props.nfts.map(nft => {
+    if (!props.nfts.length) {
+      return 'No NFT found';
+    }
+
+    return props.nfts.filter(filterFunc).map(nft => {
       console.log('nft: ', nft);
       if (nft.contractType === 'nft-drop') {
         return <NFTDrop contractAddress={nft.address} address={address} />;
       }
-      if (nft.contractType === 'edition-drop') {
-        return <EditionDrop contractAddress={nft.address} address={address} />;
-      }
-
-      return <div>{nft.contractType} contract is not supported for now</div>;
+      // if (nft.contractType === 'edition-drop') {
+      //   return <EditionDrop contractAddress={nft.address} address={address} />;
+      // }
     });
   };
   return (
