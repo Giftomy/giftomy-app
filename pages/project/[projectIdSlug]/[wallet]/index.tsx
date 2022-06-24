@@ -33,9 +33,18 @@ export default function Dashboard() {
   const {
     query: { projectIdSlug },
   } = router;
+  const wallet = useSingleQueryParam("wallet") || "dashboard";
   const { address } = useWeb3();
 	// const { account: address } = useWeb3React();
-  const dashboardAddress = address;
+
+  const dashboardAddress = useMemo(() => {
+    return wallet === "dashboard"
+      ? address
+      : utils.isAddress(wallet)
+      ? wallet
+      : address;
+  }, [address, wallet]);
+
   const mainnetQuery = useContractList(ChainId.Mainnet, dashboardAddress);
   const polygonQuery = useContractList(ChainId.Polygon, dashboardAddress);
   const avalancheQuery = useContractList(ChainId.Avalanche, dashboardAddress);
