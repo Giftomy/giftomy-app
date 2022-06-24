@@ -15,19 +15,12 @@ import { mediaQueries } from '@/lib/constants/constants';
 import { compareAddresses, showToastError } from "@/lib/helpers";
 import { likeProject, unlikeProject } from "@/lib/reaction";
 import { idToProjectEdit } from "@/lib/routeCreators";
-import { slugToProjectDashboard } from "@/lib/routeCreators";
+import { slugToProjectDashboard, slugToProjectNFT } from '@/lib/routeCreators';
 import { Button, brandColors, neutralColors, OulineButton, IconHelp } from "@giveth/ui-design-system";
 import { captureException } from "@sentry/nextjs";
 import { motion } from "framer-motion";
 import { useRouter } from "next/router";
-import React, {
-  Dispatch,
-  SetStateAction,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import React, { Dispatch, SetStateAction, useCallback, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 
 
@@ -218,7 +211,11 @@ const ProjectDonateCard = ({
             <FullButton
               buttonType="primary"
               label="Manage NFTs"
-              onClick={() => router.push(slugToProjectDashboard(slug))}
+              onClick={() =>
+                router.push(
+                  slugToProjectDashboard(slug, project?.walletAddress),
+                )
+              }
             />
             <FullButton
               buttonType="primary"
@@ -235,6 +232,15 @@ const ProjectDonateCard = ({
             )}
           </>
         )}
+        <FullButton
+          buttonType="primary"
+          label="View NFTs"
+          onClick={() =>
+            router.push(
+              slugToProjectNFT(slug, project?.walletAddress)
+            )
+          }
+        />
         <BadgeWrapper>
           <ShareLikeBadge type="share" onClick={() => setShowModal(true)} />
           <ShareLikeBadge
@@ -386,4 +392,3 @@ const ArchiveButton = styled(Button)`
 `;
 
 export default ProjectDonateCard;
-
