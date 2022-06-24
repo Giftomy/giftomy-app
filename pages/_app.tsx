@@ -16,7 +16,6 @@ import { useRouter } from 'next/router';
 import NProgress from 'nprogress';
 import React, { ReactElement, ReactNode, useEffect } from 'react';
 import { Toaster } from 'react-hot-toast';
-import { MoralisProvider } from 'react-moralis';
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -67,15 +66,10 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
             <UserProvider>
               <ModalProvider>
                 <ChakraProvider theme={chakraTheme}>
-                  <MoralisProvider
-                    serverUrl={process.env.NEXT_PUBLIC_SERVER_URL}
-                    appId={process.env.NEXT_PUBLIC_APP_ID}
-                  >
-                    <AppLayout>
-                      <Component {...pageProps} />
-                    </AppLayout>
-                    {/* {getLayout(<Component {...pageProps} />)} */}
-                  </MoralisProvider>
+                  <AppLayout>
+                    <Component {...pageProps} />
+                  </AppLayout>
+                  {/* {getLayout(<Component {...pageProps} />)} */}
                 </ChakraProvider>
               </ModalProvider>
             </UserProvider>
