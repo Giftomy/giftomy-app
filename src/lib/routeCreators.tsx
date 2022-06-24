@@ -4,8 +4,12 @@ export const slugToProjectView = (slug: string) => {
 	return Routes.Project + '/' + slug;
 };
 
-export const slugToProjectDashboard = (slug: string) => {
-	return `${Routes.Project}/${slug}/dashboard`;
+export const slugToProjectDashboard = (slug: string, address: string) => {
+	return `${Routes.Project}/${slug}/${address}`;
+};
+
+export const slugToProjectNFT = (slug: string, address: string) => {
+  return `${Routes.Project}/${slug}/${address}/nfts`;
 };
 
 export const idToProjectEdit = (id?: string) => {
