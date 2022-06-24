@@ -12,11 +12,11 @@ const PLEASE_REACH_OUT_MESSAGE = (
       in{" "}
       <Link
         fontWeight="700"
-        href="https://discord.gg/thirdweb"
+        href="https://twitter.com/loop_dao"
         isExternal
         textDecor="underline"
       >
-        discord
+        twitter
       </Link>
       .
     </Text>
@@ -107,8 +107,8 @@ function parseErrorCode(error: ErrorWithCode): string | JSX.Element | void {
 
       if (error.message.includes("MetaMask Message Signature")) {
         return `
-          There was an error with the metamask signature. 
-          If you are using a Ledger wallet, make sure you go to settings 
+          There was an error with the metamask signature.
+          If you are using a Ledger wallet, make sure you go to settings
           and enable the "Allow Contract Data" setting
         `;
       }
