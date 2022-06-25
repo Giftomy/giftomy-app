@@ -12,7 +12,7 @@ NEXT_PUBLIC_INFURA_API_KEY=
 ```
 `NEXT_PUBLIC_ENV` value can be empty or `production`.
 
-`NEXT_PUBLIC_XDAI_NODE_URL` and `NEXT_PUBLIC_NODE_URL` are JRPC endpoints for xdai and mainnet (kovan in development env) networks.
+`NEXT_PUBLIC_NODE_URL` is JRPC endpoint for mainnet (kovan in development env) networks.
 
 `NEXT_PUBLIC_INFURA_API_KEY` is the infura api key.
 

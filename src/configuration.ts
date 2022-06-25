@@ -32,7 +32,6 @@ const config: GlobalConfig = {
 	...envConfig,
 	NETWORKS_CONFIG: {
 		[envConfig.MAINNET_NETWORK_NUMBER]: envConfig.MAINNET_CONFIG,
-		[envConfig.XDAI_NETWORK_NUMBER]: envConfig.XDAI_CONFIG,
 		[envConfig.POLYGON_TEST_NETWORK_NUMBER]:
 			envConfig.POLYGON_TESTNET_CONFIG,
 		[envConfig.POLYGON_MAIN_NETWORK_NUMBER]:
@@ -41,13 +40,11 @@ const config: GlobalConfig = {
 	// Used for adding networks to user wallet, useless since just xDAI is not
 	// included in metamask by default and its rpc endpoint is not infura
 	INFURA_API_KEY: process.env.NEXT_PUBLIC_INFURA_API_KEY,
-	BLOCKNATIVE_DAPP_ID: process.env.BLOCKNATIVE_DAPP_ID,
 	GOOGLE_MAPS_API_KEY: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
 };
 
 config.MAINNET_CONFIG.nodeUrl = process.env.NEXT_PUBLIC_NODE_URL || '';
-config.POLYGON_TESTNET_CONFIG.nodeUrl = process.env.NEXT_PUBLIC_NODE_URL || '';
-config.POLYGON_MAINNET_CONFIG.nodeUrl = process.env.NEXT_PUBLIC_NODE_URL || '';
-config.XDAI_CONFIG.nodeUrl = process.env.NEXT_PUBLIC_XDAI_NODE_URL || '';
+config.POLYGON_MAINNET_CONFIG.nodeUrl = process.env.NEXT_PUBLIC_RPC_POLYGON || '';
+config.POLYGON_TESTNET_CONFIG.nodeUrl = process.env.NEXT_PUBLIC_RPC_MUMBAI || '';
 
 export default config;

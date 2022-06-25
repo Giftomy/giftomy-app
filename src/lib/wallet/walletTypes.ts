@@ -24,7 +24,6 @@ export const walletconnectConnector = new WalletConnectConnector({
 	qrcode: true,
 	rpc: {
 		[config.MAINNET_NETWORK_NUMBER]: config.MAINNET_CONFIG.nodeUrl,
-		[config.XDAI_NETWORK_NUMBER]: config.XDAI_CONFIG.nodeUrl,
 	},
 });
 // export const portisConnector = new PortisConnector({

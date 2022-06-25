@@ -29,25 +29,6 @@ const config: EnvConfig = {
 		blockExplorerUrls: ['https://etherscan.io/'],
 		nodeUrl: 'https://mainnet.infura.io/v3/' + INFURA_API_KEY,
 	},
-
-	XDAI_CONFIG: {
-		chainId: '0x64',
-		chainName: 'Gnosis Chain',
-		nativeCurrency: {
-			name: 'XDAI',
-			symbol: 'XDAI',
-			decimals: 18,
-		},
-
-		gasPreference: {
-			maxFeePerGas: gwei2wei('2'),
-			maxPriorityFeePerGas: gwei2wei('1'),
-		},
-
-		blockExplorerName: ['Blockscout'],
-		blockExplorerUrls: ['https://blockscout.com/xdai/mainnet'],
-		nodeUrl: 'https://rpc.xdaichain.com/',
-	},
 };
 
 export default config;

@@ -16,7 +16,6 @@ const Routes = {
 	MyAccount,
 	MyProjects: MyAccount + '?tab=projects',
 	Onboard: '/onboard',
-	Claim: '/claim',
 };
 
 export default Routes;

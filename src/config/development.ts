@@ -21,25 +21,6 @@ const MAINNET_CONFIG = {
 	nodeUrl: 'https://kovan.infura.io/v3/' + INFURA_API_KEY,
 };
 
-const XDAI_CONFIG = {
-	chainId: '0x64',
-	chainName: 'Gnosis Chain',
-	nativeCurrency: {
-		name: 'XDAI',
-		symbol: 'XDAI',
-		decimals: 18,
-	},
-
-	gasPreference: {
-		maxFeePerGas: gwei2wei('2'),
-		maxPriorityFeePerGas: gwei2wei('1'),
-	},
-
-	blockExplorerName: ['Blockscout'],
-	blockExplorerUrls: ['https://blockscout.com/xdai/mainnet'],
-}
-
-
 const POLYGON_TESTNET_CONFIG = {
 	chainId: '0x13881', // A 0x-prefixed hexadecimal string
 	chainName: 'Polygon Testnet',
@@ -69,7 +50,6 @@ const config: EnvConfig = {
 		'https://gardens-staging.1hive.org/#/xdai/garden/0x16388d99199a74810fc572049b3d4d657e7d5deb',
 
 	MAINNET_CONFIG,
-	XDAI_CONFIG,
 	POLYGON_TESTNET_CONFIG,
 	POLYGON_MAINNET_CONFIG: POLYGON_TESTNET_CONFIG,
 };

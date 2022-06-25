@@ -21,9 +21,6 @@ export interface BasicNetworkConfig {
 interface MainnetNetworkConfig extends BasicNetworkConfig {
 	WETH_TOKEN_ADDRESS: string;
 }
-interface XDaiNetworkConfig extends BasicNetworkConfig {
-	MERKLE_ADDRESS: string;
-}
 interface PolygonMainnetNetworkConfig extends BasicNetworkConfig {
 	WETH_TOKEN_ADDRESS: string;
 }
@@ -37,7 +34,6 @@ export interface EnvConfig {
 	POLYGON_TEST_NETWORK_NUMBER: number;
 	POLYGON_MAIN_NETWORK_NUMBER: number;
 	MAINNET_CONFIG: MainnetNetworkConfig;
-	XDAI_CONFIG: XDaiNetworkConfig;
 	POLYGON_TESTNET_CONFIG: PolygonMainnetNetworkConfig;
 	POLYGON_MAINNET_CONFIG: PolygonTestnetNetworkConfig;
 	GARDEN_LINK: string;
@@ -53,9 +49,8 @@ export interface GlobalConfig extends EnvConfig {
 	SECONDARY_NETWORK: any;
 	THIRD_NETWORK: any;
 	NETWORKS_CONFIG: {
-		[key: number]: MainnetNetworkConfig | XDaiNetworkConfig | PolygonMainnetNetworkConfig | PolygonTestnetNetworkConfig;
+		[key: number]: MainnetNetworkConfig | PolygonMainnetNetworkConfig | PolygonTestnetNetworkConfig;
 	};
 	INFURA_API_KEY: string | undefined;
-	BLOCKNATIVE_DAPP_ID: string | undefined;
 	GOOGLE_MAPS_API_KEY: string | undefined;
 }
