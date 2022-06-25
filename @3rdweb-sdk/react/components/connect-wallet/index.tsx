@@ -525,7 +525,7 @@ const GnosisSafeModal: React.FC<ConnectorModalProps> = ({
             <FormControl isRequired isInvalid={!!errors.safeChainId} mr={4}>
               <FormLabel>Safe Network</FormLabel>
               <SupportedNetworkSelect
-                disabledChainIds={[ChainId.Fantom, ChainId.Mumbai]}
+                disabledChainIds={[ChainId.Fantom, ChainId.Mumbai] as any}
                 {...register('safeChainId')}
               />
 

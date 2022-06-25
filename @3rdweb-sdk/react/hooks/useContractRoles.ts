@@ -5,6 +5,7 @@ import {
 } from "./query/useQueryWithNetwork";
 import { useWeb3 } from "@3rdweb-sdk/react";
 import {
+  Multiwrap,
   Split,
   ValidContractClass,
   ValidContractInstance,
@@ -13,11 +14,10 @@ import {
 import { constants } from "ethers";
 import invariant from "tiny-invariant";
 import { C, U } from "ts-toolbelt";
-import { useWeb3React } from "@web3-react/core";
 
 export type ContractWithRoles = U.Exclude<
   ValidContractClass,
-  typeof Vote | typeof Split
+  typeof Vote | typeof Split | typeof Multiwrap
 >;
 
 export type ContractWithRolesInstance = C.Instance<ContractWithRoles>;
@@ -127,7 +127,6 @@ export function useIsAdmin<TContract extends ValidContractClass>(
   contract?: C.Instance<TContract>,
 ) {
   const { address } = useWeb3();
-  // const { account: address } = useWeb3React();
   const contractHasRoles = isContractWithRoles(contract);
   return useIsAccountRole(
     "admin",
