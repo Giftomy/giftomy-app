@@ -40,14 +40,10 @@ const POLYGON_TESTNET_CONFIG = {
 };
 
 const config: EnvConfig = {
-	BACKEND_LINK: 'http://localhost:4000/graphql',
+	BACKEND_LINK: 'https://api.giftomy.xyz/graphql',
 	MAINNET_NETWORK_NUMBER: 42, // Kovan
-	XDAI_NETWORK_NUMBER: 100, // xDAI
 	POLYGON_TEST_NETWORK_NUMBER: 137,
 	POLYGON_MAIN_NETWORK_NUMBER: 80001,
-
-	GARDEN_LINK:
-		'https://gardens-staging.1hive.org/#/xdai/garden/0x16388d99199a74810fc572049b3d4d657e7d5deb',
 
 	MAINNET_CONFIG,
 	POLYGON_TESTNET_CONFIG,

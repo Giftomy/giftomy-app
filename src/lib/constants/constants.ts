@@ -88,7 +88,8 @@ export const OurImages = [
 
 export const givEconomySupportedNetworks = [
 	config.MAINNET_NETWORK_NUMBER,
-	config.XDAI_NETWORK_NUMBER,
+	config.POLYGON_TEST_NETWORK_NUMBER,
+	config.POLYGON_MAIN_NETWORK_NUMBER,
 ];
 
 export const zIndex = {

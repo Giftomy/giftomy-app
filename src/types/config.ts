@@ -30,7 +30,6 @@ interface PolygonTestnetNetworkConfig extends BasicNetworkConfig {
 
 export interface EnvConfig {
 	MAINNET_NETWORK_NUMBER: number;
-	XDAI_NETWORK_NUMBER: number;
 	POLYGON_TEST_NETWORK_NUMBER: number;
 	POLYGON_MAIN_NETWORK_NUMBER: number;
 	MAINNET_CONFIG: MainnetNetworkConfig;
