@@ -347,7 +347,7 @@ const CreateProject = (props: { project?: IProjectEdition }) => {
 								</li>
 							</PublishList>
 							<Buttons>
-								{(!isEditMode || isDraft) && (
+								{/* {(!isEditMode || isDraft) && (
 									<OulineButton
 										label='PREVIEW '
 										buttonType='primary'
@@ -355,7 +355,7 @@ const CreateProject = (props: { project?: IProjectEdition }) => {
 										icon={<IconExternalLink size={16} />}
 										onClick={() => onSubmit(true)}
 									/>
-								)}
+								)} */}
 								<Button
 									label='PUBLISH'
 									buttonType='primary'
