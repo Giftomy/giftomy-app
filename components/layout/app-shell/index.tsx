@@ -30,7 +30,7 @@ export const AppShell: ComponentWithChildren = ({ children }) => {
         <Container flexGrow={1} as='main' maxW='100%' p='0' m='0'>
           {children}
         </Container>
-        <InsufficientFunds />
+        {/* <InsufficientFunds /> */}
         <FooterWrapper />
       </Flex>
     </Flex>
