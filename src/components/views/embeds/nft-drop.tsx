@@ -185,7 +185,7 @@ const ClaimPage: React.FC<ClaimPageProps> = ({ contractAddress, address }) => {
   }
 
   return (
-    <Box w='100%' textAlign='center'>
+    <Flex w='100%' textAlign='center' direction='column' align='center'>
       {metadata?.image ? (
         <Image
           objectFit='contain'
@@ -206,7 +206,7 @@ const ClaimPage: React.FC<ClaimPageProps> = ({ contractAddress, address }) => {
         </Heading>
       )}
       <ClaimButton contractAddress={contractAddress} address={address} />
-    </Box>
+    </Flex>
   );
 };
 

@@ -120,28 +120,12 @@ export default function NFTS() {
             <BreadcrumbLink>Project</BreadcrumbLink>
           </NextLink>
         </BreadcrumbItem>
+        <BreadcrumbItem isCurrentPage>
+          <BreadcrumbLink href='#'>NFTs</BreadcrumbLink>
+        </BreadcrumbItem>
       </Breadcrumb>
 
-      {
-        <>
-          {!!combinedList.length && (
-            <Flex
-              justify='space-between'
-              align='top'
-              gap={4}
-              direction={{ base: 'column', md: 'row' }}
-            >
-              <Flex gap={2} direction='column'>
-                <Heading size='title.md'>NFTs</Heading>
-                <Text fontStyle='italic' maxW='container.md'>
-                  The list of NFTs.
-                </Text>
-              </Flex>
-            </Flex>
-          )}
-          <NFTList nfts={combinedList} />
-        </>
-      }
+      <NFTList nfts={combinedList} />
     </Flex>
   );
 }
