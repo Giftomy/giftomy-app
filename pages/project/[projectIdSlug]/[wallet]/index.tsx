@@ -114,10 +114,10 @@ export default function Dashboard() {
             <BreadcrumbLink>Project</BreadcrumbLink>
           </NextLink>
         </BreadcrumbItem>
-        <BreadcrumbItem>
-          <NextLink href={`/project/${projectIdSlug}/dashboard`} passHref>
-            <BreadcrumbLink>Contracts</BreadcrumbLink>
-          </NextLink>
+        <BreadcrumbItem isCurrentPage>
+          {/* <NextLink href={`/project/${projectIdSlug}/dashboard`} passHref> */}
+          <BreadcrumbLink href='#'>Contracts</BreadcrumbLink>
+          {/* </NextLink> */}
         </BreadcrumbItem>
       </Breadcrumb>
 
