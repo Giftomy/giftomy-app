@@ -21,7 +21,7 @@ const HomeIndex = (props: IHomeView) => {
   return (
     <>
       <Flex align='center' w='100%' py='85px' px='30px'>
-        <ProjectCard key={projects[0].id} project={projects[0]} />
+        {!!totalCount && <ProjectCard key={projects[0].id} project={projects[0]} />}
         {/* TODO */}
         <NFTDrop
           contractAddress='0x2732d8e5199B5AB424732c0634f8dF5562Cf37f0'
