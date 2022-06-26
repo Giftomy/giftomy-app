@@ -14,6 +14,7 @@ import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import NProgress from 'nprogress';
+import posthog from "posthog-js";
 import React, { ReactElement, ReactNode, useEffect } from 'react';
 import { Toaster } from 'react-hot-toast';
 
@@ -34,6 +35,11 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   const apolloClient = useApollo(pageProps);
 
   useEffect(() => {
+    // Init PostHog
+    posthog.init('phc_RZjdlxmyEZzbRnBSoaU5rUMDJVVeRrYJI5cWPeg2Xik', {
+      api_host: 'https://app.posthog.com',
+    });
+
     const handleStart = (url: string) => {
       console.log(`Loading: ${url}`);
       NProgress.start();
