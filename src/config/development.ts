@@ -41,6 +41,7 @@ const POLYGON_TESTNET_CONFIG = {
 
 const config: EnvConfig = {
 	BACKEND_LINK: 'https://api.giftomy.xyz/graphql',
+	// BACKEND_LINK: 'http://localhost:4000/graphql',
 	MAINNET_NETWORK_NUMBER: 42, // Kovan
 	POLYGON_TEST_NETWORK_NUMBER: 137,
 	POLYGON_MAIN_NETWORK_NUMBER: 80001,
