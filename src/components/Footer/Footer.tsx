@@ -38,66 +38,21 @@ const Footer = () => {
 								<LinkItem color={textColor}>Projects</LinkItem>
 							</a>
 						</Link>
-						{/* <Link href={Routes.AboutUs}>
-							<a>
-								<LinkItem color={textColor}>About Us</LinkItem>
-							</a>
-						</Link>
-						<Link href={Routes.Faq}>
-							<a>
-								<LinkItem color={textColor}>FAQ</LinkItem>
-							</a>
-						</Link>
-						<Link href={Routes.Support}>
-							<a>
-								<LinkItem color={textColor}>Support</LinkItem>
-							</a>
-						</Link> */}
 					</LinkColumn>
-					{/* <LinkColumn>
-						<Link href={Routes.Join}>
-							<a>
-								<LinkItem color={textColor}>
-									Join Our Community
-								</LinkItem>
-							</a>
-						</Link>
-						<a href={links.USER_DOCS}>
-							<LinkItem color={textColor}>User Guides</LinkItem>
-						</a>
-						<a href={links.DEVELOPER_DOCS}>
-							<LinkItem color={textColor}>
-								Developer Docs
-							</LinkItem>
-						</a>
-						<Link href={Routes.Terms}>
-							<a>
-								<LinkItem color={textColor}>
-									Terms of Use
-								</LinkItem>
-							</a>
-						</Link>
-					</LinkColumn> */}
 				</LeftContainer>
 				<RightContainer color={textColor}>
 					<SocialContainer>
-						<a href={links.MEDIUM}>
+						{/* <a href={links.MEDIUM}>
 							<IconMedium size={24} color={textColor} />
-						</a>
+						</a> */}
 						<a href={links.GITHUB}>
 							<IconGithub size={24} color={textColor} />
 						</a>
-						{/* <a href={links.REDDIT}>
-							<IconRedit size={24} color={textColor} />
-						</a> */}
 						<a href={links.TWITTER}>
 							<IconTwitter size={24} color={textColor} />
 						</a>
 						{/* <a href={links.YOUTUBE}>
 							<IconYoutube size={24} color={textColor} />
-						</a> */}
-						{/* <a href={links.DOCS}>
-							<IconDocs size={24} color={textColor} />
 						</a> */}
 					</SocialContainer>
 				</RightContainer>
@@ -138,15 +93,6 @@ const RightContainer = styled.div<{ color: string }>`
 	}
 `;
 
-const SupportUs = styled.div`
-	display: flex;
-	margin-bottom: 32px;
-
-	${mediaQueries.laptop} {
-		justify-content: flex-end;
-	}
-`;
-
 const SocialContainer = styled.div`
 	display: flex;
 	flex-wrap: wrap;
@@ -171,6 +117,3 @@ const LinkItem = styled(P)<{ color: string }>`
 	color: ${props => props.color};
 `;
 
-const CaptionRed = styled(Caption)`
-	color: ${brandColors.pinky[500]};
-`;

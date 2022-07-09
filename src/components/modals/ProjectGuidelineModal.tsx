@@ -26,29 +26,6 @@ export const ProjectGuidelineModal: FC<IModal> = ({ setShowModal }) => {
 					<li>
 						<P>A unique or custom banner photo.</P>
 					</li>
-
-					{/* <li>
-						<P>
-							No violations of our{' '}
-							<InlineLink
-								target='_blank'
-								rel={'noopener noreferrer'}
-								href={links.COVENANT_DOC}
-							>
-								Covenant
-							</InlineLink>{' '}
-							and/or{' '}
-							<InlineLink
-								target='_blank'
-								rel={'noopener noreferrer'}
-								href={Routes.Terms}
-							>
-								Terms of Use
-							</InlineLink>
-							.
-						</P>
-					</li> */}
-
 					<li>
 						<P>
 							<Optional>(Optional)</Optional>Embedded photos,
